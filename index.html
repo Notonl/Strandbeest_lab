@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>仿生獸步態實驗室｜V4.20</title><style>
+:root{--bg:#f4f6f8;--ink:#1c3040;--muted:#647888;--line:#dbe3e8;--card:#fff;--blue:#2866a4;--green:#248267;--orange:#b46a21;--red:#b93c36}*{box-sizing:border-box}body{margin:0;font-family:'Noto Sans TC','Microsoft JhengHei',system-ui,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{background:#fff;border:1px solid #c6d2db;border-radius:10px;padding:9px 12px;cursor:pointer;color:var(--ink);font-weight:700}button:hover{border-color:#4779ac;background:#f3f9ff}button:disabled{opacity:.42;cursor:not-allowed}.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.primary:hover{background:#1a5489}.success{background:var(--green);color:#fff;border-color:var(--green)}.bar{height:62px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:white;border-bottom:1px solid var(--line);padding:8px 20px;position:sticky;top:0;z-index:20}.bar h1{margin:0;font-size:21px}.bar small{display:block;color:var(--muted);font-size:11px}.bar-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.layout{max-width:1600px;margin:auto;display:grid;grid-template-columns:320px minmax(440px,1fr) 290px;gap:12px;padding:12px;align-items:start}.panel,.stage,.card{background:var(--card);border:1px solid var(--line);border-radius:14px}.panel{padding:14px;min-width:0}.panel h2{margin:0 0 10px;font-size:17px}.group{border-top:1px solid var(--line);margin-top:12px;padding-top:11px}.group h3{margin:0 0 8px;font-size:14px}.setting{margin:9px 0}.setting label{display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:650}.setting output{color:var(--blue);white-space:nowrap}.setting input[type=range]{width:100%;accent-color:var(--blue)}.setting select,.setting input[type=number],.setting input[type=text],textarea,select,input[type=text]{width:100%;padding:8px 9px;border:1px solid #c6d2db;border-radius:8px;background:white}textarea{resize:vertical;min-height:72px}.row{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.seg{display:flex;gap:5px;flex-wrap:wrap}.seg button{flex:1;padding:8px 7px;font-size:12px}.seg .on{background:#dcecf9;border-color:var(--blue);color:#164d7d}.hint{font-size:12px;line-height:1.55;color:var(--muted)}.alert{border-radius:9px;background:#fff5e8;border:1px solid #ead3ad;padding:9px;font-size:12px;line-height:1.55}.stage{overflow:hidden;position:relative}.stagehead{padding:12px 14px 3px;display:flex;gap:8px;align-items:center;justify-content:space-between}.stagehead h2{margin:0;font-size:16px}.stage canvas{width:100%;height:min(58vh,520px);min-height:360px;display:block;background:linear-gradient(#fbfdfe,#f0f6fa)}.control{display:flex;gap:8px;flex-wrap:wrap;padding:11px 14px;border-top:1px solid var(--line)}.control button{flex:1}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 12px 12px}.metric{border:1px solid var(--line);border-radius:10px;padding:9px 7px;text-align:center;background:#fbfcfe}.metric strong{display:block;font-size:21px;font-variant-numeric:tabular-nums}.metric small{color:var(--muted);font-size:11px}.metric em{display:block;font-size:10px;color:#738392;font-style:normal}.pill{padding:4px 8px;border-radius:99px;background:#eaf2f8;font-size:11px;font-weight:700}.notice{padding:9px 12px;background:#ecf7f2;border:1px solid #c6e6d7;border-radius:9px;font-size:12px;line-height:1.6}.task{border:1px solid var(--line);padding:11px;border-radius:12px;margin:9px 0;background:#fcfdff}.task.selected{border-color:#5693c6;background:#f1f8ff}.taskflow{margin:10px 12px;padding:12px;border:1px solid #cbdde9;border-radius:11px;background:#f6faff;font-size:13px;line-height:1.65}.taskflow strong{color:#174d78}.taskflow .stages{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}.taskflow .stages span{border-radius:7px;padding:4px 7px;background:#e4ecf3;font-size:12px}.taskflow .stages span.active{background:#c9e4d8;color:#125d3e;font-weight:800}.taskflow button{padding:6px 10px;font-size:12px}.task .sequence{margin:8px 0;padding:8px;background:#f4f8fb;border-radius:8px}.task .sequence p{margin:4px 0}.task h3{margin:0 0 5px;font-size:14px}.task p{margin:4px 0;font-size:12px;line-height:1.6;color:var(--muted)}.task .status{font-size:11px;color:var(--green)}.page{max-width:1450px;margin:12px auto;padding:0 12px}.hide{display:none!important}.records{width:100%;border-collapse:collapse;font-size:12px}.records th,.records td{padding:8px 5px;border-bottom:1px solid var(--line);text-align:left}.records th{color:var(--muted)}.records td button{padding:5px 7px;font-size:11px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.report{padding:20px;margin:0 auto;max-width:960px}.report h2{margin:0 0 12px}.report table{width:100%;border-collapse:collapse;font-size:12px}.report th,.report td{padding:8px;border:1px solid #cbd2d8}.report th{background:#f2f5f7}.mini{font-size:11px;color:var(--muted)}.label{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}.checks label{display:block;font-size:12px;margin:8px 0}#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#173d54;color:#fff;border-radius:9px;padding:9px 14px;z-index:50;display:none;max-width:90vw;font-size:13px}#reportPrint{display:none}.empty{padding:25px;text-align:center;color:var(--muted);font-size:13px}details{border:1px solid var(--line);border-radius:10px;padding:10px;margin:7px 0}summary{cursor:pointer;font-size:13px;font-weight:750}.chip{display:inline-block;background:#f3f6fa;padding:5px 7px;border-radius:7px;font-size:11px;margin:2px}.explain{font-size:12px;color:var(--muted);line-height:1.65}.status-good{color:var(--green)}.status-bad{color:var(--red)}.status-warn{color:var(--orange)}@media(max-width:1150px){.layout{grid-template-columns:275px minmax(320px,1fr)}.rightcol{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.rightcol .panel{height:auto}}@media(max-width:760px){.bar{position:static;height:auto;flex-direction:column;align-items:stretch}.layout{display:block}.panel,.stage{margin-bottom:10px}.rightcol{display:block}.stage canvas{height:340px;min-height:300px}.metrics{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.bar-actions button{flex:1}}
+@media print{body{background:white}body>*:not(#reportPrint){display:none!important}#reportPrint{display:block!important;padding:0;color:#111}#reportPrint .report{max-width:none;padding:8mm}.report{font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif}button{display:none!important}@page{size:A4;margin:12mm}}
+.studentExtra summary{cursor:pointer;font-size:15px;font-weight:800;padding:8px 2px}.studentExtra[open]>summary{margin-bottom:9px}.studentExtra summary:hover{color:#285c82}.studentExtra .group{margin-bottom:9px}
+.taskfocus{border-left:4px solid #2866a4;padding:9px 11px;margin:8px 0;background:#eef6fc;border-radius:7px;font-size:13px;line-height:1.55}
+.preflight{border:1px solid var(--line);border-radius:10px;background:#f8fafc;padding:11px;margin:12px 0;font-size:13px}
+.preflight p{margin:6px 0}.preflight .ready{color:#196e51}.preflight .todo{color:#9a652a}
+@media print{.preflight{display:none}}
+
+/* V2.8: focus on the simulation, responsive student workflow */
+:root{--bg:#f3f6f8;--line:#dce5eb;--blue:#2866a4}
+body{line-height:1.45}
+.bar{box-shadow:0 2px 12px rgba(22,48,67,.05)}
+.bar-actions button{font-size:13px;min-height:39px}
+.layout{grid-template-columns:minmax(260px,295px) minmax(0,1fr);gap:12px;max-width:1540px}
+#simStage{grid-column:2;grid-row:1;min-width:0}
+#designPanel{grid-column:1;grid-row:1;min-width:0;align-self:start}
+#statusPanel{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:1fr;min-width:0}
+#designPanel>.group{margin:0}
+#designPanel>h2{font-size:17px;margin-bottom:10px}
+#designPanel>.seg{margin-bottom:9px}
+.designGroup{padding:0;margin:10px 0;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.designGroup>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;padding:12px;background:#f5f8fb;font-weight:800;font-size:14px}
+.designGroup>summary::-webkit-details-marker{display:none}
+.designGroup>summary:after{content:'＋';color:#647888;font-size:18px}
+.designGroup[open]>summary:after{content:'－'}
+.designGroup> :not(summary){margin-left:12px!important;margin-right:12px!important}
+.designGroup> :last-child{margin-bottom:12px!important}
+.setting input[type=range]{min-height:28px;cursor:pointer}
+.setting output{font-size:14px;font-weight:800}
+.stagehead{padding:12px 14px;flex-wrap:wrap}
+.stagehead>.seg{margin-left:auto}
+.stagehead button{font-size:12px}
+#focusViewBtn{border-color:#a4b9c8}
+#jumpSettingsBtn{display:none}
+.stage canvas{height:clamp(380px,54vh,650px);min-height:380px}
+.canvasLegend{font-size:11px;color:#657b89;padding:5px 14px 9px;background:#f9fbfd;text-align:center}
+.controlLabel{font-size:12px;font-weight:800;padding:12px 14px 0;color:#4c6678;border-top:1px solid var(--line)}
+.playControls{border:0;padding-top:8px;padding-bottom:10px;gap:7px}
+.playControls button{min-width:83px;min-height:41px}
+.formalControls{margin:0 14px 12px;padding:11px 12px;border:1px solid #c7dfd4;background:#f5faf7;border-radius:11px;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
+.formalHint{font-size:12px;color:#3b6551;flex:1}
+#formalBtn{min-height:43px;flex:0 1 255px}
+.metrics{grid-template-columns:repeat(4,minmax(0,1fr))}
+.metric{padding:10px 6px}.metric strong{font-size:23px}
+.experimentDock{margin:6px 14px 12px;padding:12px;border:1px solid #ccdce7;border-radius:12px;background:#f8fbfe}
+.experimentDockHeader{font-size:15px;font-weight:800;margin:0 0 5px}
+.experimentDock .taskflow{margin:7px 0 12px;padding:12px;background:#fff}
+.experimentDock .experimentInputs{border-top:1px solid var(--line);padding-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px 15px;align-items:end}
+.experimentDock .experimentInputs h3{grid-column:1/-1;margin:0;font-size:14px}
+.experimentDock .experimentInputs>.setting{margin:0}
+.experimentDock .experimentInputs>#attachConclusion,.experimentDock .experimentInputs>#goCompare{grid-column:auto;min-height:40px}
+.experimentDock textarea{min-height:72px}
+#statusPanel .panel{padding:11px 15px}
+#statusPanel .panel>h2{font-size:15px;margin-bottom:6px}
+#statusPanel .panel>.group{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+#statusPanel .panel>.group h3{grid-column:1/-1;margin:0}
+#statusPanel .panel>.group p{margin:4px 0}
+#statusPanel .panel>.group .row{align-self:start}
+#statusPanel .panel>.group .checks{align-self:start}
+#statusPanel .panel>.group button{max-width:230px}
+.layout.focusMode{grid-template-columns:minmax(0,1fr)}
+.layout.focusMode #simStage{grid-column:1;grid-row:1}
+.layout.focusMode #designPanel,.layout.focusMode #statusPanel{display:none}
+.layout.focusMode .stage canvas{height:clamp(430px,68vh,850px)}
+button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid #79a8d6;outline-offset:2px}
+@media(max-width:1100px){
+.layout{grid-template-columns:260px minmax(0,1fr)}
+#statusPanel{grid-column:1/-1;display:block}
+}
+@media(max-width:820px){
+.layout{display:flex;flex-direction:column;padding:9px;gap:10px}
+#simStage{order:0;width:100%}
+#designPanel{order:1;width:100%}
+#statusPanel{order:2;width:100%;display:block}
+#jumpSettingsBtn{display:inline-flex}
+#focusViewBtn{display:none}
+.stage canvas{height:clamp(300px,46vh,500px);min-height:300px}
+.experimentDock .experimentInputs{grid-template-columns:1fr}
+.experimentDock .experimentInputs>*{grid-column:1!important}
+.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bar{position:static;padding:10px 12px}
+#statusPanel .panel>.group{display:block}
+}
+@media(max-width:480px){
+.stagehead{gap:6px}
+.stagehead>.seg{order:3;width:100%}
+.stagehead>.seg button{flex:1}
+.playControls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.playControls button{min-width:0}
+#formalBtn{width:100%;flex:1}
+.formalControls{display:block}
+.formalHint{margin-bottom:8px}
+.metric strong{font-size:20px}
+.bar-actions{display:grid;grid-template-columns:repeat(2,1fr)}
+}
+@media print{.experimentDock,.canvasLegend,.formalControls,.controlLabel{display:none!important}}
+
+/* V3.0: keep the model visible while changing settings */
+@media(min-width:821px){
+ #designPanel{position:sticky;top:10px;max-height:calc(100dvh - 20px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+ #simStage{align-self:start}
+}
+#miniPreview{display:none}
+@media(max-width:820px){
+ #miniPreview{display:block;position:sticky;top:0;z-index:14;margin:-10px -10px 12px;padding:6px 10px 8px;background:rgba(255,255,255,.98);border-bottom:1px solid #dce5eb;box-shadow:0 3px 12px #1b3c5814}
+ #miniPreview .miniTitle{display:flex;align-items:center;justify-content:space-between;font-weight:800;font-size:13px}
+ #miniPreview .miniTitle span{font-size:10px;font-weight:400;color:#607788}
+ #miniCanvas{display:block;width:100%;height:148px;background:#f8fafb;border-radius:8px}
+}
+@media(max-width:480px){#miniCanvas{height:130px}}
+.customFootEditor{border:1px solid #d6e2ea;background:#f8fbfd;border-radius:12px;padding:12px;margin:12px 0}.customFootEditor[hidden]{display:none!important}#footDraw{display:block;width:100%;height:150px;border:1px solid #d7e4eb;border-radius:9px;touch-action:none;cursor:crosshair;background:#fff}.customFootEditor .row{flex-wrap:wrap;gap:6px}.customFootEditor .row button{font-size:12px;flex:1;min-width:96px}.setting input[type=text]{width:100%;min-width:0} 
+/* V4.5: student-first, progressive disclosure without removing any control */
+.bar h1{font-size:clamp(17px,1.8vw,22px)}
+#designPanel>h2{margin:2px 0 9px}
+#modeDesc{font-size:12px;margin:7px 0 10px}
+.designGroup>summary{min-height:43px;cursor:pointer}
+#designPanel .designGroup{margin:8px 0}
+.quickGravity{display:flex;align-items:center;justify-content:space-between;gap:9px;border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin:9px 0;background:#f7fafc;font-size:13px;font-weight:800}
+.quickGravity .checks{margin:0}
+.quickGravity label{font-size:13px!important;cursor:pointer}
+.quickGravity input{accent-color:var(--blue)}
+.compactDisclosure{border:1px solid var(--line);border-radius:9px;margin:7px 12px;background:#f9fbfd}
+.compactDisclosure>summary{cursor:pointer;font-size:12px;font-weight:800;padding:9px 11px;color:#49667c;list-style:none}
+.compactDisclosure>summary::-webkit-details-marker{display:none}
+.compactDisclosure>summary:after{content:'⌄';float:right;font-size:14px}
+.compactDisclosure[open]>summary:after{content:'⌃'}
+.compactDisclosure> :not(summary){margin:6px 10px 10px}
+#designPanel .footAdvanced{margin:10px 12px 6px!important;background:#f5f9fc}
+#designPanel .footAdvanced>summary{font-size:13px;padding:11px 10px}
+#designPanel .footAdvanced>.two{margin:6px 0 10px!important}
+#designPanel .footAdvanced>.setting{margin:8px 0!important}
+.stage .metrics{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0}
+.stage .metrics .metric{padding:8px 6px}
+.stage .metrics .metric strong{font-size:clamp(20px,2.3vw,25px)}
+.metricMore{margin:0 14px 6px}
+.metricMore .metricsSecondary{margin:0!important}
+.stage .controlLabel{display:none}
+.stage .playControls{padding:8px 14px 5px}
+.stage .manualMore{margin:0 14px 8px}
+.compactButtons{gap:8px}.compactButtons button{flex:1}
+.stage .formalControls{margin-bottom:7px;padding:9px 11px}
+.stage .formalHint{font-size:11px}
+.stage .testMore{margin:0 14px 9px}
+#experimentDock{margin-top:7px;margin-bottom:10px}
+#experimentDock>.experimentDockHeader{font-size:14px;padding:10px 12px;margin:0;cursor:pointer}
+#experimentDock:not([open]){padding:0}
+#experimentDock[open]>.experimentDockHeader{margin-bottom:6px}
+#statusPanel .panel{padding:9px 12px}
+#statusPanel .statusMore{margin:0}
+#statusPanel .statusMore>summary{font-size:13px}
+#statusPanel .statusMore> :not(summary){margin:8px 12px}
+#diagnostic{font-size:12px;padding:8px 10px}
+#simStage>.notice:not(#diagnostic){font-size:11px;line-height:1.5;padding:7px 10px}
+@media (min-width:821px){
+ .layout{grid-template-columns:minmax(258px,288px) minmax(0,1fr)}
+ #simStage .stage canvas{height:clamp(350px,49vh,590px)}
+ #designPanel{max-height:calc(100dvh - 16px)}
+}
+@media (max-width:820px){
+ .stage canvas{height:clamp(300px,43vh,500px);min-height:300px}
+ #miniPreview{top:0}
+ #designPanel .footAdvanced>.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:480px){
+ .bar-actions{gap:5px}
+ .bar-actions button{padding:7px 6px;font-size:12px}
+ .playControls{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #designPanel .footAdvanced>.two{grid-template-columns:1fr}
+ .formalHint{font-size:12px}
+ #miniCanvas{height:125px}
+}
+
+/* V4.6: three clear classroom actions; observation canvas stays large */
+.classroomFlow{margin:8px 12px 4px;padding:10px 12px;border:1px solid #cbdde9;border-radius:11px;background:#f7fbfe}
+.classroomFlowTitle{font-size:13px;font-weight:800;color:#244b69;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:8px}
+#quickStatus{font-size:12px;font-weight:500;color:#567386}
+.classroomFlowButtons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.classroomFlowButtons button{min-width:0;min-height:44px;padding:8px 5px;font-size:13px;font-weight:800}
+.quickPrediction{display:flex;align-items:center;gap:10px;margin-top:8px}
+.quickPrediction label{font-size:12px;font-weight:750;min-width:max-content}
+.quickPrediction select{min-width:0;flex:1;max-width:540px;font-size:13px}
+#simStage .formalControls{display:none!important}
+#simStage .canvasLegend{padding:4px 12px}
+#simStage .playControls{padding-top:5px}
+@media(min-width:821px){#designPanel{scroll-behavior:smooth}}
+@media(max-width:620px){.classroomFlow{margin:7px 8px 4px;padding:9px}.classroomFlowTitle{display:block}.classroomFlowButtons button{font-size:12px;min-height:46px}.quickPrediction{display:block}.quickPrediction label{display:block;margin-bottom:5px}.quickPrediction select{width:100%;max-width:none}}
+@media print{.classroomFlow{display:none!important}}
+
+/* V4.7: compact task pacing without affecting simulator layout */
+.taskMinutes{display:inline-block;vertical-align:middle;font-size:12px;font-weight:600;color:#425c74;background:#eaf0f4;padding:3px 7px;border-radius:9px;margin-left:3px;white-space:nowrap}
+.taskChallenge,.taskThought{font-size:13px;line-height:1.55;margin:8px 0}.taskThought{color:#4d6071}
+.lessonPace{margin:12px 0;padding:10px 12px;border:1px solid #d9e2e9;border-radius:10px}.lessonPace summary{cursor:pointer;font-weight:600}.lessonPace p{font-size:13px;margin:5px 0}
+@media(max-width:560px){.taskMinutes{font-size:11px}.taskChallenge,.taskThought{font-size:12px}}
+
+/* V4.11 - classroom task-first workflow */
+html,body{min-height:100%;overflow-x:hidden}body{padding-bottom:calc(22px + env(safe-area-inset-bottom,0px))}
+.classroomFlow,#experimentDock,.formalControls,.testMore,#statusPanel,.v49Obsolete,.lessonPace{display:none!important}
+.v49FreeMode #taskRecordDock{display:none!important}
+.v49Dock{margin:9px 12px 16px;padding:14px;border:1px solid #d4e2e8;border-radius:14px;background:#fff}
+.v49DockHead{display:flex;align-items:start;justify-content:space-between;gap:10px;margin-bottom:12px}
+.v49DockHead strong{font-size:17px;color:#234d68}.v49DockHead p{font-size:12px;margin:5px 0;color:#637788}
+#v49Progress{border-radius:18px;background:#e9f4ef;color:#22634c;font-size:12px;font-weight:800;padding:5px 10px;white-space:nowrap}
+.v49Prediction{display:flex;align-items:center;gap:10px;margin-bottom:12px}.v49Prediction label{font-size:13px;font-weight:800;white-space:nowrap}.v49Prediction select{flex:1;min-width:0;max-width:530px}
+.v49Slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.v49Slot{border:1px solid #d6e3ea;background:#f8fafc;border-radius:11px;padding:12px;min-width:0}
+.v49Slot h3{font-size:15px;margin:0 0 9px}.v49Saved{font-size:12px;color:#557083;line-height:1.6;min-height:57px;overflow-wrap:anywhere}
+.v49Action{width:100%;min-height:46px;background:#247b67!important;color:#fff!important;font-weight:800!important;border-radius:9px}
+.v49SlotTools{display:flex;gap:6px;margin-top:8px}.v49SlotTools button{flex:1;font-size:12px;min-height:38px;padding:7px 4px}
+.v49Changed{font-size:12px;margin:11px 0;padding:8px 10px;background:#eff5fa;border-radius:8px;color:#355f7d}
+.v49Compare{margin:13px 0;padding:11px;border:1px solid #dce5eb;border-radius:10px}
+.v49Compare h3{font-size:15px;margin:0 0 9px}.v49Compare .records{font-size:13px;width:100%}.v49Compare .records td,.v49Compare .records th{padding:8px}
+.v49Conclusion label{display:block;font-weight:800;font-size:14px;margin-bottom:6px}.v49Conclusion textarea{width:100%;resize:vertical;min-height:74px;font-size:16px}
+.v49MiniStatus,.v49Small{font-size:11px;color:#718390}.v49Export{display:flex;gap:8px;margin-top:10px}.v49Export button{flex:1;min-height:43px}.v49Small{margin:9px 0 0}
+.v49TaskChooser,.v49SubmissionGuide{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}.v49TaskChooser label,.v49SubmissionGuide label{font-weight:800;font-size:14px}.v49TaskChooser select,.v49SubmissionGuide select{min-width:165px}.v49SubmissionGuide{background:#f7fafc;padding:12px;border-radius:10px}.v49SubmissionGuide p{width:100%;margin:0;color:#637788;font-size:12px}
+.v49Entry{position:fixed;inset:0;background:#edf3f7;z-index:99999;display:grid;place-items:center;padding:22px}.v49Entry[hidden]{display:none!important}
+.v49EntryCard{width:min(100%,440px);background:#fff;border:1px solid #d5e2e8;border-radius:18px;padding:32px 24px;text-align:center;box-shadow:0 15px 40px #102f4818}
+.v49EntryCard h1{font-size:24px;margin:12px 0}.v49EntryCard p{font-size:15px;color:#5b7181}.v49EntryIcon{font-size:38px;color:#2866a4}.v49Start{width:100%;background:#247b67!important;color:#fff!important;font-size:18px!important;font-weight:800;min-height:54px;margin:18px 0 12px}.v49EntryCard small{display:block;color:#738695}
+#v49TaskModeLabel{padding:7px 12px;background:#eaf3fa;border:1px solid #d6e5ef;border-radius:9px;font-size:13px;font-weight:750;color:#285571;margin:9px 0}
+#v49Observation{margin:10px 12px 8px;border:1px solid #dce5eb;border-radius:11px;padding:9px 11px;background:#f9fbfc}
+#v49Observation>summary{cursor:pointer;font-weight:800;font-size:14px;min-height:29px}
+#v49Observation .metrics{margin-top:8px}
+#recordsPage .v49OldRecords,#submitPage .v49LegacySelector{display:none!important}
+@media(max-width:820px){#designPanel{padding-bottom:calc(36px + env(safe-area-inset-bottom,0px));overflow:visible}#statusPanel{display:none!important}.layout{padding-bottom:24px}.stage canvas{height:clamp(290px,42vh,510px);min-height:290px}}
+@media(max-width:620px){.v49Dock{margin:8px;padding:11px}.v49Slot{padding:9px}.v49Slots{gap:7px}.v49SlotTools{flex-direction:column}.v49Export{flex-direction:column}.v49Prediction{display:block}.v49Prediction select{width:100%;margin-top:5px}.v49Saved{min-height:78px}}
+@media print{.v49Dock,.v49Entry,.v49SubmissionGuide{display:none!important}}
+
+/* V4.14 — classroom layout and print */
+.v413Identity{background:#f4f8fb;border:1px solid #dce6ee;border-radius:10px;padding:11px;margin:11px 0 8px}
+.v413IdentityTitle{font-size:13px;font-weight:800;margin-bottom:7px;color:#34556d}
+.v413IdentityRow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.v413IdentityRow label{font-size:12px;font-weight:700;color:#4c6172}
+.v413IdentityRow input{display:block;width:100%;margin-top:4px;min-width:0;font-size:16px;box-sizing:border-box}
+#showWalk[disabled]{opacity:.35;cursor:not-allowed}
+#v49ExportTask,#downloadReportJSON,#saveMeta{display:none!important}
+#v413TraceLabel{margin:6px 0 10px;display:block;font-size:13px}
+@media(max-width:620px){.v413IdentityRow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media print{
+  #printContent{font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif;font-size:10.5pt;line-height:1.42}
+  #printContent h2{font-size:17pt;margin:0 0 8pt}
+  #printContent h3{font-size:12pt;margin:8pt 0 5pt}
+  #printContent .v413Fig{break-inside:avoid;page-break-inside:avoid;margin:8pt 0}
+  #printContent .v413Fig img{width:100%;max-height:89mm;object-fit:contain;border:1px solid #d9e1e8}
+  #printContent .records{font-size:9pt}
+  #printContent .records td,#printContent .records th{padding:5px}
+  #printContent .v413Illustrations{display:grid;grid-template-columns:1fr 1fr;gap:9pt}
+  #reportPrint .report{padding:0!important}
+  @page{size:A4;margin:12mm}
+}
+
+/* V4.14 visible trajectory and task-specific controls */
+#gravityGroup {display:block!important}
+#gravityGroup>summary {font-size:14px;font-weight:800}
+#gravityGroup #v413TraceLabel {display:flex!important;align-items:center;gap:8px;padding:7px 2px;font-size:14px;font-weight:700}
+#gravityGroup #v413TraceLabel input {width:20px;height:20px;accent-color:#25856d}
+body.v49TaskMode[data-active-task="2"] #footGroup > p.hint,
+body.v49TaskMode[data-active-task="3"] #footGroup > p.hint,
+body.v49TaskMode[data-active-task="2"] #footGroup > .row,
+body.v49TaskMode[data-active-task="3"] #footGroup > .row,
+body.v49TaskMode[data-active-task="2"] #footGroup > #footDraw,
+body.v49TaskMode[data-active-task="3"] #footGroup > #footDraw {display:none!important}
+body.v49TaskMode[data-active-task="1"] #linkGroup .hint {font-size:12px}
+
+/* V4.16: single touch-friendly slider and visible cm readout. */
+body.v49TaskMode[data-active-task="1"] #gravityGroup{display:block!important}
+.v416RangeRow{display:flex;align-items:center;width:100%;min-height:32px}
+.v416RangeRow input[type=range]{width:100%;min-width:0;flex:1;min-height:28px;accent-color:var(--blue);touch-action:pan-y}
+.v416RangeRow input[type=range]::-webkit-slider-thumb{cursor:grab}
+
+/* V4.17 task center: large, accessible, single-column reading */
+#tasksPage .panel{max-width:980px;margin:0 auto;padding:clamp(16px,3vw,28px)}
+#tasksPage h2{font-size:clamp(23px,3vw,30px);line-height:1.3;margin:0 0 14px}
+#tasksPage > .panel > .notice{font-size:16px;line-height:1.7;padding:14px 16px}
+#taskList{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;gap:16px;width:100%}
+#taskList .task{width:100%;min-width:0;padding:18px 20px;line-height:1.72}
+#taskList .task h3{font-size:clamp(19px,2.2vw,23px);line-height:1.4;margin:0 0 10px}
+#taskList .task p{font-size:16px;line-height:1.75;margin:8px 0}
+#taskList .taskChallenge,#taskList .taskThought{font-size:16px!important;line-height:1.8!important}
+#taskList .taskThought{background:#f4f8fb;border-left:3px solid #7ea5c3;border-radius:6px;padding:10px 13px}
+#taskList .task details{font-size:15px;line-height:1.7;margin-top:12px}
+#taskList .task details summary{font-size:16px;min-height:40px}
+#taskList .task button{font-size:16px;min-height:46px;padding:11px 18px}
+#taskList .taskMinutes{display:none!important}
+@media(max-width:620px){#taskList .task{padding:15px 14px}#taskList .task p,#taskList .taskChallenge,#taskList .taskThought{font-size:16px!important}}
+
+/* V4.18: task cards are intentionally high-contrast for classroom iPads. */
+#taskList .task h3 {color:#182d40!important}
+#taskList .task p,#taskList .task .taskChallenge,#taskList .task .taskThought {color:#20374b!important}
+#taskList .task p.v418TaskGoal {font-size:17px!important;color:#142e46!important;line-height:1.7}
+#taskList .task p.v418TaskGoal b {color:#173e60!important;margin-right:7px}
+#taskList .task .taskThought {background:#eef4fa!important;border-left:4px solid #417eac!important}
+#taskList .task .taskThought b,#taskList .task .taskChallenge b {color:#173e60!important}
+#taskList .task .status {color:#21576d!important;font-size:15px!important;font-weight:650!important}
+#taskList .task details, #taskList .task details p, #taskList .task details summary {color:#20374b!important}
+#taskList .task .hint {color:#405769!important}
+#gravityGroup .hint, #gravityGroup .setting label {color:#20374b!important}
+</style></head><body>
+<div id="v49Entry" class="v49Entry" role="dialog" aria-modal="true" aria-labelledby="v49EntryTitle"><div class="v49EntryCard"><div class="v49EntryIcon">⚙</div><h1 id="v49EntryTitle">仿生獸步態實驗室</h1><p>開始自由探索，需要做任務時再從上方選擇。</p><button id="v49Start" class="v49Start">開啟新的實驗</button><small>本機不會載入上一位學生的紀錄。</small></div></div>
+<header class="bar"><div><h1>仿生獸步態實驗室 <span class="pill">V4.20</span></h1><small>改一項設定，看看仿生獸走得有什麼不同。</small></div><div class="bar-actions"><button class="primary" data-page="lab">實驗室</button><button data-page="tasks">任務中心</button><button data-page="records">實驗紀錄 <span id="recordCount">0</span></button><button data-page="submit">下載成果</button></div></header>
+<section class="layout pageview" id="labPage">
+<main class="stage" id="simStage"><div class="stagehead"><h2>觀察窗 <span class="pill" id="visualMode">行走觀察</span></h2><div class="seg"><button class="on" id="showMechanism">機構示意</button><button id="showWalk">行走模擬</button></div><button id="focusViewBtn" title="收合設定與狀態，放大觀察畫面" type="button">⛶ 專心觀察</button><button id="jumpSettingsBtn" type="button">⚙ 調整設定</button></div><canvas aria-label="四連桿與行走模擬" id="simCanvas"></canvas><div class="classroomFlow" aria-label="實驗操作三步驟">
+  <div class="classroomFlowTitle">快速操作 <span id="quickStatus" aria-live="polite">① 先調整設計，再選擇預測</span></div>
+  <div class="classroomFlowButtons">
+   <button type="button" id="quickDesign">① 調整設計</button>
+   <button type="button" class="success" id="quickTest">② 開始測試</button>
+   <button type="button" id="quickResults">③ 查看結果</button>
+  </div>
+  <div class="quickPrediction"><label for="quickPrediction">測試前，先選擇你的預測</label><select id="quickPrediction" aria-label="測試前預測"><option value="">先選一項</option></select></div>
+ </div><div class="canvasLegend">紅 AB　藍 BC／前腳　綠 CD／後腳　灰 AD</div><div class="controlLabel">自由觀察</div><div aria-label="自由觀察控制" class="control playControls"><button class="primary" id="playBtn">▶ 播放</button><button id="restartBtn">↺ 重設姿態</button></div><details class="compactDisclosure manualMore"><summary>單步／暫停</summary><div class="row compactButtons"><button id="pauseBtn">⏸ 暫停</button><button id="stepBtn">單步</button></div></details><div class="metrics"><div class="metric"><strong id="mDistance">0.0</strong><small>前進距離 cm（左＋）</small></div><div class="metric"><strong id="mSlip">0.0</strong><small>腳掌滑動 cm</small></div></div><details class="compactDisclosure metricMore"><summary>其他觀察數據</summary><div class="metrics metricsSecondary"><div class="metric"><strong id="mTilt">0°</strong><small>機身傾斜</small></div><div class="metric"><strong id="mTurns">0.0</strong><small>馬達轉動圈數</small></div></div></details><div class="formalControls"><div class="formalHint">每次測試都會從相同條件開始。</div><button class="success" id="formalBtn">● 開始正式測試並記錄</button></div><details class="compactDisclosure testMore"><summary>測試條件（預設固定 2 圈）</summary><div class="setting" style="margin:0 14px 10px"><label for="testMode">正式測試條件</label><select id="testMode"><option value="turns">固定 2 圈（最多 20 秒）</option><option value="time">固定 6 秒</option></select></div></details><details class="experimentDock" id="experimentDock"><summary class="experimentDockHeader">實驗步驟｜預測、比較與結論</summary><div aria-live="polite" class="taskflow hide" id="taskWorkflow"></div><div class="experimentInputs"><h3>預測與結論</h3><div class="setting"><label for="prediction" id="predictionLabel">你的預測</label><select id="prediction"><option value="">先選一項</option></select></div><p class="hint" id="predictionHint"></p><div class="setting"><label for="conclusion">測試後的觀察／結論</label><p class="hint" id="conclusionHint"></p><textarea id="conclusion" placeholder="例如：這次改了 BC 長度，觀察到……"></textarea></div><button id="attachConclusion" style="width:100%">儲存這次的結論</button><button id="goCompare" style="width:100%;margin-top:6px">比較兩次測試</button></div></details><section id="taskRecordDock" class="v49Dock" aria-label="本次任務測試與紀錄">
+  <div class="v49DockHead"><div><strong id="v49TaskTitle">本次任務</strong><p id="v49TaskTip">第一次測試後，調整本任務的設計，再做第二次。</p></div><span id="v49Progress">0 / 2</span></div>
+  <div class="v49Prediction"><label for="v49Prediction">這次的預測</label><select id="v49Prediction"><option value="">先選擇</option></select></div>
+  <div class="v49Slots"><article class="v49Slot"><h3>第一次測試</h3><div class="v49Saved" id="v49FirstDetail">尚未測試</div><button class="v49Action" id="v49Run1">第一次測試保存</button><div class="v49SlotTools"><button id="v49Load1">載入修改</button><button id="v49Del1">清除這次</button></div></article><article class="v49Slot"><h3>第二次測試</h3><div class="v49Saved" id="v49SecondDetail">尚未測試</div><button class="v49Action" id="v49Run2">第二次測試保存</button><div class="v49SlotTools"><button id="v49Load2">載入修改</button><button id="v49Del2">清除這次</button></div></article></div>
+  <div id="v49Changed" class="v49Changed" aria-live="polite">調整設計後，選擇要保存的測試。</div>
+  <section id="v49Compare" class="v49Compare"><h3>兩次測試比較</h3><div id="v49CompareBody">完成兩次測試後，這裡會顯示差異。</div></section>
+  <div class="v49Conclusion"><label for="v49Note">我的發現</label><textarea id="v49Note" rows="3" placeholder="我修改了什麼？兩次結果有什麼不同？"></textarea><span id="v49NoteStatus" class="v49MiniStatus">輸入後自動暫存</span></div>
+  <div class="v413Identity" id="v413Identity"><div class="v413IdentityTitle">學生資料（儲存 PDF 前填寫）</div><div class="v413IdentityRow"><label>班級<input type="text" id="v413Class" placeholder="例如 803" autocomplete="off"/></label><label>姓名<input type="text" id="v413Name" placeholder="姓名" autocomplete="off"/></label><label>座號<input type="text" id="v413Seat" placeholder="例如 12" autocomplete="off"/></label></div></div>
+  <div class="v49Export"><button id="v49ExportTask" style="display:none!important" aria-hidden="true">下載本任務紀錄</button><button id="v49PrintTask">本任務儲存 PDF</button></div>
+  <p class="v49Small">即使測試未完成，也可以儲存 PDF。模擬數據僅供設計比較參考。</p>
+ </section><div class="notice" style="margin:0 12px 10px">模擬結果供參考，實際行走還要動手測試。</div><div class="notice" id="diagnostic" style="margin:0 12px 12px"></div></main><aside class="panel" id="designPanel"><div aria-label="調整時的即時機構預覽" id="miniPreview"><div class="miniTitle">即時觀察 <span></span></div><canvas aria-label="仿生獸縮小預覽" id="miniCanvas"></canvas></div><h2>設計與調整</h2><div class="seg"><button class="on" id="freeMode">自由探索</button><button id="taskMode">任務實驗</button></div><div class="hint" id="modeDesc">改變設定，看看走法有什麼不同。</div><div class="quickGravity"><span>重力模式</span><div class="checks"><label style="font-size:14px;font-weight:750"><input checked="" id="gravityEnabled" type="checkbox"/> 啟用重力與地面接觸</label></div></div>
+<details class="designGroup" id="linkGroup" open=""><summary>四連桿長度 <span class="pill">cm</span></summary><div id="linksControls"></div><p class="hint">A、D 是固定在機身上的位置；左側是前腳。</p><p class="hint" id="v415Task1Hint" style="display:none">四根桿長從 0 cm 開始，自己找出一組能完整旋轉，以及一組只能有限擺動的四連桿。</p></details>
+<details class="designGroup" id="footGroup"><summary>腳掌形狀與尺寸</summary><div id="legControls"></div><div class="setting"><label for="frontFootType">前腳腳掌</label><select id="frontFootType"><option value="flat">平底腳</option><option value="arc">弧形腳</option><option value="toe">前翹腳</option><option value="wide">寬底腳</option><option value="custom">自由設計</option></select></div><div class="setting"><label for="rearFootType">後腳腳掌</label><select id="rearFootType"><option value="flat">平底腳</option><option value="arc">弧形腳</option><option value="toe">前翹腳</option><option value="wide">寬底腳</option><option value="custom">自由設計</option></select></div><div class="customFootEditor" hidden="" id="customFootEditor">
+<div class="setting"><label for="footEditSide">正在編輯哪一隻腳掌？</label><select id="footEditSide"><option value="front">前腳</option><option value="rear">後腳</option></select></div>
+<p class="hint">拖曳橘色圓點，畫出你想要的腳掌。</p>
+<canvas aria-label="拖曳五個點來修改腳掌形狀" height="150" id="footDraw" width="320"></canvas>
+<div class="row"><button id="footReset" type="button">恢復平底形狀</button><button id="footCurvePreset" type="button">套用前翹範例</button><button id="copyFoot" type="button">複製到另一隻腳</button></div>
+<p class="hint">腳底線條不能交叉。</p>
+</div><details class="compactDisclosure footAdvanced"><summary>材料、摩擦與腳掌角度</summary><div class="two" style="gap:9px;margin-top:10px"><div class="setting"><label for="frontFootMaterial">前腳材料（自行命名）</label><input id="frontFootMaterial" maxlength="40" placeholder="例如：泡棉、紙板、橡皮擦" type="text"/></div><div class="setting"><label for="rearFootMaterial">後腳材料（自行命名）</label><input id="rearFootMaterial" maxlength="40" placeholder="不限制材料" type="text"/></div></div>
+<p class="hint">材料可以自己選；抓地力先用猜的，之後再實際試試看。</p>
+<div class="setting"><label for="frontFootAngle">前腳腳掌方向 <output id="frontFootAngleVal"></output></label><input id="frontFootAngle" max="90" min="-90" step="5" type="range" value="0"/></div><div class="setting"><label for="rearFootAngle">後腳腳掌方向 <output id="rearFootAngleVal"></output></label><input id="rearFootAngle" max="90" min="-90" step="5" type="range" value="0"/></div><div class="setting"><label for="frontFriction">前腳抓地程度</label><select id="frontFriction"><option value="0.35">低摩擦（較滑）</option><option selected="" value="0.8">中摩擦（一般）</option><option value="1.4">高摩擦（較不滑）</option></select></div><div class="setting"><label for="rearFriction">後腳抓地程度</label><select id="rearFriction"><option value="0.35">低摩擦（較滑）</option><option selected="" value="0.8">中摩擦（一般）</option><option value="1.4">高摩擦（較不滑）</option></select></div><div class="setting"><label for="groundType">地面摩擦</label><select id="groundType"><option value="0.25">光滑</option><option selected="" value="0.65">一般</option><option value="1.1">粗糙</option></select></div></details>
+</details><details class="designGroup" id="driveGroup"><summary>第二組腿與相位</summary><div class="setting"><label for="motorSpeed">馬達轉速</label><select id="motorSpeed"><option value="0.65">慢速</option><option selected="" value="1">正常</option><option value="1.5">快速</option></select></div><div class="setting"><label><span><input checked="" id="secondLeg" type="checkbox"/> 使用第二組腿</span></label></div><div class="setting"><label for="phase">第二組腿相位 <output id="phaseVal"></output></label><input id="phase" max="180" min="0" step="30" type="range" value="180"/></div></details>
+<details class="designGroup" id="gravityGroup"><summary>運動軌跡</summary><p class="hint"></p><p class="hint" id="gravityHelp">關閉重力可觀察腳部移動的路線。</p><div class="setting"><label for="traceMode">軌跡顯示方式</label><select id="traceMode"><option value="off">關閉軌跡</option><option value="cycle">最近一圈</option><option value="two-cycles">最近兩圈</option><option value="all">累積軌跡</option></select></div><div class="checks" style="margin:10px 0"><label><input id="showCTrail" type="checkbox"/> 顯示 C 點運動軌跡</label></div><button id="clearTrails" type="button">清除運動軌跡</button></details><details class="group studentExtra"><summary>更多觀察設定</summary><div class="group"><h3>運動與觀察</h3><div class="setting"><label for="angleSlider">驅動角度 <output id="angleValue">0°</output></label><input id="angleSlider" max="360" min="0" step="1" type="range" value="35"/></div><div class="setting"><label for="playSpeed">動畫速度</label><select id="playSpeed"><option value="0.25">0.25 倍</option><option value="0.5">0.5 倍</option><option selected="" value="1">正常</option><option value="2">2 倍</option></select></div><div class="row"><button id="reverseBtn">↔ 反向旋轉</button></div><div class="checks"><label><input checked="" id="autoReverse" type="checkbox"/> 遇到旋轉極限自動反向</label></div><div class="setting"><label for="cameraMode">鏡頭</label><select id="cameraMode"><option value="follow">跟隨機身</option><option value="fixed">固定地面</option></select></div></div><div class="group"><h3>操作輔助</h3><div class="checks"><label><input id="showTrace" type="checkbox"/> 顯示腳端運動軌跡</label><label style="display:none!important" aria-hidden="true"><input id="showLabels" type="checkbox"/> 顯示連桿名稱</label></div><div class="row"><button id="undoBtn">↶ 復原</button><button id="redoBtn">↷ 重做</button></div><div class="row"><button id="saveDesignBtn">儲存設計</button><button id="resetDesignBtn">還原預設</button></div></div></details>
+</aside><aside class="rightcol" id="statusPanel"><div class="panel"><details class="compactDisclosure statusMore"><summary>其他觀察功能</summary><h2>機構狀態</h2><div class="notice" id="geometryStatus">檢查中</div><p class="explain" id="grashofStatus"></p><p class="explain" id="driveStatus"></p><div class="group"><h3>觀察輔助</h3><div class="checks"><label><input checked="" id="showContact" type="checkbox"/> 顯示接地／滑動點</label><label><input id="showSupport" type="checkbox"/> 顯示機身重心</label></div><div class="row"><button id="fitCameraBtn">重設畫面</button></div><p class="explain" id="modelHealth">調整設計，觀察變化。</p><p class="explain" id="contactLegend">● 綠：支撐　● 橘：滑動　○ 灰：接近地面</p><p class="explain" id="settleInfo"></p></div><div class="group"><h3>目前測試</h3><div class="hint" id="currentTaskText">到任務中心開始挑戰。</div><button id="openTasksBtn" style="width:100%;margin-top:6px">前往任務中心</button></div></details></div></aside></section>
+<section class="page pageview hide" id="tasksPage"><div class="panel"><h2>仿生獸設計挑戰</h2><p class="notice">先預測，再測試兩種設計，最後比較結果、寫下發現。</p><div class="taskListVertical" id="taskList"></div></div></section>
+<section class="page pageview hide" id="recordsPage"><div class="panel"><div class="v49TaskChooser"><label for="v49RecordTask">查看任務</label><select id="v49RecordTask"></select><button id="v49ClearAll">清除全部紀錄</button></div><div class="row" style="justify-content:space-between"><h2>實驗紀錄</h2><div class="row"><button id="exportJSON">匯出紀錄</button><button id="clearRecords">清除全部紀錄</button></div></div><p class="hint">測試會自動保存到這台裝置。下課前記得匯出成果。</p><div id="recordTable"></div></div><div class="panel" style="margin-top:12px"><h2>兩次設計比較</h2><div class="row"><select id="compareA"></select><select id="compareB"></select><button class="primary" id="compareBtn">比較</button></div><div class="hint" id="compareResult" style="margin-top:10px">選擇兩次測試後比較。</div></div></section>
+<section class="page pageview hide" id="submitPage"><div class="v49SubmissionGuide"><label for="v49SubmitTask">本次下載的任務</label><select id="v49SubmitTask"></select><p>每份 PDF 包含該任務的兩次測試、70° 圖片與結論；未完成也可儲存。</p></div><div class="two"><div class="panel"><h2>下載成果</h2><div class="row"><div style="flex:1"><div class="label">班級</div><input id="className" placeholder="例如 703" type="text"/></div><div style="flex:1"><div class="label">座號</div><input id="studentId" placeholder="例如 12 或 第 3 組" type="text"/></div><div style="flex:1"><div class="label">姓名</div><input id="studentName" placeholder="姓名" autocomplete="off" type="text"/></div></div><div class="setting"><label>選擇實驗紀錄</label><select id="selectedReport"></select></div><div class="setting"><label>我學到什麼？</label><textarea id="overallConclusion" placeholder="我調整了什麼？結果如何？下次還想改善什麼？"></textarea></div><div aria-live="polite" class="preflight" id="submissionChecklist"></div><div class="row"><button id="saveMeta">儲存學生資料</button><button class="primary" id="downloadReportJSON" style="display:none!important" aria-hidden="true">下載紀錄</button><button class="success" id="printPdf">儲存 PDF</button></div><p class="hint">儲存 PDF 後，依老師指定方式繳交。</p></div><div class="panel"><h2>成果預覽</h2><div class="explain" id="reportPreview"></div></div></div></section>
+<div id="reportPrint"><div class="report" id="printContent"></div></div><div aria-live="polite" id="toast" role="status"></div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),clone=x=>JSON.parse(JSON.stringify(x));
+const DEFAULT={showCTrail:false,showContact:true,showSupport:false,ab:3,bc:8,cd:7,da:10,frontExt:2,rearExt:2,footSize:1.2,footType:'flat',frontFootType:'flat',rearFootType:'flat',frontFootAngle:0,rearFootAngle:0,frontFriction:0.8,rearFriction:0.8,frontFootMaterial:'',rearFootMaterial:'',frontFootProfile:[0,0,0,0,0],rearFootProfile:[0,0,0,0,0],friction:.65,motorSpeed:1,secondLeg:true,phase:180,showTrace:false,showLabels:false,gravityEnabled:true,autoReverse:true,traceMode:'cycle',cameraMode:'follow',testMode:'turns'};
+const TASKS=[
+{id:1,minutes:8,title:'找出能轉動的四連桿',goal:'找到一組可以完整旋轉、另一組只能擺動的桿長。',tip:'四根桿長從 0 cm 開始。第一次找出完整旋轉，第二次找出只能有限擺動的設計。',metric:'找出完整旋轉與有限擺動各一組，桿長可以自由調整。',think:'比較兩次的四根桿長：哪些長度不同？哪一組能完整旋轉、哪一組只能擺動？'},
+{id:2,minutes:10,title:'讓仿生獸開始走動',goal:'保留可旋轉的四連桿，試著只改前腳延伸長度，觀察走動表現。',tip:'前腳延伸從 0 cm 開始。先完成第一次設計，再改變長度進行第二次測試。',metric:'比較兩種前腳長度，哪一種走得較順？',think:'兩次前腳長度各是多少？比較前進距離，腳變長的那次真的走得比較遠嗎？'},
+{id:3,minutes:10,title:'抓地力真的越大越好嗎？',goal:'固定機構與腳掌，只改變地面摩擦程度。',tip:'選擇兩種不同的地面摩擦條件，其他設定保持不變。',metric:'比較走多遠、滑多少。',think:'哪一種地面摩擦比較大？它的滑動量和前進距離有什麼不同？'},
+{id:4,minutes:10,title:'兩組腿怎樣配合？',goal:'開啟第二組腿，改變相位差觀察接地先後及機身晃動。',tip:'調整第二組腿的相位差，自由調整相位差，保存兩個不同角度的行走結果。',metric:'比較哪種相位走得比較穩。',think:'兩次相位差各是多少？哪一次機身晃動比較小？前進距離有沒有不同？'},
+{id:5,minutes:12,title:'我的仿生獸改良挑戰',goal:'自己選定改良目標，比較原設計與改良後的結果。',tip:'可改腳部長度、腳掌或相位；改了多個項目時，要說明無法確定是哪項造成差異。',metric:'用兩次測試結果，說明你怎麼改良。',think:'你改了哪些地方？從兩次結果中，你找到哪一項改良有效的證據？'}];
+const LESSON_PLAN={intro:5,finish:5,total:60};
+
+const VERSION='student-v4.20-classroom-final';const STORAGE='bionic-student-v49-private-session';let frameAccumulator=0;let playRate=1,driveDirection=1,haltKind='',selectedLink=null;let data={config:clone(DEFAULT),records:[],designs:[],comparedTasks:[],mode:'free',task:1,student:{className:'',studentId:'',overall:'',selectedReportId:''}},undoStack=[],redoStack=[],busy=false,sim=null,view='walk',running=false,lastFrame=0,rafId=0,trail=[],currentPage='lab',toastTimer=null;
+// V4.11: do not read previously stored student data on startup; a new experiment starts only after consent.
+// 舊版位移紀錄以畫面向右為正；一次性換算成學生版統一的「向左為正」。
+// 只轉換資料的方向，不改動實際模擬座標與物理計算。
+for(const r of data.records){
+ if(!r||!r.result||typeof r.result.distance!=='number')continue;
+ if(r.result.distanceConvention!=='left-positive'){
+  r.result.distance=-r.result.distance;
+  r.result.distanceConvention='left-positive';
+  r.simulation={...(r.simulation||{}),distanceConvention:'left-positive'};
+ }
+}
+// 舊版單一腳掌設定相容；點狀腳已取消，預設轉為平底腳。
+for(const key of ['frontFootType','rearFootType']){const value=data.config[key];data.config[key]=['arc','toe','wide','custom'].includes(value)?value:'flat';}
+if(data.config.footType==='point')data.config.footType='flat';
+function save(){try{localStorage.setItem(STORAGE,JSON.stringify(data))}catch(e){showToast('無法在這個瀏覽器自動保存，請先儲存 PDF 備份。')}}
+function showToast(t){$('toast').textContent=t;$('toast').style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').style.display='none',3200)}
+function num(x,p=1){return Number(x).toFixed(p)};function deg(v){return v*180/Math.PI}const rad=v=>v*Math.PI/180;
+const v=(x,y)=>({x,y}),add=(a,b)=>v(a.x+b.x,a.y+b.y),sub=(a,b)=>v(a.x-b.x,a.y-b.y),mul=(a,s)=>v(a.x*s,a.y*s),length=a=>Math.hypot(a.x,a.y),normalize=a=>mul(a,1/Math.max(1e-8,length(a)));
+function fourbar(cfg,alpha,branch=1){if([cfg.ab,cfg.bc,cfg.cd,cfg.da].some(x=>!Number.isFinite(x)||x<=0))return null;const A=v(0,0),D=v(cfg.da,0),B=v(cfg.ab*Math.cos(alpha),cfg.ab*Math.sin(alpha)),delta=sub(D,B),d=length(delta);if(d>cfg.bc+cfg.cd-1e-7||d<Math.abs(cfg.bc-cfg.cd)-1e-7||d<1e-7)return null;const x=(cfg.bc*cfg.bc-cfg.cd*cfg.cd+d*d)/(2*d),h=Math.sqrt(Math.max(0,cfg.bc*cfg.bc-x*x)),unit=normalize(delta),perp=v(-unit.y,unit.x),C=add(add(B,mul(unit,x)),mul(perp,branch*h));return {A,B,C,D}}
+function getGeometry(cfg){if([cfg.ab,cfg.bc,cfg.cd,cfg.da].some(x=>!Number.isFinite(x)||x<=0))return {valid:0,maxGap:180,grashof:false,full:false,none:true,sorted:[cfg.ab,cfg.bc,cfg.cd,cfg.da].sort((a,b)=>a-b)};let valid=0,maxGap=0;for(let i=0;i<360;i+=2){if(fourbar(cfg,rad(i)))valid++;else maxGap++}const sorted=[cfg.ab,cfg.bc,cfg.cd,cfg.da].sort((a,b)=>a-b),grashof=sorted[0]+sorted[3]<=sorted[1]+sorted[2]+1e-8;const minBD=Math.abs(cfg.da-cfg.ab),maxBD=cfg.da+cfg.ab,low=Math.abs(cfg.bc-cfg.cd),high=cfg.bc+cfg.cd;const full=minBD>=low-1e-7&&maxBD<=high+1e-7;const none=Math.max(minBD,low)>Math.min(maxBD,high)+1e-7;return {valid,maxGap,grashof,full,none,sorted}}
+function point(x,y,m=1){return {x,y,px:x,py:y,m,iv:1/m}}
+function makeSim(preview=false){const c=data.config,g=getGeometry(c),initialAngle=rad(35);let alpha=initialAngle,pose=fourbar(c,alpha);if(!pose){for(let a=0;a<360&&!pose;a+=3){alpha=rad(a);pose=fourbar(c,alpha)}}if(!pose){return null}
+ if(c.secondLeg){let candidate=alpha,found=false;for(let i=0;i<360;i+=2){let a=rad(i);if(fourbar(c,a)&&fourbar(c,a+rad(c.phase))){candidate=a;found=true;break}}if(!found)return null;alpha=candidate;pose=fourbar(c,alpha)}
+ const A=point(pose.A.x,4+pose.A.y,7),D=point(pose.D.x,4+pose.D.y,7);const sets=[];const n=c.secondLeg?2:1;
+ for(let j=0;j<n;j++){let an=alpha+(j?rad(c.phase):0),p=fourbar(c,an);if(!p){return null}sets.push({B:point(p.B.x,4+p.B.y,0.9),C:point(p.C.x,4+p.C.y,0.9),theta:an,theta0:an,travel:0,branch:1,slip:0,contactCount:0,prevContactX:{},isBlocked:false})}
+ // 依腳端最低點選擇初始高度；不能把沒有延伸的關節當作腳掌。
+ if(c.gravityEnabled!==false&&view==='walk'){let ys=[];for(const set of sets)for(const type of ['front','rear'])for(const f of footSamples({A,D,c},set,type))ys.push(f.pos.y);const minY=ys.length?Math.min(...ys):Math.min(A.y,D.y);const rise=Math.max(-3,Math.min(9,.16-minY));for(const particle of [A,D,...sets.flatMap(q=>[q.B,q.C])]){particle.y+=rise;particle.py+=rise}}
+ const state={c:clone(c),geometryFull:g.full,A,D,sets,angle:alpha,t:0,steps:0,slip:0,contactFrames:0,maxAbsTilt:0,tiltSum:0,tiltFrames:0,driveError:0,status:'ready',originalX:c.da/2,motorTurns:0,trace:[],tracePaths:{},maxConstraintError:0,largeErrorFrames:0,prevContacts:new Map(),driveDirection:driveDirection,ground:0,lastCrankAngle:alpha,initialCenterY:(A.y+D.y)/2};
+ if(c.gravityEnabled!==false&&view==='walk'){state.rigid=rbMake(state);rbSync(state);if(!preview){let settleSteps=0,settleOK=true;for(let i=0;i<240;i++){if(!solveStep(state,1/240,true)){settleOK=false;break;}settleSteps++;if(settleSteps>=120&&settleSteps%20===0){const ch=state.rigid.chassis;if(Math.hypot(ch.vx,ch.vy)<.035&&Math.abs(ch.w)<.18)break;}}state.settling={seconds:settleSteps/240,stable:settleOK&&Math.hypot(state.rigid.chassis.vx,state.rigid.chassis.vy)<.035&&Math.abs(state.rigid.chassis.w)<.18};}}state.originalX=(state.A.x+state.D.x)/2;state.initialCenterY=(state.A.y+state.D.y)/2;state.t=0;state.steps=0;state.slip=0;state.motorTurns=0;state.lastCrankAngle=Math.atan2(state.sets[0].B.y-state.A.y,state.sets[0].B.x-state.A.x)-Math.atan2(state.D.y-state.A.y,state.D.x-state.A.x);state.tiltSum=0;state.tiltFrames=0;state.contactFrames=0;state.maxConstraintError=0;state.largeErrorFrames=0;state.heightMin=state.initialCenterY;state.heightMax=state.initialCenterY;state.prevContacts.clear();state.trace=[];state.tracePaths={};return state}
+function correctDistance(a,b,L,stiff=1){let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy);if(d<1e-9)return;const err=(d-L)/d*stiff;const w=a.iv+b.iv;if(!w)return;a.x+=dx*err*a.iv/w;a.y+=dy*err*a.iv/w;b.x-=dx*err*b.iv/w;b.y-=dy*err*b.iv/w}
+function endpointFoot(s,set,type){const C=set.C,B=set.B,A=s.A,D=s.D,c=s.c;if(type==='front'){const u=normalize(sub(B,C));return {pos:add(v(B.x,B.y),mul(u,c.frontExt)),list:[{p:B,w:1+c.frontExt/c.bc},{p:C,w:-c.frontExt/c.bc}],unit:u}}const u=normalize(sub(D,C));return {pos:add(v(D.x,D.y),mul(u,c.rearExt)),list:[{p:D,w:1+c.rearExt/c.cd},{p:C,w:-c.rearExt/c.cd}],unit:u}}
+function footProfile(c,type){
+ const shape=(type==='front'?c.frontFootType:c.rearFootType)||'flat';
+ const xs=shape==='wide'?[-.75,-.5,-.25,0,.25,.5,.75]:[-.5,-.375,-.25,-.125,0,.125,.25,.375,.5];
+ const chosen=type==='front'?c.frontFootProfile:c.rearFootProfile;
+ const safe=Array.isArray(chosen)&&chosen.length===5?chosen.map(n=>Math.max(0,Math.min(.42,Number(n)||0))):[0,0,0,0,0];
+ return xs.map(t=>{
+  let lift=0;
+  if(shape==='arc')lift=t*t*.52;
+  else if(shape==='toe')lift=Math.pow(Math.max(0,-t)*2,2)*.30; // toward left (front)
+  else if(shape==='wide')lift=Math.max(0,Math.abs(t)-.5)*.18;
+  else if(shape==='custom'){
+   const u=Math.max(0,Math.min(4,(t+.5)*4)),i=Math.min(3,Math.floor(u)),f=u-i;
+   const e=f*f*(3-2*f);lift=safe[i]*(1-e)+safe[i+1]*e;
+  }
+  return {t,lift};
+ });
+}
+function footSamples(s,set,type){
+ if((type==='front'?s.c.frontExt:s.c.rearExt)<=0.001)return [];
+ const info=endpointFoot(s,set,type),size=s.c.footSize,unit=info.unit;
+ const base=v(-unit.y,unit.x),angle=rad(type==='front'?(s.c.frontFootAngle||0):(s.c.rearFootAngle||0));
+ const n=add(mul(base,Math.cos(angle)),mul(unit,Math.sin(angle)));
+ return footProfile(s.c,type).map(({t,lift},i)=>({
+  ...info, pos:add(add(info.pos,mul(n,t*size)),mul(unit,-lift*size)),key:type+i
+ }));
+}
+function moveDerived(sample,dx,dy){let total=0;for(const q of sample.list)total+=q.w*q.w*q.p.iv;if(total<1e-8)return;for(const q of sample.list){const frac=q.w*q.p.iv/total;q.p.x+=dx*frac;q.p.y+=dy*frac}}
+function allParticles(s){return [s.A,s.D,...s.sets.flatMap(z=>[z.B,z.C])]}
+function solveNoGravity(s,dt){
+ // Independent geometry observation: rigid body anchored at A,D; no contact or falling.
+ const c=s.c, next=s.angle+c.motorSpeed*2.2*dt*s.driveDirection;
+ const poses=s.sets.map((_,j)=>fourbar(c,next+(j?rad(c.phase):0)));
+ if(poses.some(p=>!p)){if(c.autoReverse){s.driveDirection*=-1;s.tracePaths={};const back=s.angle+c.motorSpeed*2.2*dt*s.driveDirection;if(!s.sets.every((_,j)=>fourbar(c,back+(j?rad(c.phase):0)))){s.status='旋轉極限：無可行反向角度';haltKind='geometry-limit';return false}s.status='已在幾何極限反向';return true}s.status='旋轉極限：機構受到幾何限制';haltKind='geometry-limit';return false}
+ s.angle=next;
+ s.sets.forEach((set,j)=>{set.B.x=poses[j].B.x;set.B.y=4+poses[j].B.y;set.C.x=poses[j].C.x;set.C.y=4+poses[j].C.y});
+ s.A.x=0;s.A.y=4;s.D.x=c.da;s.D.y=4;
+ s.motorTurns+=c.motorSpeed*2.2*dt*s.driveDirection/(2*Math.PI);s.t+=dt;s.steps++;
+ s.status='幾何觀察：機身固定';
+ if(s.steps%3===0)captureFootTrails(s);
+ return true;
+}
+function captureFootTrails(s){
+ if(!s||!s.c)return;
+ const append=(key,q)=>{
+  if(!q)return;
+  const path=s.tracePaths[key]||(s.tracePaths[key]=[]);
+  path.push({x:q.x,y:q.y,turn:s.motorTurns});
+  const recentTurns=s.c.traceMode==='cycle'?1.001:(s.c.traceMode==='two-cycles'?2.001:0);
+  if(recentTurns){const end=s.motorTurns;while(path.length>2&&Math.abs(end-path[0].turn)>recentTurns)path.shift()}
+  else if(path.length>2400)path.shift();
+ };
+ for(let j=0;j<s.sets.length;j++){
+  const set=s.sets[j];
+  // 前腳無延伸時，沿用 B 點軌跡；後腳無延伸時，不畫腳端軌跡。
+  append(j+'-front',s.c.frontExt>0.001?endpointFoot(s,set,'front').pos:set.B);
+  if(s.c.rearExt>0.001)append(j+'-rear',endpointFoot(s,set,'rear').pos);
+  else delete s.tracePaths[j+'-rear'];
+  // C 點另由學生自行選擇，並非零長後腳的替代軌跡。
+  if(s.c.showCTrail)append(j+'-C',set.C);
+  else delete s.tracePaths[j+'-C'];
+ }
+}
+// 同一顆馬達的兩側曲柄屬於同一根軸，不能在重力／接地修正後各自偏轉。
+// 將曲柄投影至共用的實際軸角（不是目標馬達角），保留接地阻力影響軸的轉動速度。
+function constrainSharedCrank(s){
+ if(s.sets.length<2)return;
+ const axis=normalize(sub(s.D,s.A)),normal=v(-axis.y,axis.x),a=s.A;
+ const angleOf=set=>{const d=sub(set.B,a);return Math.atan2(d.x*normal.x+d.y*normal.y,d.x*axis.x+d.y*axis.y)};
+ const a0=angleOf(s.sets[0]),a1=angleOf(s.sets[1])-rad(s.c.phase);
+ // 用環狀平均處理跨越 ±180° 的角度，避免突然跳到反方向。
+ const common=a0+Math.atan2(Math.sin(a1-a0),Math.cos(a1-a0))*.5;
+ for(let j=0;j<2;j++){
+  const t=common+(j?rad(s.c.phase):0),set=s.sets[j];
+  set.B.x=a.x+s.c.ab*(Math.cos(t)*axis.x+Math.sin(t)*normal.x);
+  set.B.y=a.y+s.c.ab*(Math.cos(t)*axis.y+Math.sin(t)*normal.y);
+ }
+}
+// Motor correction is applied to the single coupled shaft, not once per leg.
+// An angular correction rotates the paired crank endpoints without moving the
+// body pivot A or secretly adding an impulse to the chassis.
+function applySingleShaftDrive(s,settle=false){
+ const axis=normalize(sub(s.D,s.A)),normal=v(-axis.y,axis.x);
+ const d=sub(s.sets[0].B,s.A);
+ const measured=Math.atan2(d.x*normal.x+d.y*normal.y,d.x*axis.x+d.y*axis.y);
+ const error=Math.atan2(Math.sin(s.angle-measured),Math.cos(s.angle-measured));
+ const maxStep=settle?.010:.022;
+ const angularStep=Math.max(-maxStep,Math.min(maxStep,error*(settle?.12:.28)));
+ if(Math.abs(angularStep)<1e-10)return;
+ for(let j=0;j<s.sets.length;j++){
+  const a=measured+angularStep+(j?rad(s.c.phase):0),set=s.sets[j];
+  set.B.x=s.A.x+s.c.ab*(Math.cos(a)*axis.x+Math.sin(a)*normal.x);
+  set.B.y=s.A.y+s.c.ab*(Math.cos(a)*axis.y+Math.sin(a)*normal.y);
+ }
+}
+
+// V4.1 experimental impulse-based planar rigid-body solver, metres/kg/seconds.
+// NOT Box2D and NOT calibrated to the hand-cranked generator.
+// 固定標準化供電：目標角速度不受手搖節奏波動影響；實際角速度仍受扭力上限與負載限制。
+const RB={dt:1/480,gravity:9.81,torque:.039,omega:2.2,velocityIters:120,positionIters:3};
+function rbBody(x,y,a,m,I){return {x,y,a,vx:0,vy:0,w:0,m,im:1/m,I,iI:1/I};}
+function rbRot(x,y,a){return {x:x*Math.cos(a)-y*Math.sin(a),y:x*Math.sin(a)+y*Math.cos(a)}}
+function rbWorld(b,l){const q=rbRot(l.x,l.y,b.a);return {x:b.x+q.x,y:b.y+q.y}}
+function rbCross(a,b){return a.x*b.y-a.y*b.x}
+function rbAtV(b,r){return {x:b.vx-b.w*r.y,y:b.vy+b.w*r.x}}
+function rbImp(b,r,ix,iy){b.vx+=ix*b.im;b.vy+=iy*b.im;b.w+=(r.x*iy-r.y*ix)*b.iI}
+function rbJoint(a,b,la,lb){return {a,b,la,lb}}
+function rbJInfo(j){const ra=rbRot(j.la.x,j.la.y,j.a.a),rb=rbRot(j.lb.x,j.lb.y,j.b.a);return {ra,rb,ax:j.a.x+ra.x,ay:j.a.y+ra.y,bx:j.b.x+rb.x,by:j.b.y+rb.y}}
+function rbSolveJoint(j,dt){
+ const {a,b}=j,qq=rbJInfo(j),{ra,rb}=qq,va=rbAtV(a,ra),vb=rbAtV(b,rb);
+ const bias=.19/dt,ex=Math.max(-.015,Math.min(.015,qq.bx-qq.ax)),ey=Math.max(-.015,Math.min(.015,qq.by-qq.ay));
+ const ux=vb.x-va.x+bias*ex,uy=vb.y-va.y+bias*ey;
+ const k11=a.im+b.im+a.iI*ra.y*ra.y+b.iI*rb.y*rb.y;
+ const k12=-a.iI*ra.x*ra.y-b.iI*rb.x*rb.y;
+ const k22=a.im+b.im+a.iI*ra.x*ra.x+b.iI*rb.x*rb.x;
+ const det=k11*k22-k12*k12;if(det<1e-10)return;
+ const ix=-(k22*ux-k12*uy)/det,iy=-(-k12*ux+k11*uy)/det;
+ rbImp(a,ra,-ix,-iy);rbImp(b,rb,ix,iy);
+}
+function rbFixJoint(j){const {a,b}=j,q=rbJInfo(j),ex=q.bx-q.ax,ey=q.by-q.ay,err=Math.hypot(ex,ey);if(err<.000012)return;
+ const ra=q.ra,rb=q.rb,k11=a.im+b.im+a.iI*ra.y*ra.y+b.iI*rb.y*rb.y,k12=-a.iI*ra.x*ra.y-b.iI*rb.x*rb.y,k22=a.im+b.im+a.iI*ra.x*ra.x+b.iI*rb.x*rb.x;
+ const det=k11*k22-k12*k12;if(det<1e-10)return;
+ const scale=.27,ix=-scale*(k22*ex-k12*ey)/det,iy=-scale*(-k12*ex+k11*ey)/det;
+ a.x-=ix*a.im;a.y-=iy*a.im;a.a-=rbCross(ra,{x:ix,y:iy})*a.iI;
+ b.x+=ix*b.im;b.y+=iy*b.im;b.a+=rbCross(rb,{x:ix,y:iy})*b.iI;
+}
+function rbFootLocals(c,type,span){
+ const ext=(type==='front'?c.frontExt:c.rearExt)*.01;
+ if(ext<.000001)return [];
+ const size=c.footSize*.01;
+ const angle=rad(type==='front'?(c.frontFootAngle||0):(c.rearFootAngle||0));
+ // BC: B->C extended backwards; CD: C->D extended forward.
+ const sign=type==='front'?-1:1,ax=type==='front'?-span/2-ext:span/2+ext;
+ // IMPORTANT: raised parts are toward the link root, not beyond the toe.
+ // Geometry drawing and collision points are generated by the SAME profile.
+ return footProfile(c,type).map(({t,lift},i)=>({
+  x:ax+sign*Math.sin(angle)*t*size-sign*lift*size,
+  y:sign*Math.cos(angle)*t*size,
+  id:type+i
+ }));
+}
+function rbMake(s){
+ const c=s.c,n=s.sets.length,dd=c.da*.01,ab=c.ab*.01,bc=c.bc*.01,cd=c.cd*.01;
+ // Mass budget: 140 g chassis, 15 g common rotor, remainder divided over rods.
+ // For a one-set view the omitted bars' mass stays on chassis.
+ const rodMass=.045/(n*2),chassisMass=.185-rodMass*n*2,rotorMass=.015;
+ const chassis=rbBody((s.A.x+s.D.x)/200,(s.A.y+s.D.y)/200,0,chassisMass,chassisMass*(dd*dd+.035*.035)/12);
+ const rotor=rbBody(s.A.x*.01,s.A.y*.01,Math.atan2(s.sets[0].B.y-s.A.y,s.sets[0].B.x-s.A.x),rotorMass,Math.max(1.0e-6,rotorMass*ab*ab*.55));
+ const bodies=[chassis,rotor],joints=[rbJoint(chassis,rotor,{x:-dd/2,y:0},{x:0,y:0})],sets=[];
+ for(let j=0;j<n;j++){
+  const q=s.sets[j],B={x:q.B.x*.01,y:q.B.y*.01},C={x:q.C.x*.01,y:q.C.y*.01},D={x:s.D.x*.01,y:s.D.y*.01};
+  const alphaBC=Math.atan2(C.y-B.y,C.x-B.x),alphaCD=Math.atan2(D.y-C.y,D.x-C.x);
+  const linkBC=rbBody((B.x+C.x)/2,(B.y+C.y)/2,alphaBC,rodMass,Math.max(1e-7,rodMass*(bc*bc+.003*.003)/12));
+  const linkCD=rbBody((C.x+D.x)/2,(C.y+D.y)/2,alphaCD,rodMass,Math.max(1e-7,rodMass*(cd*cd+.003*.003)/12));
+  bodies.push(linkBC,linkCD);
+  const phase=j?rad(c.phase):0;
+  joints.push(rbJoint(rotor,linkBC,{x:ab*Math.cos(phase),y:ab*Math.sin(phase)},{x:-bc/2,y:0}));
+  joints.push(rbJoint(linkBC,linkCD,{x:bc/2,y:0},{x:-cd/2,y:0}));
+  joints.push(rbJoint(linkCD,chassis,{x:cd/2,y:0},{x:dd/2,y:0}));
+  sets.push({bc:linkBC,cd:linkCD,front:rbFootLocals(c,'front',bc),rear:rbFootLocals(c,'rear',cd)});
+ }
+ const rigid={bodies,joints,sets,chassis,rotor,anglePrev:rotor.a-chassis.a,contactCount:0,lastError:0,contactCache:new Map(),visualContacts:[],source:'impulse-rigid-v4.1-contact-manifold'};
+ return rigid;
+}
+function rbContacts(s){
+ const r=s.rigid,contacts=[];
+ // Use the deepest one or two contact features per foot instead of imposing
+ // five nearly coincident contact constraints at once. This reduces artificial
+ // multi-point friction and makes the iterative impulse solution less sensitive.
+ for(let i=0;i<r.sets.length;i++){
+  const p=r.sets[i];
+  for(const [type,b,locs] of [['front',p.bc,p.front],['rear',p.cd,p.rear]]){
+   const mu=Math.max(.02,Math.min(2,s.c.friction*(type==='front'?s.c.frontFriction:s.c.rearFriction)));
+   const candidates=[];
+   for(const local of locs){const pos=rbWorld(b,local);if(pos.y<.0015)candidates.push({b,local,mu,key:i+'-'+local.id,jn:0,jt:0,initialY:pos.y,x:pos.x});}
+   candidates.sort((a,b)=>a.initialY-b.initialY);
+   if(candidates.length){
+    contacts.push(candidates[0]);
+    // A second support is used only if separated enough to provide a real
+    // contact patch rather than a duplicate point constraint.
+    const second=candidates.find(q=>Math.abs(q.x-candidates[0].x)>.004 && q.initialY-candidates[0].initialY<.0015);
+    if(second)contacts.push(second);
+   }
+  }
+ }
+ const ch=r.chassis,half=s.c.da*.005;
+ for(const [id,x] of [['bodyA',-half],['bodyD',half]]){
+  const local={x,y:-.012},pos=rbWorld(ch,local);
+  if(pos.y<.001)contacts.push({b:ch,local,mu:.4,key:id,jn:0,jt:0,initialY:pos.y});
+ }
+ return contacts;
+}
+function rbSolveContact(c,dt){const b=c.b,pos=rbWorld(b,c.local),rr=rbRot(c.local.x,c.local.y,b.a),vv=rbAtV(b,rr),kN=b.im+b.iI*rr.x*rr.x;
+ if(kN<1e-9)return;const penetration=Math.max(0,.00025-pos.y);
+ const bias=Math.min(.45,Math.max(0,penetration-.00010)*.22/dt);
+ const old=c.jn;c.jn=Math.max(0,old+(-vv.y+bias)/kN);const dj=c.jn-old;
+ rbImp(b,rr,0,dj);
+ const vt=b.vx-b.w*rr.y,kT=b.im+b.iI*rr.y*rr.y;
+ const oldT=c.jt,maxT=c.mu*c.jn;c.jt=Math.max(-maxT,Math.min(maxT,oldT-vt/kT));rbImp(b,rr,c.jt-oldT,0);
+}
+function rbSync(s){const r=s.rigid,c=s.c,ch=r.chassis,rot=r.rotor,dd=c.da*.01;
+ const a=rbWorld(ch,{x:-dd/2,y:0}),d=rbWorld(ch,{x:dd/2,y:0});s.A.x=a.x*100;s.A.y=a.y*100;s.D.x=d.x*100;s.D.y=d.y*100;
+ for(let i=0;i<s.sets.length;i++){
+  const p=r.sets[i],phi=i?rad(c.phase):0,bj={x:a.x+c.ab*.01*Math.cos(rot.a+phi),y:a.y+c.ab*.01*Math.sin(rot.a+phi)},cj=rbWorld(p.bc,{x:c.bc*.005,y:0});
+  s.sets[i].B.x=bj.x*100;s.sets[i].B.y=bj.y*100;
+  s.sets[i].C.x=cj.x*100;s.sets[i].C.y=cj.y*100;
+ }
+ s.angle=rot.a-ch.a;
+}
+function rbStep(s,dt,settle=false){
+ if(!s.rigid)s.rigid=rbMake(s);const r=s.rigid,subCount=Math.max(1,Math.round(dt/RB.dt)),h=dt/subCount;let anyContact=false;
+ for(let sub=0;sub<subCount;sub++){
+  for(const b of r.bodies){b.vy-=RB.gravity*h;b.vx*=.9995;b.vy*=.9995;b.w*=.9992;}
+  const contacts=rbContacts(s);let motorImpulse=0;
+  for(const c of contacts){
+   const prev=r.contactCache.get(c.key);
+   if(prev){c.jn=prev.jn*.82;c.jt=prev.jt*.82;
+    const rr=rbRot(c.local.x,c.local.y,c.b.a);rbImp(c.b,rr,c.jt,c.jn);
+   }
+  }
+  for(let i=0;i<RB.velocityIters;i++){
+   for(const j of r.joints)rbSolveJoint(j,h);
+   if(!settle){const ch=r.chassis,rot=r.rotor;
+    const diff=rot.w-ch.w,desired=s.c.motorSpeed*RB.omega*s.driveDirection;
+    const inv=rot.iI+ch.iI;
+    const targetImpulse=(desired-diff)/inv;
+    const cap=RB.torque*h;
+    const next=Math.max(-cap,Math.min(cap,motorImpulse+targetImpulse));const change=next-motorImpulse;motorImpulse=next;
+    rot.w+=change*rot.iI;ch.w-=change*ch.iI;
+   }
+   for(const c of contacts)rbSolveContact(c,h);
+  }
+  r.contactCache=new Map(contacts.filter(c=>c.jn>0).map(c=>[c.key,{jn:c.jn,jt:c.jt}]));
+  for(const b of r.bodies){b.x+=b.vx*h;b.y+=b.vy*h;b.a+=b.w*h;}
+  // 交替校正關節與地面法向穿透；只消除少量幾何穿透，不憑空增加水平推進。
+  // 末次地面投影避免「關節修完後腳又沉入地面」。
+  for(let i=0;i<RB.positionIters;i++){
+   for(const j of r.joints)rbFixJoint(j);
+   for(const c of contacts){
+    const p=rbWorld(c.b,c.local),pen=Math.min(.0015,Math.max(0,.00015-p.y));
+    if(pen>0)c.b.y+=pen*.48;
+   }
+  }
+  for(const c of contacts){const p=rbWorld(c.b,c.local);if(p.y<-.0002)c.b.y+=Math.min(.0015,-.0002-p.y); }
+  if(!settle){let slip=0,active=0;for(const c of contacts){if(c.jn<=0)continue;active++;const rr=rbRot(c.local.x,c.local.y,c.b.a);slip+=Math.abs(c.b.vx-c.b.w*rr.y)*h*100;}s.slip+=slip;if(active)anyContact=true;}
+  r.contactCount=contacts.filter(c=>c.jn>0).length;
+  r.visualContacts=contacts.map(q=>{const p=rbWorld(q.b,q.local),rvec=rbRot(q.local.x,q.local.y,q.b.a);return {x:p.x*100,y:p.y*100,loaded:q.jn>1e-8,sliding:q.jn>1e-8&&Math.abs(q.b.vx-q.b.w*rvec.y)>.012,foot:!String(q.key).startsWith('body')};});
+ }
+ rbSync(s);
+ const relative=r.rotor.a-r.chassis.a;let diff=relative-r.anglePrev;
+ while(diff>Math.PI)diff-=2*Math.PI;while(diff< -Math.PI)diff+=2*Math.PI;
+ r.anglePrev=relative;
+ if(!settle){s.motorTurns+=diff/(2*Math.PI);s.t+=dt;s.steps++;if(anyContact)s.contactFrames++;
+ const cy=(s.A.y+s.D.y)/2; s.heightMin=Math.min(s.heightMin??cy,cy);s.heightMax=Math.max(s.heightMax??cy,cy);
+ const tilt=Math.abs(deg(Math.atan2(s.D.y-s.A.y,s.D.x-s.A.x)));
+ s.maxAbsTilt=Math.max(s.maxAbsTilt,tilt);s.tiltSum+=tilt;s.tiltFrames++;
+ if(s.steps%12===0){s.trace.push(...s.sets.map(q=>endpointFoot(s,q,'front').pos));if(s.trace.length>1200)s.trace.splice(0,100);captureFootTrails(s)}
+ }
+ const err=Math.max(...r.joints.map(j=>{const q=rbJInfo(j);return 100*Math.hypot(q.bx-q.ax,q.by-q.ay)}));
+ s.maxConstraintError=Math.max(s.maxConstraintError,err);if(err>.15&&!settle)s.largeErrorFrames++;
+ const valid=r.bodies.every(b=>[b.x,b.y,b.a,b.vx,b.vy,b.w].every(Number.isFinite))&&Math.abs(s.A.x)<1e5;
+ if(!valid||err>.8){s.status='剛體關節求解異常';haltKind='solver-failure';return false;}
+ const currentW=r.rotor.w-r.chassis.w;
+ s.status=settle?'初始穩定中':(Math.abs(currentW)<.12&&s.t>1?'馬達負載較大／可能受阻':r.contactCount?'剛體接地行走中':'剛體運動中（暫未接地）');
+ return true;
+}
+
+function solveStep(s,dt,settle=false){if(s.c.gravityEnabled!==false&&view==='walk')return rbStep(s,dt,settle);if(s.c.gravityEnabled===false||view==='mechanism')return solveNoGravity(s,dt);const c=s.c;const pts=allParticles(s);const old=pts.map(p=>v(p.x,p.y));const oldVel=pts.map(p=>v(p.x-p.px,p.y-p.py));for(const p of pts){let vx=(p.x-p.px)*.90,vy=(p.y-p.py)*.90;p.px=p.x;p.py=p.y;p.x+=vx;p.y+=vy-981*dt*dt}
+ if(!settle){const speed=c.motorSpeed*2.2*s.driveDirection;
+  // Do not let the requested motor angle run arbitrarily far ahead of an
+  // obstructed shaft; this used to wrap the drive correction and reverse it.
+  const axis=normalize(sub(s.D,s.A)),normal=v(-axis.y,axis.x);
+  const b=sub(s.sets[0].B,s.A);
+  const actual=Math.atan2(b.x*normal.x+b.y*normal.y,b.x*axis.x+b.y*axis.y);
+  const proposed=s.angle+speed*dt;
+  const lag=Math.atan2(Math.sin(proposed-actual),Math.cos(proposed-actual));
+  const target=s.sets.length>1 && Math.abs(lag)>.24 ? actual+Math.sign(lag)*.24:proposed;
+  if(!s.sets.every((_,j)=>fourbar(c,target+(j?rad(c.phase):0)))){
+   if(c.autoReverse){s.driveDirection*=-1;s.angle+=c.motorSpeed*2.2*s.driveDirection*dt}
+   else{s.status='幾何旋轉極限';haltKind='geometry-limit';return false}
+  }else s.angle=target}
+ const iteration=18;let contactCount=0;for(let k=0;k<iteration;k++){
+  correctDistance(s.A,s.D,c.da,1);
+  // All legs share ONE drive shaft.  First constrain passive bars, then project
+  // both cranks onto that shaft and apply ONE small motor correction to it.
+  // The former code drove each leg separately AND pushed A for each leg; those
+  // repeated position shifts created unphysical horizontal motion.
+  s.sets.forEach((set,j)=>{
+    correctDistance(s.A,set.B,c.ab,1);
+    correctDistance(set.B,set.C,c.bc,1);
+    correctDistance(set.C,s.D,c.cd,1);
+    // With only one leg set, preserve the earlier stable single-crank drive.
+    // No shaft coupling is necessary in that case.
+    if(s.sets.length===1){
+      const axis=normalize(sub(s.D,s.A)),normal=v(-axis.y,axis.x);
+      const wanted=add(v(s.A.x,s.A.y),add(mul(axis,Math.cos(s.angle)*c.ab),mul(normal,Math.sin(s.angle)*c.ab)));
+      const off=sub(wanted,set.B),gain=settle?.06:.08,allowed=settle?.08:.095;
+      const move=mul(off,Math.min(gain,allowed/Math.max(length(off),1e-5)));
+      set.B.x+=move.x;set.B.y+=move.y;
+      s.A.x-=move.x*.15;s.A.y-=move.y*.15;
+    }
+  });
+  if(s.sets.length>1){
+    constrainSharedCrank(s);
+    applySingleShaftDrive(s,settle);
+  }
+  if(view==='walk'){for(const p of [s.A,s.D]){if(p.y<.34)p.y+=(.34-p.y)*.85}for(let j=0;j<s.sets.length;j++){const set=s.sets[j];for(const type of ['front','rear']){const samples=footSamples(s,set,type);for(const sm of samples){if(sm.pos.y<.015){const penetration=.015-sm.pos.y;moveDerived(sm,0,Math.min(.35,penetration)*.85);contactCount++;const id=j+'-'+sm.key;const prior=s.prevContacts.get(id);if(prior&&prior.active){const dx=sm.pos.x-prior.x;const footGrip=type==='front'?(c.frontFriction??1):(c.rearFriction??1);const maxF=c.friction*footGrip*Math.max(.008,Math.min(.12,penetration+.02))*.45;moveDerived(sm,-Math.max(-maxF,Math.min(maxF,dx)),0)}}}}}
+  }else{let sumY=0;for(const p of pts)sumY+=p.y;const shift=4-sumY/pts.length;for(const p of pts)p.y+=shift*.04}
+ }
+ // 接觸求解結束後，再次恢復嚴格的曲柄相位。
+ constrainSharedCrank(s);
+ // 接觸收尾：四連桿約束可能在最後一次迭代後再把腳端拉進地面。
+ // 以整個組件的微小垂直平移消除剩餘穿透；平移不會改變桿長、角度或水平位移。
+ // 大幅穿透屬於求解異常，不能靠抬高整台機身來掩飾。
+ if(view==='walk'){
+   let lowest=Infinity;
+   for(const set of s.sets)for(const type of ['front','rear']){
+     for(const sample of footSamples(s,set,type))lowest=Math.min(lowest,sample.pos.y);
+   }
+   if(lowest<0){
+     const lift=-lowest;
+     if(lift>.12){
+       s.status='腳掌接地求解異常：請調整腳部設計後重試';
+       haltKind='solver-failure';
+       pts.forEach((p,i)=>{p.x=old[i].x;p.y=old[i].y;p.px=p.x;p.py=p.y});
+       return false;
+     }
+     for(const p of pts){p.y+=lift;p.py+=lift;}
+   }
+ }
+ const contacts=new Map();let slip=0,active=0; if(view==='walk'){for(let j=0;j<s.sets.length;j++){let set=s.sets[j];for(const type of ['front','rear'])for(const sm of footSamples(s,set,type)){const id=j+'-'+sm.key;const isContact=sm.pos.y<.07;contacts.set(id,{x:sm.pos.x,active:isContact});if(isContact){active++;const last=s.prevContacts.get(id);if(last?.active)slip+=Math.abs(sm.pos.x-last.x);}}}}
+ if(!settle){const curAngle=Math.atan2(s.sets[0].B.y-s.A.y,s.sets[0].B.x-s.A.x)-Math.atan2(s.D.y-s.A.y,s.D.x-s.A.x);let moved=curAngle-s.lastCrankAngle;while(moved>Math.PI)moved-=2*Math.PI;while(moved< -Math.PI)moved+=2*Math.PI;s.motorTurns+=moved/(2*Math.PI);s.lastCrankAngle=curAngle;s.slip+=slip;s.contactFrames+=active?1:0;s.t+=dt;s.steps++;const til=deg(Math.atan2(s.D.y-s.A.y,s.D.x-s.A.x));s.maxAbsTilt=Math.max(s.maxAbsTilt,Math.abs(til));s.tiltSum+=Math.abs(til);s.tiltFrames++;if(s.steps%12===0){let ptsTrace=s.sets.map(q=>endpointFoot(s,q,'front').pos);s.trace.push(...ptsTrace.map(q=>v(q.x,q.y)));if(s.trace.length>1200)s.trace.splice(0,100);captureFootTrails(s)}}s.prevContacts=contacts;
+  // Position-projection corrections are not genuine collision impulses. Avoid carrying
+  // these corrections into the next frame as artificial upward/rotational velocity.
+  if(view==='walk'){
+    for(let i=0;i<pts.length;i++){
+      const p=pts[i],before=old[i],prior=oldVel[i];
+      const correctionY=p.y-before.y;
+      // In the standing/walking scene, kill spurious upward velocity from constraint projections.
+      const boundedVX=Math.max(-.055,Math.min(.055,prior.x*.76));
+      const boundedVY=Math.max(-.04,Math.min(.018,prior.y*.68));
+      p.px=p.x-boundedVX;
+      p.py=p.y-(correctionY>.09?Math.min(0,boundedVY):boundedVY);
+    }
+  }
+  if(!settle){
+    const centerY=(s.A.y+s.D.y)/2, tiltNow=Math.abs(deg(Math.atan2(s.D.y-s.A.y,s.D.x-s.A.x)));
+    const rise=centerY-(s.initialCenterY??centerY);
+    const stepTravel=Math.max(...pts.map((p,i)=>length(sub(p,old[i]))));
+    if((rise>2.6 && s.contactFrames>4)||tiltNow>65||stepTravel>1.7){
+      s.status='模擬不穩定：已自動停止，避免錯誤的彈跳';haltKind='solver-failure';
+      // Restore the last stable pose before rendering or recording a result.
+      pts.forEach((p,i)=>{p.x=old[i].x;p.y=old[i].y;p.px=p.x;p.py=p.y});
+      return false;
+    }
+  }
+ const a=s.A,d=s.D;const constraintError=Math.max(Math.abs(length(sub(s.A,s.D))-c.da),...s.sets.flatMap(z=>[Math.abs(length(sub(s.A,z.B))-c.ab),Math.abs(length(sub(z.B,z.C))-c.bc),Math.abs(length(sub(z.C,s.D))-c.cd)]));if(!settle){s.maxConstraintError=Math.max(s.maxConstraintError, constraintError);if(constraintError>.12)s.largeErrorFrames++}if(!settle&&constraintError>Math.max(.65,c.da*.2)){s.status='約束誤差過大';haltKind='solver-failure';return false}const tilt=Math.abs(deg(Math.atan2(d.y-a.y,d.x-a.x)));const centroid=(a.y+d.y)/2;if(centroid<.37)s.status='機身碰地';else if(tilt>52)s.status='機身大幅傾斜';else if(!s.geometryFull)s.status='機構旋轉有限';else if(!settle&&s.t>1.5&&Math.abs(s.motorTurns)<.08&&Math.abs(c.motorSpeed)>.01)s.status='馬達帶動受阻，請調整設計';else if(active===0)s.status='暫未接地';else s.status='模擬中';if(!allParticles(s).every(p=>Number.isFinite(p.x)&&Number.isFinite(p.y))||Math.abs(a.x)>1e5){s.status='數值求解失敗';haltKind='solver-failure';return false}return true}
+function metric(s){let shift=s.originalX-(s.A.x+s.D.x)/2;const tilt=deg(Math.atan2(s.D.y-s.A.y,s.D.x-s.A.x));return {distance:shift,slip:s.slip,tilt,averageTilt:s.tiltFrames?s.tiltSum/s.tiltFrames:0,maxTilt:s.maxAbsTilt,turns:s.motorTurns,verticalRangeCm:Math.max(0,(s.heightMax??s.initialCenterY)-(s.heightMin??s.initialCenterY)),contactRatio:s.steps?s.contactFrames/s.steps:0,maxConstraintError:s.maxConstraintError||0,largeErrorFrames:s.largeErrorFrames||0,status:s.status,seconds:s.t,distanceConvention:'left-positive'}}
+function updateGeometryStatus(){const c=data.config,g=getGeometry(c);$('geometryStatus').innerHTML=[c.ab,c.bc,c.cd,c.da].some(x=>x<=0)?'<b class="status-warn">尚未完成設定：請先把四根桿長調整為大於 0 cm</b>':g.none?'<b class="status-bad">這組桿長無法形成四連桿</b>':g.full?'<b class="status-good">幾何可完整旋轉</b>':'<b class="status-warn">只有部分角度能組合，無法完整旋轉</b>';$('grashofStatus').textContent=`葛氏定理：最短桿 ${num(g.sorted[0])} + 最長桿 ${num(g.sorted[3])} ${g.grashof?'≤':'>'} 另外兩桿 ${num(g.sorted[1])} + ${num(g.sorted[2])}（是否由 AB 完整旋轉還需看固定桿／驅動配置）。`;$('driveStatus').textContent=g.full?'本組桿長允許 AB 幾何完整轉動；仍可能因地面與負載而走不好。':'AB 在部分角度無法完成閉鏈；建議先調整桿長再進行行走測試。'}
+const FOOT_CONTROL_X=[-.5,-.25,0,.25,.5];
+let editFootSide='front',dragFootIndex=-1,dragFootBefore=null;
+function syncFootEditor(){
+ const canvas=$('footDraw'),panel=$('customFootEditor');if(!panel||!canvas)return;
+ const any=data.config.frontFootType==='custom'||data.config.rearFootType==='custom';panel.hidden=!any;
+ if(!any)return;
+ if(data.config[editFootSide+'FootType']!=='custom')editFootSide=data.config.frontFootType==='custom'?'front':'rear';
+ $('footEditSide').value=editFootSide;paintFootEditor();
+}
+function paintFootEditor(){
+ const el=$('footDraw');if(!el)return;
+ const ctx=el.getContext('2d'),w=el.width,h=el.height,base=114,span=244;
+ const v=data.config[editFootSide+'FootProfile']||[0,0,0,0,0];
+ ctx.clearRect(0,0,w,h);ctx.fillStyle='#f7fafc';ctx.fillRect(0,0,w,h);
+ ctx.setLineDash([5,4]);ctx.strokeStyle='#9aa8b3';ctx.beginPath();ctx.moveTo(15,base);ctx.lineTo(w-15,base);ctx.stroke();ctx.setLineDash([]);
+ ctx.strokeStyle='#2d668a';ctx.lineWidth=4;ctx.beginPath();
+ for(let i=0;i<5;i++){const x=w/2+FOOT_CONTROL_X[i]*span,y=base-v[i]*140;if(!i)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.stroke();
+ for(let i=0;i<5;i++){const x=w/2+FOOT_CONTROL_X[i]*span,y=base-v[i]*140;ctx.fillStyle='#e68b43';ctx.beginPath();ctx.arc(x,y,8,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();}
+ ctx.fillStyle='#667785';ctx.font='12px sans-serif';ctx.fillText('前進方向 ←',13,18);ctx.fillText('水平參考線',230,130);
+}
+function editFootAt(e){
+ if(dragFootIndex<0||!dragFootBefore)return;
+ const el=$('footDraw'),box=el.getBoundingClientRect(),y=(e.clientY-box.top)*el.height/box.height;
+ const v=[...dragFootBefore[editFootSide+'FootProfile']];v[dragFootIndex]=Math.round(Math.max(0,Math.min(.42,(114-y)/140))*100)/100;
+ data.config[editFootSide+'FootProfile']=v;stop();sim=makeSim(true);paintFootEditor();paint();updateMetrics();
+}
+function setupFootEditor(){
+ $('footEditSide').onchange=e=>{editFootSide=e.target.value;syncFootEditor()};
+ for(const side of ['front','rear'])$(side+'FootMaterial').addEventListener('input',e=>{
+   if(busy)return;data.config[side+'FootMaterial']=e.target.value.slice(0,40);save();
+ });
+ const el=$('footDraw');
+ el.addEventListener('pointerdown',e=>{
+  if(busy)return;const box=el.getBoundingClientRect(),x=(e.clientX-box.left)*el.width/box.width;
+  dragFootIndex=FOOT_CONTROL_X.reduce((best,_,i)=>Math.abs(x-(el.width/2+FOOT_CONTROL_X[i]*244))<Math.abs(x-(el.width/2+FOOT_CONTROL_X[best]*244))?i:best,0);
+  dragFootBefore=clone(data.config);el.setPointerCapture(e.pointerId);editFootAt(e);
+ });
+ el.addEventListener('pointermove',e=>{if(dragFootIndex>=0)editFootAt(e)});
+ function endDrag(){if(dragFootIndex<0||!dragFootBefore)return;const latest=clone(data.config[editFootSide+'FootProfile']),previous=dragFootBefore;dragFootIndex=-1;dragFootBefore=null;data.config=previous;if(JSON.stringify(previous[editFootSide+'FootProfile'])!==JSON.stringify(latest))changed({[editFootSide+'FootProfile']:latest});else syncFootEditor();}
+ el.addEventListener('pointerup',endDrag);el.addEventListener('pointercancel',endDrag);
+ $('footReset').onclick=()=>changed({[editFootSide+'FootProfile']:[0,0,0,0,0]});
+ $('footCurvePreset').onclick=()=>changed({[editFootSide+'FootProfile']:[.30,.08,0,0,0]});
+ $('copyFoot').onclick=()=>{const from=editFootSide,to=from==='front'?'rear':'front';changed({[to+'FootType']:'custom',[to+'FootProfile']:clone(data.config[from+'FootProfile'])});showToast('已將'+(from==='front'?'前腳':'後腳')+'的自訂輪廓複製到'+(to==='front'?'前腳':'後腳')+'；材料與抓地程度不會一起覆蓋');};
+}
+function renderControls(){const sections=[['linksControls',[['ab','AB 驅動桿',0,14,.2],['bc','BC 連接桿',0,14,.2],['cd','CD 後連桿',0,14,.2],['da','AD 固定桿',0,14,.2]]],['legControls',[['frontExt','前腳延伸（沿 CB，由 B 向外）',0,9,.2],['rearExt','後腳延伸',0,9,.2],['footSize','腳端尺寸',0,4,.2]]]];for(const [id,rows] of sections){$(id).innerHTML=rows.map(([key,title,min,max,step])=>`<div class="setting"><label for="${key}">${title}<output id="out_${key}"></output></label><div class="v416RangeRow"><input id="${key}" data-setting="${key}" type="range" min="${min}" max="${max}" step="${step}" aria-label="${title}調整滑桿"></div></div>`).join('')}}
+function syncControls(){const c=data.config;for(const key of ['ab','bc','cd','da','frontExt','rearExt','footSize']){$(key).value=c[key];$('out_'+key).textContent=num(c[key])+' cm'}$('frontFootType').value=['arc','toe','wide','custom'].includes(c.frontFootType)?c.frontFootType:'flat';$('rearFootType').value=['arc','toe','wide','custom'].includes(c.rearFootType)?c.rearFootType:'flat';for(const side of ['front','rear']){$(side+'FootAngle').value=c[side+'FootAngle']??0;$(side+'FootAngleVal').textContent=(c[side+'FootAngle']??0)+'°';$(side+'Friction').value=String(c[side+'Friction']??0.8)}for(const side of ['front','rear'])$(side+'FootMaterial').value=c[side+'FootMaterial']||'';syncFootEditor();$('groundType').value=String(c.friction);$('motorSpeed').value=String(c.motorSpeed);$('secondLeg').checked=c.secondLeg;$('phase').value=c.phase;$('phaseVal').textContent=c.phase+'°';$('showTrace').checked=c.showTrace;$('showLabels').checked=c.showLabels;$('gravityEnabled').checked=c.gravityEnabled!==false;$('autoReverse').checked=c.autoReverse!==false;$('showContact').checked=c.showContact!==false;$('showSupport').checked=!!c.showSupport;$('traceMode').value=c.traceMode||'cycle';$('cameraMode').value=c.cameraMode||'follow';$('testMode').value=c.testMode||'turns';$('angleSlider').value=sim?Math.round(((sim.angle%(2*Math.PI))+2*Math.PI)%(2*Math.PI)*180/Math.PI):35;$('angleValue').textContent=$('angleSlider').value+'°';$('gravityHelp').textContent=(c.frontExt<=0&&c.rearExt<=0)?'尚未延伸腳部時，顯示 B、C 關節的移動軌跡。':'觀察腳端隨機構移動的路線。';$('freeMode').classList.toggle('on',data.mode==='free');$('taskMode').classList.toggle('on',data.mode==='task');$('modeDesc').textContent=data.mode==='free'?'改變設定，看看走法有什麼不同。':'任務實驗：先閱讀目標、預測結果，再按正式測試保存證據。';const t=TASKS[data.task-1];$('currentTaskText').textContent=data.mode==='free'?'自由探索中。可切換任務模式，也可以直接做正式測試。':`任務 ${t.id}：${t.goal}`;updateGeometryStatus()}
+const footAngleStart=new Map();
+function previewFootAngle(id,value){if(busy)return;if(!footAngleStart.has(id))footAngleStart.set(id,clone(data.config));stop();data.config[id]=value;$(id+'Val').textContent=value+'°';sim=makeSim(true);paint();updateMetrics()}
+function finishFootAngle(id,value){if(busy){footAngleStart.delete(id);syncControls();return}const previous=footAngleStart.get(id);footAngleStart.delete(id);if(previous){data.config=previous;if(+previous[id]!==value){changed({[id]:value});return}}stop();sim=makeSim();save();syncControls();paint();updateMetrics()}
+// 畫面與重力必須一起切換：舊版在「機構示意」勾選重力後仍留在無重力幾何場景。
+function switchGravityScene(on){
+ if(busy){showToast('正式測試中，請等測試結束');syncControls();return;}
+ stop();
+ view=on?'walk':'mechanism';
+ const patch={gravityEnabled:on};
+ if(!on){patch.showTrace=true;if(data.config.traceMode==='off')patch.traceMode='cycle';}
+ changed(patch); // 重新建立符合新場景的模擬，不能只修改選取狀態
+ $('showWalk').classList.toggle('on',on);
+ $('showMechanism').classList.toggle('on',!on);
+ $('visualMode').textContent=on?'行走模擬':'機構示意';
+ syncControls();paint();updateMetrics();
+ showToast(on?'已切換為重力與地面接觸模擬':'已切換為無重力機構觀察');
+}
+function changed(patch){if(busy){showToast('正在正式測試，不能更改設計');syncControls();return}undoStack.push(clone(data.config));if(undoStack.length>50)undoStack.shift();redoStack=[];data.config={...data.config,...patch};stop();sim=makeSim();save();syncControls();paint();updateMetrics()}
+function stop(){running=false;$('playBtn').textContent='▶ 播放'}
+function start(){if(busy)return;haltKind='';if(!sim){showToast('這組連桿與相位無法形成有效機構，請調整參數');return;}running=true;$('playBtn').textContent='▶ 播放中';lastFrame=0;frameAccumulator=0;requestAnimationFrame(tick)}
+function tick(ts){if(!running||busy||!sim)return;if(!lastFrame)lastFrame=ts;let elapsed=Math.min(.05,(ts-lastFrame)/1000);lastFrame=ts;frameAccumulator+=elapsed*playRate;let steps=0;while(frameAccumulator>=1/120&&steps<12){if(!solveStep(sim,1/120)){stop();break}frameAccumulator-=1/120;steps++}if(steps===12)frameAccumulator=Math.min(frameAccumulator,1/120);updateMetrics();paint();if(running)requestAnimationFrame(tick)}
+function updateMetrics(){if(sim){$('angleSlider').value=Math.round((((sim.angle%(2*Math.PI))+2*Math.PI)%(2*Math.PI))*180/Math.PI);$('angleValue').textContent=$('angleSlider').value+'°'}if(!sim){for(const id of ['mDistance','mSlip','mTilt','mTurns'])$(id).textContent='—';$('diagnostic').textContent='連桿無法組合，請調整桿長或相位';return;}const m=metric(sim);$('mDistance').textContent=(sim.c.gravityEnabled===false||view==='mechanism')?'—':num(m.distance);$('mSlip').textContent=(sim.c.gravityEnabled===false||view==='mechanism')?'—':num(m.slip);$('mTilt').textContent=num(m.tilt,0)+'°';$('mTurns').textContent=num(m.turns);$('settleInfo').textContent=(sim.c.gravityEnabled!==false&&view==='walk'&&sim.settling)?('測試前靜置 '+num(sim.settling.seconds,2)+' 秒｜'+(sim.settling.stable?'已趨於穩定':'尚未完全穩定，結果需留意')):'無重力幾何觀察，不需接地暖機。';$('modelHealth').textContent=(sim.c.gravityEnabled===false||view==='mechanism')?'機身固定，可觀察腳步運動。':'腳端接地時間 '+num(m.contactRatio*100,1)+'%｜'+(m.maxConstraintError>.15?'機構運動異常，請重設或調整桿長':'可觀察腳底接觸與機身移動');$('diagnostic').textContent=({ '幾何觀察：機身固定':'機身固定在空中，可開啟腳端軌跡觀察；此模式不計算行走位移。',ready:'按播放開始觀察','機身碰地':'觀察：機身接近或碰到地面，可調整腳部或連桿。','機身大幅傾斜':'觀察：機身前後傾斜較大，試著改變步態。','機構旋轉有限':'觀察：這組桿長不適合驅動桿完整旋轉。','暫未接地':'觀察：目前腳端沒有接地；可能無法推動機身。','模擬中':'觀察腳端與地面的接觸情形。'})[m.status]||m.status}
+function paint(){const canvas=$('simCanvas'),rect=canvas.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);if(canvas.width!==Math.round(rect.width*dpr)||canvas.height!==Math.round(rect.height*dpr)){canvas.width=Math.round(rect.width*dpr);canvas.height=Math.round(rect.height*dpr)}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);const W=rect.width,H=rect.height;ctx.clearRect(0,0,W,H);const s=sim;if(!s){ctx.fillStyle='#8b3a25';ctx.font='bold 17px sans-serif';ctx.fillText('目前設定無法組合成有效的四連桿',20,55);paintMini();return;}const c=s.c,px=Math.min(W/29,(H-55)/15),cam=(s.A.x+s.D.x)/2;const xoff=W*.5-(c.cameraMode==='fixed'?c.da/2:cam)*px;const gy=H-62;const X=x=>xoff+x*px,Y=y=>gy-y*px;
+ ctx.strokeStyle='#dbe6ef';ctx.lineWidth=1;for(let i=-80;i<80;i+=2){let xx=X(i);if(xx>0&&xx<W){ctx.beginPath();ctx.moveTo(xx,0);ctx.lineTo(xx,H);ctx.stroke()}}for(let i=0;i<15;i+=2){ctx.beginPath();ctx.moveTo(0,Y(i));ctx.lineTo(W,Y(i));ctx.stroke()}ctx.fillStyle='#e5e0d5';ctx.fillRect(0,gy,W,H-gy);ctx.strokeStyle='#8b969d';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke();ctx.fillStyle='#73818b';ctx.font='11px sans-serif';ctx.fillText('地面 0 cm',12,gy+18);ctx.strokeStyle='#a84a3d';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(X(s.originalX),gy-8);ctx.lineTo(X(s.originalX),gy+8);ctx.stroke();for(let i=-80;i<80;i+=5){let xx=X(i);if(xx>=0&&xx<=W){ctx.fillText(i+'',xx+3,gy+35)}}
+ if(c.showTrace && c.traceMode!=='off'){const palette=['#9064b4','#e18a33','#247eaa','#2b9271'];let ci=0;for(const path of Object.values(s.tracePaths||{})){ctx.strokeStyle=palette[ci++%palette.length];ctx.lineWidth=1.8;if(path.length<2)continue;ctx.beginPath();path.forEach((p,i)=>{if(i===0)ctx.moveTo(X(p.x),Y(p.y));else ctx.lineTo(X(p.x),Y(p.y))});ctx.stroke()}}
+ const line=(a,b,color,width=4)=>{ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(X(a.x),Y(a.y));ctx.lineTo(X(b.x),Y(b.y));ctx.stroke()};const dot=(p,col)=>{ctx.beginPath();ctx.arc(X(p.x),Y(p.y),4,0,Math.PI*2);ctx.fillStyle='white';ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=2;ctx.stroke()};const A=s.A,D=s.D,mid=v((A.x+D.x)/2,(A.y+D.y)/2);ctx.save();ctx.translate(X(mid.x),Y(mid.y));ctx.rotate(-Math.atan2(D.y-A.y,D.x-A.x));ctx.fillStyle='#e6d7b6';ctx.strokeStyle='#a68c67';ctx.lineWidth=2;ctx.fillRect(-c.da*px/2,-16,c.da*px,32);ctx.strokeRect(-c.da*px/2,-16,c.da*px,32);ctx.fillStyle='#b88e38';ctx.fillRect(-14,-11,28,22);ctx.fillStyle='#fff';ctx.font='bold 10px sans-serif';ctx.fillText('M',-4,4);ctx.restore();line(A,D,'#7f8994',3);
+ s.sets.forEach((set,j)=>{let opacity=j?.63:1;ctx.save();ctx.globalAlpha=opacity;line(A,set.B,'#c6413d',4);line(set.B,set.C,'#2866a4',4);line(set.C,D,'#258765',4);const footF=endpointFoot(s,set,'front').pos,footR=endpointFoot(s,set,'rear').pos;line(set.B,footF,'#2866a4',3.6);line(D,footR,'#258765',3.6);for(const type of ['front','rear']){const samples=footSamples(s,set,type);if(!samples.length)continue;
+ // 腳掌輪廓始終顯示，接地點是另一項可獨立關閉的標示。
+ const stroke=type==='front'?'#2866a4':'#258765';ctx.strokeStyle=stroke;ctx.lineWidth=4.2;ctx.lineCap='round';ctx.lineJoin='round';
+ if(samples.length>1){ctx.beginPath();samples.forEach((sm,i)=>{if(!i)ctx.moveTo(X(sm.pos.x),Y(sm.pos.y));else ctx.lineTo(X(sm.pos.x),Y(sm.pos.y))});ctx.stroke()}
+ 
+ /* 接地受力標示改由剛體求解器提供，不再以接近地面當作已支撐。 */ }dot(set.B,'#c6413d');dot(set.C,'#2866a4');ctx.restore()});dot(A,'#44546a');dot(D,'#44546a');if(c.showContact&&s.rigid&&view==='walk'&&c.gravityEnabled!==false){for(const p of (s.rigid.visualContacts||[])){if(!p.foot)continue;const xx=X(p.x),yy=Y(p.y);ctx.beginPath();ctx.arc(xx,yy,p.loaded?5:3,0,2*Math.PI);ctx.fillStyle=p.loaded?(p.sliding?'#e88b2f':'#21966d'):'#c5cbd1';ctx.fill();ctx.lineWidth=1.5;ctx.strokeStyle='#ffffff';ctx.stroke();if(p.loaded){ctx.beginPath();ctx.moveTo(xx,yy-7);ctx.lineTo(xx,yy-17);ctx.strokeStyle=p.sliding?'#e88b2f':'#21966d';ctx.lineWidth=2;ctx.stroke()}}}if(c.showSupport){const cx=(A.x+D.x)/2;ctx.setLineDash([4,4]);ctx.strokeStyle='#b27925';ctx.beginPath();ctx.moveTo(X(cx),Y((A.y+D.y)/2));ctx.lineTo(X(cx),gy);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#b27925';ctx.fillText('機身中心投影',X(cx)+6,gy-10)}if(c.showLabels){const j=s.sets[0];ctx.font='bold 12px sans-serif';for(const [p,t] of [[A,'A'],[j.B,'B'],[j.C,'C'],[D,'D']]){ctx.fillStyle='#223d52';ctx.fillText(t,X(p.x)+7,Y(p.y)-6)}ctx.font='11px sans-serif';ctx.fillText('AB',X((A.x+j.B.x)/2),Y((A.y+j.B.y)/2)-8);ctx.fillText('BC',X((j.B.x+j.C.x)/2),Y((j.B.y+j.C.y)/2)-8);ctx.fillText('CD',X((j.C.x+D.x)/2),Y((j.C.y+D.y)/2)-8)}if(c.gravityEnabled===false||view==='mechanism'){ctx.fillStyle='#1d4d75';ctx.font='12px sans-serif';ctx.fillText('無重力：機身固定空中・腳端軌跡可觀察',12,25)}else if(view==='mechanism'){ctx.fillStyle='#1d4d75';ctx.font='12px sans-serif';ctx.fillText('機構示意：以桿件幾何與運動為主',12,25)}else{ctx.fillStyle='#365064';ctx.font='12px sans-serif';ctx.fillText('行走觀察：剛體試驗值，尚非實測結果',12,25)} paintMini(); }
+function paintMini(){
+ const mini=$('miniCanvas'),source=$('simCanvas');if(!mini||!source)return;
+ const r=mini.getBoundingClientRect();if(r.width<1||r.height<1)return;
+ const dpr=Math.min(2,devicePixelRatio||1),w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);
+ if(mini.width!==w||mini.height!==h){mini.width=w;mini.height=h}
+ const m=mini.getContext('2d');m.clearRect(0,0,w,h);m.fillStyle='#fff';m.fillRect(0,0,w,h);
+ // Preserve the whole scene rather than cropping the foot endpoints.
+ m.drawImage(source,0,0,source.width,source.height,0,0,w,h);
+}
+function goto(page){currentPage=page;document.querySelectorAll('.pageview').forEach(e=>e.classList.add('hide'));$(page+'Page').classList.remove('hide');document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('primary',b.dataset.page===page));if(page==='records')renderRecords();if(page==='submit'){renderReport();updateSubmissionChecklist();}if(page==='lab'){updateTaskUI();requestAnimationFrame(()=>{paint();updateMetrics()})}}
+const EXPERIMENT_KEYS=['ab','bc','cd','da','frontExt','rearExt','footSize','frontFootType','rearFootType','frontFootProfile','rearFootProfile','frontFootAngle','rearFootAngle','frontFriction','rearFriction','friction','motorSpeed','secondLeg','phase'];
+function changedKeys(a,b){return EXPERIMENT_KEYS.filter(k=>JSON.stringify(a.config[k])!==JSON.stringify(b.config[k]))}
+function validPair(a,b,id,requireConclusion=true){
+ if(!a||!b||a.id===b.id)return false;
+ if(!a.prediction||!b.prediction)return false;
+ if(requireConclusion&&(!(a.conclusion||'').trim()||!(b.conclusion||'').trim()))return false;
+ if(id!==1&&(!a.result?.valid||!b.result?.valid))return false;
+ const d=changedKeys(a,b);
+ if(id===1)return a.simulation?.testMode==='geometry'&&b.simulation?.testMode==='geometry'&&a.result?.canAssemble!==false&&b.result?.canAssemble!==false&&a.result.fullRotation!==b.result.fullRotation;
+ if(id===5){if(!comparableRecords(a,b))return false;return d.length>=1;}
+ if(d.length!==1)return false;
+ if(!comparableRecords(a,b))return false;
+ if(id===2)return ['frontExt','rearExt','footSize','frontFootType','rearFootType','frontFootProfile','rearFootProfile','frontFootAngle','rearFootAngle'].includes(d[0]);
+ if(id===3)return d[0]==='friction';
+ if(id===4)return d[0]==='phase'&&a.config.secondLeg&&b.config.secondLeg;
+ return id===5;
+}
+function findTaskPair(id,requireConclusion=true){const rr=data.records.filter(r=>r.task===id);for(let j=rr.length-1;j>=1;j--)for(let i=j-1;i>=0;i--)if(validPair(rr[i],rr[j],id,requireConclusion))return [rr[i],rr[j]];return null}
+function assessTask(id){
+ const rr=data.records.filter(r=>r.task===id),pair=findTaskPair(id);
+ if(pair)return {ok:true,why:'已完成兩次可比較的實驗紀錄（模擬觀察）',pair};
+ if(rr.length===0)return {ok:false,why:'先選預測並完成第一次測試'};
+ if(rr.length===1)return {ok:false,why:id===1?'再找一組不同旋轉狀態的四連桿，保存第二次測試':'再調整本任務的設定，完成第二次測試'};
+ if(rr.some(r=>!(r.conclusion||'').trim()))return {ok:false,why:'請為兩次測試補上觀察或結論'};
+ if(id!==1&&rr.filter(r=>r.result?.valid).length<2)return {ok:false,why:'目前缺少兩筆有效的模擬測試，請檢查測試狀態'};
+ if(id===1){const assembled=rr.filter(r=>r.simulation?.testMode==='geometry'&&r.result?.canAssemble!==false);if(assembled.length<2)return {ok:false,why:'需要兩組可以組合的四連桿：一組完整旋轉，一組有限擺動'};if(assembled.every(r=>r.result.fullRotation))return {ok:false,why:'目前兩組都可完整旋轉；調整桿長，找出只能擺動的設計'};if(assembled.every(r=>!r.result.fullRotation))return {ok:false,why:'目前兩組都無法完整旋轉；試著找到可完整旋轉的設計'};}
+ return {ok:false,why:id===1?'請確認一組完整旋轉、另一組有限擺動':id===5?'請確認兩次設計有不同，並寫下比較結果':'請確認兩次只改本任務指定的設定，且測試條件相同'};
+}
+
+const TASK_STEPS={
+1:{prediction:'這組桿長能不能轉完整一圈？',options:['可以完整旋轉','只能來回擺動','無法組合'],experiment:'關閉重力，調整桿長，分別保存完整旋轉和有限擺動的結果。',compare:'找出一組可完整旋轉、一組不可完整旋轉的紀錄。',conclusion:'我改了哪些桿長？兩組運動有何差別？',variable:'AB、BC、CD 或 AD，可調整多根'},
+2:{prediction:'改變腳部後，接地和移動會如何改變？',options:['接地或前進會增加','接地或前進會減少','差不多','不確定'],experiment:'沿用能旋轉的四連桿，切到行走模擬、開啟重力，先測試原設計，再只調整一項腳部設定。',compare:'比較兩次的腳掌接觸情形、位移與異常狀態。',conclusion:'連桿能旋轉，就一定能讓機身移動嗎？我觀察到什麼？',variable:'前腳或後腳的長度、腳掌尺寸或形狀'},
+3:{prediction:'地面變粗糙後，腳掌滑動會如何改變？',options:['滑動變少','滑動變多','差不多','不確定'],experiment:'選用相同的機構、馬達速度與腳掌，先測一次，再只改「地面摩擦」。',compare:'比較兩次模擬滑動量；不必預設粗糙地面一定走得更遠。',conclusion:'我的預測符合觀察嗎？除了摩擦，還有哪些因素可能影響位移？',variable:'地面摩擦'},
+4:{prediction:'改變第二組腿的相位，步態會怎麼變？',options:['接地時間會錯開','接地時間更接近','差不多','不確定'],experiment:'開啟第二組腿，先關閉重力觀察 0°、90°、180°，再開重力選兩種相位正式測試。',compare:'比較不同相位的腳步先後、機身晃動與測試狀態。',conclusion:'哪一種相位的腳部配合較符合我的目標？根據什麼觀察？',variable:'第二組腿相位差'},
+5:{prediction:'我選的這一項修改能改善什麼？',options:['前進距離增加','滑動減少','晃動減少','可能沒有改善'],experiment:'先保存原設計，再調整想改善的項目，進行第二次測試。',compare:'比較原設計與新設計；測試失敗也是值得說明的結果。',conclusion:'我想改善什麼？改了哪些設定？結果是否支持我的選擇？',variable:'自選一項或多項設定；多項改動要說明限制'}
+};
+const FREE_PRED=['會前進','會後退','幾乎不動','可能卡住'];
+function taskRecords(){return data.records.filter(r=>r.task===data.task)}
+function taskStepState(id){
+ const rr=data.records.filter(r=>r.task===id),withPred=rr.filter(r=>!!r.prediction),withConclusion=rr.filter(r=>(r.conclusion||'').trim().length>=5);
+ const pair=findTaskPair(id,false),a=assessTask(id),compared=(data.comparedTasks||[]).includes(id);
+ // 四步驟各自根據真實紀錄與操作判斷，不能只看總筆數。
+ const predictionDone=withPred.length>0,testDone=rr.length>=2,compareDone=!!pair&&compared,conclusionDone=!!pair&&pair.every(r=>(r.conclusion||'').trim().length>=5);
+ const step=!predictionDone?1:!testDone?2:!compareDone?3:!conclusionDone?4:4;
+ return {rr,withPred,withConclusion,pair,a,compared,step,predictionDone,testDone,compareDone,conclusionDone};
+}
+function updateTaskUI(){
+ const on=data.mode==='task',guide=$('taskWorkflow');guide.classList.toggle('hide',!on);
+ const t=TASKS.find(x=>x.id===data.task)||TASKS[0],g=TASK_STEPS[t.id],state=taskStepState(t.id);
+ if(on){const note=state.a.ok?'已完成兩次測試':!state.rr.length?'先選預測，進行第一次測試':state.rr.length===1?'第一次測試已保存，改一項設定後再測一次':!state.pair?'請確認兩次結果符合本任務的比較目標':!state.compareDone?'可以查看兩次測試的比較了':!state.conclusionDone?'請為兩筆測試補寫觀察與結論':'已完成紀錄，請查看比較結果';guide.innerHTML=`<strong>任務 ${t.id}｜${t.title}　</strong><div class="stages"><span class="${state.predictionDone?'complete':'active'}">① 預測</span><span class="${state.testDone?'complete':state.predictionDone?'active':''}">② 測試</span><span class="${state.compareDone?'complete':state.testDone?'active':''}">③ 比較</span><span class="${state.conclusionDone?'complete':state.compareDone?'active':''}">④ 結論</span></div><div><b>目前步驟：</b>${note}</div><div><b>這次要改：</b>${g.variable}</div><div class="hint">${g.experiment}</div><div class="hint"><b>本關挑戰：</b>${escapeHTML(t.metric)}</div><div class="row" style="margin-top:8px"><button id="guideRestore">沿用上次設計</button>${t.id>1&&!getGeometry(data.config).full?'<button id="guideGood">載入可旋轉範例</button>':''}<button id="guidePrepare">建議設定</button><button id="guideCompare">查看比較</button><button id="guideTasks">查看五項任務</button></div>`; if($('guideGood'))$('guideGood').onclick=loadRotatableExample;$('guideRestore').onclick=()=>{const r=taskRecords().at(-1);if(!r){showToast('此任務尚無測試紀錄，請先進行第一次測試');return}changed(clone(r.config));showToast('已沿用本任務上次的設計；這次只改一項設定後再測試')};$('guidePrepare').onclick=()=>prepareTask(data.task);$('guideCompare').onclick=showTaskCompare;$('guideTasks').onclick=()=>goto('tasks');}
+ const opts=on?g.options:FREE_PRED,sel=$('prediction'),old=sel.value;sel.innerHTML='<option value="">先選一項</option>'+opts.map(x=>`<option value="${escapeHTML(x)}">${escapeHTML(x)}</option>`).join('');sel.value=opts.includes(old)?old:'';
+ $('predictionLabel').textContent=on?g.prediction:'你的預測';$('predictionHint').textContent=on?'預測後再測試，不必猜對。':'觀察前先選一個你認為可能的結果。';$('conclusionHint').textContent=on?g.conclusion:'我改變了什麼？結果如何？';$('conclusion').placeholder=on?g.conclusion:'說明這次觀察到的變化';
+}
+function showTaskCompare(){goto('records');const pair=findTaskPair(data.task,false),rr=data.records.filter(r=>r.task===data.task);if(pair||rr.length>=2){const a=pair?pair[0]:rr[rr.length-2],b=pair?pair[1]:rr[rr.length-1];$('compareA').value=a.id;$('compareB').value=b.id;compare()}else{$('compareResult').textContent='先完成同一任務的兩次正式測試，才有可比較的紀錄。'} }
+
+
+// 學生可明確選擇一組已知可完整旋轉的四連桿；不清除已儲存的測試。
+function loadRotatableExample(){
+ if(!confirm('要改用可完整旋轉的四連桿範例嗎？\n將調整 AB、BC、CD、AD，已儲存的實驗紀錄不受影響。'))return;
+ changed({ab:3,bc:8,cd:7,da:10});
+ showToast('已載入可旋轉範例。可以先關閉重力觀察，再進行測試。');
+}
+// 任務引導：只調整學生看得到、可理解的預設，不改動測試紀錄。
+function prepareTask(id){
+ const patch={1:{gravityEnabled:false,secondLeg:false,showTrace:true,traceMode:'cycle'},2:{gravityEnabled:true,frontExt:2,rearExt:2},3:{gravityEnabled:true,frontExt:2,rearExt:2},4:{gravityEnabled:true,secondLeg:true,frontExt:2,rearExt:2},5:{gravityEnabled:true}}[id]||{};
+ if(!confirm('要套用任務 '+id+' 的建議觀察設定嗎？\n目前設計會改變，但已儲存的測試紀錄不會消失。\n按「取消」可保留目前設計直接進行。'))return;
+ changed({...patch});
+ if(id>1&&!getGeometry(data.config).full){showToast('目前四連桿只能部分轉動，可按「載入可旋轉範例」繼續。');}
+ if(id===1){view='mechanism';$('showMechanism').classList.add('on');$('showWalk').classList.remove('on');$('visualMode').textContent='機構示意'}
+ else{view='walk';$('showWalk').classList.add('on');$('showMechanism').classList.remove('on');$('visualMode').textContent='行走模擬'}
+ sim=makeSim();syncControls();paint();updateMetrics();showToast('已準備任務 '+id+'；先預測，再進行第一次測試');
+}
+function submissionStatus(){
+ const cls=$('className').value.trim(),id=$('studentId').value.trim(),overall=$('overallConclusion').value.trim();
+ const results=[['班級與座號／組別',!!(cls&&id)],['有任務測試紀錄',data.records.some(r=>r.task!=null)],['同一任務完成兩次測試',TASKS.some(t=>!!findTaskPair(t.id))],['有寫下觀察結果',data.records.some(r=>r.conclusion&&r.conclusion.trim().length>=5)],['已選擇實驗紀錄',!!$('selectedReport').value],['已填寫我學到什麼？',overall.length>=5]];
+ return results;
+}
+function updateSubmissionChecklist(){
+ const el=$('submissionChecklist');if(!el)return;
+ const results=submissionStatus(),n=results.filter(x=>x[1]).length;
+ el.innerHTML='<b>成果檢查（'+n+'/'+results.length+'）</b>'+results.map(([label,ok])=>'<p class="'+(ok?'ready':'todo')+'">'+(ok?'✓':'○')+' '+label+'</p>').join('')+'<p class="hint">缺少的項目請先補上。</p>';
+}
+function canSubmit(){updateSubmissionChecklist();const missing=submissionStatus().filter(x=>!x[1]);if(!missing.length)return true;showToast('請先補齊繳交資料：'+missing[0][0]);return false}
+
+function renderTasks(){
+ const next=TASKS.find(t=>!assessTask(t.id).ok)?.id||5;
+ $('taskList').innerHTML=TASKS.map(t=>{const rr=data.records.filter(r=>r.task===t.id),g=TASK_STEPS[t.id],a=assessTask(t.id);
+ const label='任務目標：';
+  const challenge=escapeHTML(t.metric),thinking=escapeHTML(t.think);
+ return `<div class="task ${data.task===t.id&&data.mode==='task'?'selected':''}"><h3>任務 ${t.id}｜${t.title} </h3><p class="v418TaskGoal"><b>${label}</b>${t.goal}</p><p class="taskChallenge"><b>要做什麼：</b>${challenge}</p><p class="taskThought"><b>想一想：</b>${thinking}</p><details><summary>操作提示</summary><div class="sequence"><p><b>① 預測：</b>${g.prediction}</p><p><b>② 測試：</b>${g.experiment}</p><p><b>③ 比較：</b>${g.compare}</p><p><b>④ 結論：</b>${g.conclusion}</p></div><p><b>可調整項目：</b>${g.variable}</p></details><p class="status">${rr.length} 筆紀錄｜${a.why}</p><button data-choose="${t.id}">${rr.length?'繼續任務':'開始任務'}</button></div>`}).join('')+`<div class="task"><h3>額外任務（選做）</h3><p>挑戰只改一根桿長，讓四連桿從完整旋轉變成有限擺動。</p><p class="hint">這是任務 1 的加分挑戰，不影響五個基本任務的完成判定。</p><button data-choose="1">回到任務 1 嘗試</button></div>`;
+ document.querySelectorAll('[data-choose]').forEach(b=>b.onclick=()=>{const id=+b.dataset.choose;data.task=id;data.mode='task';$('prediction').value='';$('conclusion').value='';save();renderTasks();syncControls();goto('lab');updateTaskUI();const earlier=TASKS.filter(t=>t.id<id&&!assessTask(t.id).ok).length;showToast(earlier?'可以先做任務 '+id+'；若不熟悉，建議先試前面的任務。':'已進入任務 '+id);prepareTask(id)})
+}
+
+function recordRow(r,i){return `<tr><td>${i+1}</td><td>${r.task?`任務 ${r.task}`:'自由'}</td><td>${escapeHTML(r.date.slice(0,16).replace('T',' '))}</td><td>${num(r.result.distance)} cm</td><td>${num(r.result.slip)} cm</td><td>${escapeHTML(r.result.numericalQuality||r.result.status)}</td><td><button data-replay="${r.id}">載入設計</button> <button data-edit-note="${r.id}">編輯結論</button></td></tr>`}
+function escapeHTML(t){return String(t??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;')}
+function renderRecords(){$('recordCount').textContent=data.records.length;$('recordTable').innerHTML=data.records.length?`<div style="overflow:auto"><table class="records"><thead><tr><th>#</th><th>任務</th><th>日期</th><th>前進距離（左＋）</th><th>滑動</th><th>狀態</th><th>操作</th></tr></thead><tbody>${data.records.map(recordRow).join('')}</tbody></table></div>`:'<div class="empty">還沒有正式測試紀錄。到實驗室按「正式測試」開始。</div>';document.querySelectorAll('[data-replay]').forEach(b=>b.onclick=()=>{let r=data.records.find(r=>r.id===b.dataset.replay);changed(clone(r.config));goto('lab');showToast('已載入該次測試的設計參數')});document.querySelectorAll('[data-edit-note]').forEach(b=>b.onclick=()=>{const r=data.records.find(x=>x.id===b.dataset.editNote);if(!r)return;const note=prompt('請寫下這次測試的觀察或結論：',r.conclusion||'');if(note===null)return;r.conclusion=note.trim();save();renderRecords();renderTasks();updateSubmissionChecklist();showToast('已保存這次測試的結論')});const previousChoice=Object.fromEntries(['compareA','compareB','selectedReport'].map(id=>[id,$(id).value]));const options=data.records.map((r,i)=>`<option value="${r.id}">第 ${i+1} 次｜任務 ${r.task||'自由'}｜位移 ${num(r.result.distance)} cm</option>`).join('');for(const id of ['compareA','compareB','selectedReport']){$(id).innerHTML='<option value="">請選擇測試</option>'+options}if(data.records.length){for(const [id,fallback] of [['compareA',data.records[0].id],['compareB',data.records.at(-1).id],['selectedReport',data.records.at(-1).id]])$(id).value=data.records.some(r=>r.id===(id==='selectedReport'?(data.student.selectedReportId||previousChoice[id]):previousChoice[id]))?(id==='selectedReport'?(data.student.selectedReportId||previousChoice[id]):previousChoice[id]):fallback}else{for(const id of ['compareA','compareB','selectedReport'])$(id).value=''}}
+function resultTable(r){return `<table class="records"><tr><th>參數</th><th>數值</th></tr>${[['AB',r.config.ab+' cm'],['BC',r.config.bc+' cm'],['CD',r.config.cd+' cm'],['AD',r.config.da+' cm'],['前腳延伸',r.config.frontExt+' cm'],['後腳延伸',r.config.rearExt+' cm'],['前腳方向',(r.config.frontFootAngle??0)+'°'],['後腳方向',(r.config.rearFootAngle??0)+'°'],['前腳形狀',r.config.frontFootType||'flat'],['後腳形狀',r.config.rearFootType||'flat'],['前腳材料',r.config.frontFootMaterial||'未指定'],['後腳材料',r.config.rearFootMaterial||'未指定'],['前腳抓地',r.config.frontFriction??.8],['後腳抓地',r.config.rearFriction??.8],['相位',r.config.phase+'°'],['摩擦',r.config.friction],['前進距離（左＋）',num(r.result.distance)+' cm'],['滑動',num(r.result.slip)+' cm'],['平均俯仰',num(r.result.averageTilt)+'°'],['機身高度變化',num(r.result.verticalRangeCm||0)+' cm'],['測試時間',num(r.result.seconds||0)+' 秒'],['馬達轉數',num(r.result.turns)],['測試狀態',r.result.status],['數值穩定性',r.result.numericalQuality||'未檢查'],['精度複查位移差',r.result.numericalCheck?num(r.result.numericalCheck.absoluteDifferenceCm)+' cm':'無資料'],['結果性質',r.simulation?.testMode==='geometry'?(r.result?.canAssemble===false?'無法組合':'幾何觀察'):(r.result?.valid?'已完成模擬測試，物理模型未驗證':'本次模擬測試未完成／異常') ]].map(x=>`<tr><td>${x[0]}</td><td>${escapeHTML(x[1])}</td></tr>`).join('')}</table>`}
+function comparableRecords(a,b){return a.appVersion===b.appVersion&&a.simulation?.engine===b.simulation?.engine&&a.simulation?.testMode===b.simulation?.testMode&&a.simulation?.targetTurns===b.simulation?.targetTurns&&Math.abs((a.simulation?.durationSeconds||0)-(b.simulation?.durationSeconds||0))<((a.simulation?.testMode==='time')?.01:Infinity)&&a.config.motorSpeed===b.config.motorSpeed&&a.config.gravityEnabled===b.config.gravityEnabled&&a.simulation?.calibrated===b.simulation?.calibrated&&a.config.testMode===b.config.testMode&&a.result?.valid===true&&b.result?.valid===true}
+function compare(){
+ const a=data.records.find(r=>r.id===$('compareA').value),b=data.records.find(r=>r.id===$('compareB').value);
+ if(!a||!b){showToast('請選兩筆測試');return}
+ if(a.id===b.id){showToast('請選兩筆不同的測試紀錄');return}
+ if(a.task&&a.task===b.task&&validPair(a,b,a.task,false)){
+  if(!data.comparedTasks.includes(a.task)){data.comparedTasks.push(a.task);save();}updateTaskUI();
+ }
+ const keys=[['ab','AB'],['bc','BC'],['cd','CD'],['da','AD'],['frontExt','前腳延伸'],['rearExt','後腳延伸'],['footSize','腳端尺寸'],['frontFootType','前腳腳掌'],['rearFootType','後腳腳掌'],['frontFootProfile','前腳自訂輪廓'],['rearFootProfile','後腳自訂輪廓'],['frontFootAngle','前腳方向'],['rearFootAngle','後腳方向'],['frontFriction','前腳抓地'],['rearFriction','後腳抓地'],['friction','地面摩擦'],['motorSpeed','馬達速度'],['secondLeg','第二組腿'],['phase','相位']];
+ const dif=keys.filter(([k])=>JSON.stringify(a.config[k])!==JSON.stringify(b.config[k])).map(([k,n])=>`${n}：${a.config[k]} → ${b.config[k]}`);
+ const comparable=comparableRecords(a,b)&&a.task===b.task;
+ const ca=a.result?.numericalCheck,cb=b.result?.numericalCheck;
+ const stable=ca?.stable===true&&cb?.stable===true;
+ const gap=Math.abs(b.result.distance-a.result.distance);
+ const uncertainty=(ca?.absoluteDifferenceCm||0)+(cb?.absoluteDifferenceCm||0)+.30;
+ let verdict;
+ if(!comparable)verdict='⚠ 兩次測試條件不同，不能直接比較。';
+ else if(!stable)verdict='⚠ 這次測試結果不夠穩定，先不要判定哪個比較好。';
+ else if(gap<=uncertainty)verdict='兩組走得差不多，目前無法判斷哪個比較好。';
+ else verdict=(b.result.distance>a.result.distance?'設計 B':'設計 A')+' 在這組假設物理條件下前進距離較大；仍需參考滑動、穩定性與實物測試。';
+ $('compareResult').innerHTML=`<p><b>比較判讀：</b>${verdict}</p><p class="hint">此處以兩次精度複查的位移差總和，再加 0.30 cm 作為保守判斷門檻；只是數值穩定性的提示，不是實物測量誤差或統計信賴區間。</p><p><b>參數差異：</b>${escapeHTML(dif.join('；')||'兩次設定相同')}</p><div class="two"><div><b>設計 A</b>${resultTable(a)}</div><div><b>設計 B</b>${resultTable(b)}</div></div><p>前進位移差（左＋）：${num(b.result.distance-a.result.distance)} cm；滑動差：${num(b.result.slip-a.result.slip)} cm；機身高度變化差：${num((b.result.verticalRangeCm||0)-(a.result.verticalRangeCm||0))} cm。</p>`;
+}
+function download(name,contents,type){const blob=new Blob([contents],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function buildExport(){return {schema:'bionic-student-record/1.1',appVersion:VERSION,model:'2D experimental impulse rigid-body solver; not externally validated or calibrated to hand generator',distanceConvention:'left-positive',exportedAt:new Date().toISOString(),student:clone(data.student),records:clone(data.records),savedDesigns:clone(data.designs)}}
+function reportHtml(){let id=$('selectedReport').value,r=data.records.find(x=>x.id===id)||data.records.at(-1);let student=data.student;return `<h2>仿生獸步態實驗報告</h2><p>班級：${escapeHTML(student.className||'未填')}　座號／組別：${escapeHTML(student.studentId||'未填')}　｜　生成時間：${new Date().toLocaleString('zh-TW')}</p><p><b>模型：</b>剛體衝量試驗模型（未校正手搖發電輸出），版本 ${VERSION}；前進方向：向左為正（＋），向右為負（−）。</p>${r?`<h3>正式測試：${r.task?'任務 '+r.task:'自由探索'}</h3><p>測試時間：${escapeHTML(r.date)}　｜　預測：${escapeHTML(r.prediction||'未填')}</p>${resultTable(r)}<h3>學生觀察</h3><p>${escapeHTML(r.conclusion||'尚未填寫')}</p>`:'<p>尚無正式測試紀錄。</p>'}<h3>我學到什麼？</h3><p>${escapeHTML(student.overall||'尚未填寫')}</p><h3>測試歷程摘要</h3><table><tr><th>次序</th><th>任務</th><th>前進位移（cm，左＋）</th><th>滑動（cm）</th><th>狀態</th></tr>${data.records.map((q,i)=>`<tr><td>${i+1}</td><td>${q.task||'自由'}</td><td>${num(q.result.distance)}</td><td>${num(q.result.slip)}</td><td>${escapeHTML(q.result.status)}</td></tr>`).join('')}</table>`}
+function renderReport(){$('className').value=data.student.className||'';$('studentId').value=data.student.studentId||'';$('overallConclusion').value=data.student.overall||'';renderRecords();$('reportPreview').innerHTML=reportHtml();$('printContent').innerHTML=reportHtml()}
+function saveMeta(){data.student={className:$('className').value.trim(),studentId:$('studentId').value.trim(),overall:$('overallConclusion').value.trim(),selectedReportId:$('selectedReport').value};save();$('reportPreview').innerHTML=reportHtml();$('printContent').innerHTML=reportHtml();showToast('學生資料已儲存')}
+async function formalTest(){
+ if(busy)return;const pred=$('prediction').value;if(!pred){showToast('請先填寫測試前預測');return}
+ const c=clone(data.config),g=getGeometry(c),isTask1=data.mode==='task'&&data.task===1;
+ if(isTask1){const jointCompatible=(()=>{for(let a=0;a<360;a+=1){if(!fourbar(c,rad(a))||(c.secondLeg&&!fourbar(c,rad(a+c.phase))))return false}return true})();const rec={id:'g-'+Date.now(),date:new Date().toISOString(),task:1,mode:data.mode,config:c,prediction:pred,conclusion:$('conclusion').value.trim(),result:{distance:0,slip:0,tilt:0,averageTilt:0,maxTilt:0,turns:0,contactRatio:0,status:g.none?'四連桿無法組合':(g.full&&jointCompatible)?'可完整旋轉':'只能在部分角度擺動',geometryFull:g.full,canAssemble:!g.none,valid:!g.none,fullRotation:g.full&&jointCompatible,seconds:0},simulation:{engine:'geometric-fourbar',testMode:'geometry',calibrated:false,distanceConvention:'left-positive'},appVersion:VERSION};data.records.push(rec);save();renderRecords();renderTasks();updateTaskUI();$('conclusion').value='';$('prediction').value='';showToast('已保存幾何觀察紀錄');return}
+ if(view==='mechanism'){showToast('目前是機構示意；正式行走測試請切換「行走模擬」');return}if(c.gravityEnabled===false){showToast('行走測試需要開啟重力；任務 1 可使用無重力幾何測試');return}
+ if(!g.full||!makeSim()){showToast('目前四連桿無法完整旋轉，不能進行行走測試');return}if(c.frontExt<=.001&&c.rearExt<=.001){showToast('請先設定前腳或後腳的延伸長度');return}
+ stop();busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);$('formalBtn').textContent='測試中…';let s=makeSim();const dt=1/120,mode=c.testMode||'turns',maxSteps=(mode==='turns'?20:6)*120,targetTurns=2;let failed=false,reason='',stalled=false,stallTurn=0;
+ try{for(let i=0;i<maxSteps;i++){
+ if(!solveStep(s,dt)){failed=true;reason=haltKind==='solver-failure'?'數值求解失敗':'機構／驅動停止';break}
+ if(mode==='turns'&&Math.abs(s.motorTurns)>=targetTurns)break;
+ // 若在相同動力條件下持續無法轉動，不再浪費時間跑滿 20 秒。
+ if(mode==='turns'&&i>0&&i%240===0){
+  if(Math.abs(s.motorTurns-stallTurn)<.015){stalled=true;reason='馬達受阻：連續兩秒未能有效轉動';break;}
+  stallTurn=s.motorTurns;
+ }
+ if(i%120===0){sim=s;updateMetrics();paint();await new Promise(r=>setTimeout(r,0))}
+ }}finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);$('formalBtn').textContent='● 正式測試'}
+ if(failed||stalled)s.status=reason;
+ const m=metric(s),hasFoot=c.frontExt>0.001||c.rearExt>0.001;const reached=mode==='time'||Math.abs(m.turns)>=targetTurns;const numericalOK=(m.maxConstraintError||0)<.15&&(m.largeErrorFrames||0)<Math.max(4,s.steps*.02);const hasGroundEvidence=hasFoot&&m.contactRatio>.03;const valid=!failed&&!stalled&&Number.isFinite(m.distance)&&Number.isFinite(m.slip)&&reached&&numericalOK&&hasGroundEvidence;
+ m.valid=valid;m.geometryFull=g.full;m.stalled=stalled;if(!valid&&!failed&&!stalled)m.status=!reached?'未達指定圈數（測試不完整）':!hasFoot?'未設定有效腳部延伸':!hasGroundEvidence?'未達足夠腳端接地證據':'連桿數值約束誤差過大';m.physicsVerified=false;m.modelBasis='rigid-impulse-unvalidated';m.settling=clone(s.settling||{seconds:0,stable:false});if(!m.settling.stable){m.settlingWarning='起始姿態未完全穩定；請留意比較結果';}
+ if(!failed&&!stalled){
+  // Independent repeat at a finer solver accuracy, same task/test target.
+  // This is a numerical sensitivity check, not experimental calibration.
+  const oldIters=RB.velocityIters;let alt=null,altFailed=false,altReached=false;
+  try{
+   RB.velocityIters=180;
+   alt=makeSim();
+   if(!alt)altFailed=true;
+   else for(let i=0;i<maxSteps;i++){
+    if(!solveStep(alt,dt)){altFailed=true;break}
+    if(mode==='turns'&&Math.abs(alt.motorTurns)>=targetTurns){altReached=true;break;}
+    if(i%240===0)await new Promise(r=>setTimeout(r,0));
+   }
+  }finally{RB.velocityIters=oldIters;}
+  if(!altFailed&&alt&&(mode==='time'||altReached)){
+   const am=metric(alt),gap=Math.abs(am.distance-m.distance);
+   const limit=Math.max(.35,.12*Math.max(Math.abs(m.distance),Math.abs(am.distance)));
+   m.numericalCheck={referenceIters:oldIters,checkIters:180,alternateDistanceCm:am.distance,absoluteDifferenceCm:gap,thresholdCm:limit,stable:gap<=limit};
+   m.numericalQuality=gap<=limit?'結果可供初步比較':'結果不夠穩定（不可直接排名）';
+  }else{m.numericalQuality='精度複查未完成（不可排名）';m.numericalCheck={stable:false,incomplete:true};}
+ }
+ sim=s;const rec={id:'t-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),date:new Date().toISOString(),task:data.mode==='task'?data.task:null,mode:data.mode,config:c,prediction:pred,conclusion:$('conclusion').value.trim(),result:m,simulation:{engine:'impulse-rigid-contact-v4.4',distanceConvention:'left-positive',dt,testMode:mode,targetTurns:mode==='turns'?targetTurns:null,durationSeconds:s.t,steps:s.steps,calibrated:false,qualityGate:'contact-comparison-check-v4.4'},appVersion:VERSION};data.records.push(rec);if(data.records.length>200)data.records.shift();save();renderRecords();renderTasks();updateTaskUI();updateMetrics();paint();$('conclusion').value='';$('prediction').value='';showToast(valid?'已保存剛體試驗紀錄（未實測校正）':'已保存未完成／異常測試，不列入比較')
+}
+// 滑桿拖曳期間即時預覽：以輕量幾何姿態更新，不執行完整重力暖機。
+const sliderStart=new Map();
+function previewSlider(key,value){
+ if(busy)return;
+ if(!sliderStart.has(key))sliderStart.set(key,clone(data.config));
+ stop();data.config[key]=value;
+ $('out_'+key).textContent=num(value)+' cm';
+ sim=makeSim(true);updateGeometryStatus();paint();updateMetrics();
+}
+function finishSlider(key,value){
+ if(busy){sliderStart.delete(key);syncControls();return}
+ const original=sliderStart.get(key);sliderStart.delete(key);
+ if(original){data.config=original;}
+ if(+data.config[key]!==value)changed({[key]:value});
+ else {sim=makeSim();syncControls();paint();updateMetrics();}
+}
+function wire(){document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>goto(b.dataset.page));for(const id of ['ab','bc','cd','da','frontExt','rearExt','footSize']){$(id).addEventListener('input',e=>previewSlider(id,+e.target.value));$(id).addEventListener('change',e=>finishSlider(id,+e.target.value));}for(const [id,k,cast] of [['frontFootType','frontFootType',x=>x],['rearFootType','rearFootType',x=>x],['frontFriction','frontFriction',Number],['rearFriction','rearFriction',Number],['groundType','friction',Number],['motorSpeed','motorSpeed',Number],['phase','phase',Number]])$(id).addEventListener('change',e=>changed({[k]:cast(e.target.value)}));for(const side of ['front','rear']){const id=side+'FootAngle';$(id).addEventListener('input',e=>previewFootAngle(id,+e.target.value));$(id).addEventListener('change',e=>finishFootAngle(id,+e.target.value))}$('secondLeg').onchange=e=>changed({secondLeg:e.target.checked});$('gravityEnabled').onchange=e=>switchGravityScene(e.target.checked);$('traceMode').onchange=e=>{data.config.traceMode=e.target.value;data.config.showTrace=e.target.value!=='off';if(sim){sim.c.traceMode=e.target.value;sim.c.showTrace=e.target.value!=='off'}save();syncControls();paint()};$('cameraMode').onchange=e=>{data.config.cameraMode=e.target.value;if(sim)sim.c.cameraMode=e.target.value;save();paint()};$('testMode').onchange=e=>{data.config.testMode=e.target.value;if(sim)sim.c.testMode=e.target.value;save()};$('autoReverse').onchange=e=>changed({autoReverse:e.target.checked});for(const id of ['showContact','showSupport'])$(id).onchange=e=>{data.config[id]=e.target.checked;if(sim)sim.c[id]=e.target.checked;save();paint()};$('fitCameraBtn').onclick=()=>{data.config.cameraMode='fixed';if(sim)sim.c.cameraMode='fixed';save();syncControls();paint();showToast('已切換固定地面視角')};$('playSpeed').onchange=e=>{playRate=+e.target.value};$('reverseBtn').onclick=()=>{driveDirection*=-1;if(sim)sim.driveDirection*=-1;if(sim)sim.tracePaths={};showToast('已反轉旋轉方向')};$('angleSlider').oninput=e=>{stop();if(!sim)return;const a=rad(+e.target.value),c=data.config;const poses=sim.sets.map((_,j)=>fourbar(c,a+(j?rad(c.phase):0)));if(c.gravityEnabled!==false&&view!=='mechanism'){showToast('手動角度請先關閉重力，或切換機構示意');return}if(poses.some(x=>!x)){showToast('此角度無法組合，請調整桿長');return}sim.angle=a;sim.A.x=0;sim.A.y=4;sim.D.x=c.da;sim.D.y=4;sim.sets.forEach((z,j)=>{z.B.x=poses[j].B.x;z.B.y=4+poses[j].B.y;z.C.x=poses[j].C.x;z.C.y=4+poses[j].C.y;z.theta=a+(j?rad(c.phase):0)});sim.motorTurns=0;sim.tracePaths={};captureFootTrails(sim);paint();updateMetrics()};$('simCanvas').addEventListener('click',e=>{if(!sim)return;const r=$('simCanvas').getBoundingClientRect(),w=r.width,h=r.height,scale=Math.min(w/29,(h-55)/15),cam=data.config.cameraMode==='fixed'?data.config.da/2:(sim.A.x+sim.D.x)/2,xoff=w*.5-cam*scale,gy=h-62;const x=(e.clientX-r.left-xoff)/scale,y=(gy-(e.clientY-r.top))/scale;let lines=[['ab',sim.A,sim.sets[0].B],['bc',sim.sets[0].B,sim.sets[0].C],['cd',sim.sets[0].C,sim.D],['da',sim.A,sim.D]];const dist=(p,a,b)=>{const q=sub(b,a),t=Math.max(0,Math.min(1,((x-a.x)*q.x+(y-a.y)*q.y)/(length(q)**2||1)));return Math.hypot(x-a.x-t*q.x,y-a.y-t*q.y)};const sorted=lines.map(([id,a,b])=>({id,d:dist(null,a,b)})).sort((a,b)=>a.d-b.d);if(sorted[0].d<.65){document.getElementById(sorted[0].id).focus();document.getElementById(sorted[0].id).scrollIntoView({behavior:'smooth',block:'center'});showToast('已選取 '+sorted[0].id.toUpperCase()+'，可在左側調整長度')}});$('clearTrails').onclick=()=>{if(sim){sim.trace=[];sim.tracePaths={};paint()}};for(const id of ['showTrace','showLabels'])$(id).onchange=e=>{data.config[id]=e.target.checked;if(sim)sim.c[id]=e.target.checked;save();paint()};$('freeMode').onclick=()=>{data.mode='free';save();syncControls();updateTaskUI()};$('taskMode').onclick=()=>{data.mode='task';save();syncControls();renderTasks();updateTaskUI()};$('undoBtn').onclick=()=>{if(!undoStack.length)return;redoStack.push(clone(data.config));data.config=undoStack.pop();stop();sim=makeSim();syncControls();save();paint()};$('redoBtn').onclick=()=>{if(!redoStack.length)return;undoStack.push(clone(data.config));data.config=redoStack.pop();stop();sim=makeSim();syncControls();save();paint()};$('saveDesignBtn').onclick=()=>{data.designs.push({at:new Date().toISOString(),config:clone(data.config)});save();showToast('已儲存設計版本 '+data.designs.length)};$('resetDesignBtn').onclick=()=>changed(clone(DEFAULT));$('showMechanism').onclick=()=>switchGravityScene(false);$('showWalk').onclick=()=>switchGravityScene(true);$('playBtn').onclick=()=>running?stop():start();$('pauseBtn').onclick=stop;$('stepBtn').onclick=()=>{stop();if(!sim)return;solveStep(sim,1/120);paint();updateMetrics()};$('restartBtn').onclick=()=>{stop();sim=makeSim();paint();updateMetrics()};$('formalBtn').onclick=formalTest;$('openTasksBtn').onclick=()=>goto('tasks');$('goCompare').onclick=showTaskCompare;$('attachConclusion').onclick=()=>{const candidates=data.mode==='task'?data.records.filter(r=>r.task===data.task):data.records;const rec=candidates.at(-1);if(!rec){showToast('目前任務還沒有正式測試，請先測試一次');return}const value=$('conclusion').value.trim();if(!value){showToast('請先寫下觀察到的變化，再儲存結論');return}rec.conclusion=value;save();renderTasks();renderRecords();updateTaskUI();updateSubmissionChecklist();showToast('已儲存到'+(rec.task?'任務 '+rec.task:'自由探索')+'的最近一次測試')};$('exportJSON').onclick=()=>download('仿生獸_實驗紀錄_'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(buildExport(),null,2),'application/json;charset=utf-8');$('clearRecords').onclick=()=>{if(confirm('確定清除所有正式測試紀錄？此操作無法復原，建議先下載紀錄。')){data.records=[];data.comparedTasks=[];data.student.selectedReportId='';save();renderRecords();renderTasks();updateSubmissionChecklist()}};$('compareBtn').onclick=compare;$('saveMeta').onclick=saveMeta;for(const id of ['className','studentId','overallConclusion'])$(id).addEventListener('input',()=>{data.student.className=$('className').value;data.student.studentId=$('studentId').value;data.student.overall=$('overallConclusion').value;save();updateSubmissionChecklist()});$('downloadReportJSON').onclick=()=>{if(!canSubmit())return;saveMeta();download('仿生獸_'+(data.student.className||'班級')+'_'+(data.student.studentId||'學生')+'.json',JSON.stringify(buildExport(),null,2),'application/json;charset=utf-8')};$('printPdf').onclick=()=>{if(!canSubmit())return;saveMeta();$('printContent').innerHTML=reportHtml();window.print()};$('selectedReport').onchange=()=>{data.student.selectedReportId=$('selectedReport').value;save();updateSubmissionChecklist();$('reportPreview').innerHTML=reportHtml();$('printContent').innerHTML=reportHtml()};window.addEventListener('resize',()=>{if(currentPage==='lab')paint()});document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()})}
+renderControls();wire();
+setupFootEditor();syncControls();renderTasks();renderRecords();updateTaskUI();sim=makeSim();updateMetrics();requestAnimationFrame(paint);
+
+
+// V2.8 UI only: original geometry, task rules, saved records and exports are unchanged.
+(function initStudentUI(){
+ const lab=document.getElementById('labPage');
+ const focus=document.getElementById('focusViewBtn');
+ const jump=document.getElementById('jumpSettingsBtn');
+ const settings=document.getElementById('designPanel');
+ focus.addEventListener('click',()=>{
+   const on=lab.classList.toggle('focusMode');
+   focus.textContent=on?'↙ 顯示設定':'⛶ 專心觀察';
+   focus.setAttribute('aria-pressed',String(on));
+   requestAnimationFrame(()=>{paint();updateMetrics()});
+ });
+ jump.addEventListener('click',()=>{
+   lab.classList.remove('focusMode');
+   settings.scrollIntoView({behavior:'smooth',block:'start'});
+ });
+ const groups={1:'linkGroup',2:'footGroup',3:'footGroup',4:'footGroup',5:'linkGroup'};
+ const originalUpdate=updateTaskUI;
+ updateTaskUI=function(){
+   originalUpdate();
+   const dock=document.getElementById('experimentDock');
+   const isTask=data.mode==='task';
+   dock.querySelector('.experimentDockHeader').textContent=isTask?'目前任務｜預測 → 測試 → 比較 → 結論':'實驗紀錄｜先預測，再進行正式測試';
+   if(isTask){
+     const group=document.getElementById(groups[data.task]||'linkGroup');
+     if(group)group.open=true;
+   }
+ };
+ const originalGoto=goto;
+ goto=function(page){
+   originalGoto(page);
+   if(page==='lab')requestAnimationFrame(()=>paint());
+ };
+ // Put default view button in sync with the actual scene rather than the original static markup.
+ document.getElementById('showMechanism').classList.toggle('on',view==='mechanism');
+ document.getElementById('showWalk').classList.toggle('on',view==='walk');
+ document.getElementById('visualMode').textContent=view==='walk'?'行走模擬':'機構示意';
+ updateTaskUI();
+})();
+
+// V4.5 UI-only: retain V4.4 physics, storage and experiment logic.
+(function compactStudentUI(){
+ const dock=document.getElementById('experimentDock');
+ const drive=document.getElementById('driveGroup');
+ const testDetails=document.querySelector('.testMore');
+ const test=document.getElementById('testMode');
+ const refreshTest=()=>{testDetails.querySelector('summary').textContent='測試條件：'+test.options[test.selectedIndex].textContent};
+ test.addEventListener('change',refreshTest); refreshTest();
+ const oldUpdate=updateTaskUI;
+ updateTaskUI=function(){
+  oldUpdate();
+  if(data.mode==='task'){
+   dock.open=true;
+   if(data.task===4)drive.open=true;
+  }
+ };
+ const oldGoto=goto;
+ goto=function(page){oldGoto(page);if(page==='lab'&&data.mode==='task'){dock.open=true;if(data.task===4)drive.open=true;}};
+ const taskMode=document.getElementById('taskMode');
+ taskMode.addEventListener('click',()=>{dock.open=true;if(data.task===4)drive.open=true;});
+ const formal=document.getElementById('formalBtn');
+ formal.addEventListener('click',()=>{if(data.mode==='task'&&!document.getElementById('prediction').value)dock.open=true;});
+ // Open the appropriate group on task 4 without modifying task definitions.
+ const originalTaskUpdate=updateTaskUI;
+ updateTaskUI=function(){originalTaskUpdate();if(data.mode==='task'&&data.task===4)drive.open=true};
+})();
+
+// V4.6 classroom flow. Existing experiments, saves, physics and task rules are retained.
+(function classroomWorkflow(){
+ const quick=$('quickPrediction'),pred=$('prediction'),status=$('quickStatus'),dock=$('experimentDock');
+ const refresh=()=>{
+  const previous=pred.value;
+  quick.innerHTML=pred.innerHTML;
+  const options=[...quick.options].map(o=>o.value);
+  quick.value=options.includes(previous)?previous:'';
+  pred.value=quick.value;
+ };
+ const oldTaskUI=updateTaskUI;
+ updateTaskUI=function(){oldTaskUI();refresh()};
+ refresh();
+ quick.addEventListener('change',()=>{pred.value=quick.value;status.textContent=quick.value?'② 可以開始正式測試':'① 先選一項預測'});
+ pred.addEventListener('change',()=>{quick.value=pred.value});
+ function bringTo(el){el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+ $('quickDesign').addEventListener('click',()=>{
+  if(busy)return;
+  const panel=$('designPanel');
+  $('labPage').classList.remove('focusMode');
+  $('linkGroup').open=true;
+  if(matchMedia('(max-width:820px)').matches){bringTo(panel);}
+  else {panel.scrollTop=0;bringTo($('linkGroup'));}
+  status.textContent='① 調整時可以在觀察窗看到機構變化';
+ });
+ $('quickTest').addEventListener('click',()=>{
+  if(busy)return;
+  if(!pred.value){
+   dock.open=true;status.textContent='先選一項預測，再按開始測試';
+   quick.focus();showToast('請先在上方選擇你的預測');return;
+  }
+  if(data.mode!=='task'||data.task!==1){
+   if(view!=='walk'){status.textContent='請先切換成行走模擬';showToast('請先切換上方「行走模擬」');return;}
+   if(!data.config.gravityEnabled){status.textContent='請先開啟重力';showToast('正式行走測試需要開啟重力');return;}
+   if(!getGeometry(data.config).full){
+    $('linkGroup').open=true;status.textContent='四連桿無法完整旋轉，請先調整桿長';showToast('此設計無法完整旋轉，請先調整桿長');return;
+   }
+  }
+  const before=data.records.length;
+  status.textContent='② 正在進行測試與結果檢查…';
+  Promise.resolve(formalTest()).then(()=>{
+   refresh();
+   status.textContent=data.records.length>before?'✓ 已儲存第 '+data.records.length+' 筆紀錄，可查看結果':'未產生測試紀錄，請依畫面提示檢查';
+   if(data.records.length>before){quick.value='';pred.value='';}
+  }).catch(err=>{status.textContent='測試發生錯誤，請重新載入';showToast('測試發生錯誤：'+(err.message||err));});
+ });
+ $('quickResults').addEventListener('click',()=>{
+  if(busy)return;
+  goto('records');
+  if(data.records.length>=2){
+    const a=data.records[data.records.length-2],b=data.records[data.records.length-1];
+    $('compareA').value=a.id;$('compareB').value=b.id;
+    compare();
+  }
+ });
+ const oldGoto=goto;
+ goto=function(page){oldGoto(page);if(page==='lab')refresh()};
+ // Make prediction selectable without expanding the long experimental form.
+ // The full form remains available for detailed task conclusions and comparisons.
+})();
+
+
+/* V4.11 - two fixed tests per task, student-safe new-session entry */
+(function taskFirstClassroom(){
+ const KEYS={1:[['ab','AB'],['bc','BC'],['cd','CD'],['da','AD']],2:[['frontExt','前腳延伸']],3:[['friction','地面摩擦']],4:[['phase','相位差']],5:[['ab','AB'],['bc','BC'],['cd','CD'],['da','AD'],['frontExt','前腳延伸'],['rearExt','後腳延伸'],['footSize','腳掌尺寸'],['frontFootType','前腳形狀'],['rearFootType','後腳形狀'],['frontFootProfile','前腳輪廓'],['rearFootProfile','後腳輪廓'],['frontFootAngle','前腳角度'],['rearFootAngle','後腳角度'],['frontFriction','前腳摩擦'],['rearFriction','後腳摩擦'],['friction','地面摩擦'],['phase','相位差']]};
+ const FORMAT={frontFootType:{flat:'平底',arc:'弧形',toe:'前翹',wide:'寬底',custom:'自由設計'},rearFootType:{flat:'平底',arc:'弧形',toe:'前翹',wide:'寬底',custom:'自由設計'}};
+ const taskRec=(t=data.task)=>data.records.filter(r=>r.task===t).sort((a,b)=>(a.slot||0)-(b.slot||0));
+ const slotRec=(slot,t=data.task)=>data.records.find(r=>r.task===t&&r.slot===slot);
+ const safeNum=(val,unit='')=>Number.isFinite(Number(val))?Number(val).toFixed(1)+unit:'—';
+ const fmt=(k,x)=>Array.isArray(x)?'自訂輪廓':(FORMAT[k]?.[x]||((k==='phase')?x+'°':(['ab','bc','cd','da','frontExt','rearExt','footSize'].includes(k)?x+' cm':String(x??'—'))));
+ const mainKeys=()=>KEYS[data.task]||KEYS[5];
+ let entryOpen=true, lastSlot=1, editingSlot=1, activeRun=false, noteTimer=null;
+ function taskTitle(id){return TASKS.find(t=>t.id===id)?.title||'自由探索'}
+ function taskStatus(r){return r.result?.status||'已保存';}
+ function updateSelects(){
+  for(const id of ['v49RecordTask','v49SubmitTask']){
+   const el=$(id),old=el.value;el.innerHTML=TASKS.map(t=>`<option value="${t.id}">任務 ${t.id}｜${escapeHTML(t.title)}</option>`).join('');
+   el.value=old&&TASKS.some(t=>String(t.id)===old)?old:String(data.task);
+  }
+ }
+ function taskChoice(t){
+  const select=$('v49Prediction');let keep=select.value;select.innerHTML='<option value="">先選擇（可暫不選）</option>'+TASK_STEPS[t].options.map(v=>`<option value="${escapeHTML(v)}">${escapeHTML(v)}</option>`).join('');
+  select.value=TASK_STEPS[t].options.includes(keep)?keep:'';
+  $('prediction').value=select.value;
+ }
+ function changes(a,b,t){return (KEYS[t]||KEYS[5]).filter(([k])=>JSON.stringify(a?.[k])!==JSON.stringify(b?.[k]));}
+ function additionalChanges(a,b,t){
+  const allowed=new Set((KEYS[t]||[]).map(x=>x[0]));
+  const relevant=['ab','bc','cd','da','frontExt','rearExt','footSize','frontFootType','rearFootType','frontFootProfile','rearFootProfile','frontFootAngle','rearFootAngle','frontFriction','rearFriction','friction','phase','secondLeg','motorSpeed','testMode'];
+  return relevant.filter(k=>!allowed.has(k)&&JSON.stringify(a?.[k])!==JSON.stringify(b?.[k]));
+ }
+ function relevantColumns(t){return ({1:[['result.geometryFull','能完整旋轉']],2:[['result.distance','前進距離'],['result.slip','滑動量']],3:[['result.distance','前進距離'],['result.slip','滑動量']],4:[['result.distance','前進距離'],['result.verticalRangeCm','機身晃動']],5:[['result.distance','前進距離'],['result.slip','滑動量'],['result.verticalRangeCm','機身晃動']]}[t]||[])}
+ function rowValue(r,key){if(!r)return '—';if(key==='result.geometryFull')return (r.result?.fullRotation??r.result?.geometryFull)?'可以':'不能';const n=key.split('.').reduce((o,k)=>o?.[k],r);return safeNum(n,key==='result.verticalRangeCm'||key==='result.distance'||key==='result.slip'?' cm':'')}
+ function taskComparisonHTML(t){
+  const a=slotRec(1,t),b=slotRec(2,t);if(!a||!b)return '<p class="hint">兩次測試保存後，會自動比較。</p>';
+  const changed=changes(a.config,b.config,t),other=additionalChanges(a.config,b.config,t);
+  const desc=changed.length?changed.map(([k,n])=>`${n}：${fmt(k,a.config[k])} → ${fmt(k,b.config[k])}`).join('；'):'兩次設定相同';
+  const rows=[...changed.map(([k,n])=>[n,fmt(k,a.config[k]),fmt(k,b.config[k])]),...relevantColumns(t).map(([k,n])=>[n,rowValue(a,k),rowValue(b,k)])];
+  rows.push(['測試狀態',taskStatus(a),taskStatus(b)]);
+  const geometryBoth=t===1,valid=geometryBoth?(a.result?.canAssemble!==false&&b.result?.canAssemble!==false):(a.result?.valid===true&&b.result?.valid===true);
+  const stable=geometryBoth||(a.result?.numericalCheck?.stable===true&&b.result?.numericalCheck?.stable===true);
+  const fair=other.length===0&&(t===1?valid:t===5?changed.length>=1:changed.length===1);
+  const warning=t===1?(!valid?'其中一組無法組合，請再調整桿長。':a.result?.fullRotation===b.result?.fullRotation?'兩次旋轉狀態相同，再試另一組桿長。':changed.length===1?'已完成基本挑戰，也達成只改一根桿的額外挑戰。':'已完成基本挑戰；只改一根桿是額外挑戰，不影響完成。'):other.length?'注意：還有其他設定改變，不能只歸因於本任務的變因。':!changed.length?'兩次設定相同，可比較重複測試結果。':changed.length>1?'修改了多項設定，無法確認是哪一項造成差異；仍可討論整體改良效果。':!valid?'其中一次未完成有效測試，仍可保存與討論。':!stable?'數值結果較不穩定，請勿直接判斷優劣。':'兩次測試可作初步比較，還需留意實物差異。';
+  if(t===1&&valid&&a.result?.fullRotation===b.result?.fullRotation)return `<p>修改內容：${escapeHTML(desc)}</p><p class="hint">兩次旋轉狀態相同，試著找出一組可以完整旋轉、另一組不能。</p>`+tableHTML(rows);
+  return `<p><strong>修改內容：</strong>${escapeHTML(desc)}</p>${tableHTML(rows)}<p class="hint">${escapeHTML(warning)}</p>`;
+ }
+ function tableHTML(rows){return `<div style="overflow-x:auto"><table class="records"><thead><tr><th>比較項目</th><th>第一次</th><th>第二次</th></tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${escapeHTML(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`}
+ function recordCardText(r){if(!r)return '尚未測試';return `${escapeHTML(r.result?.valid===false?'已保存（未完成）':'已保存')}<div>${escapeHTML(taskStatus(r))}</div><div>${r.task===1?(r.result?.fullRotation?'完整旋轉':'有限擺動／無法組合'):'位移 '+safeNum(r.result?.distance,' cm')}</div>`}
+ function syncTaskDock(){
+  if(entryOpen)return;
+  const t=data.task, task=data.mode==='task';
+  document.body.classList.toggle('v49TaskMode',task);document.body.classList.toggle('v49FreeMode',!task);document.body.dataset.activeTask=task?String(t):'free';
+  $('v49TaskTitle').textContent=task?`任務 ${t}｜${taskTitle(t)}`:'自由探索｜練習測試';
+  $('v49TaskTip').textContent=task?(t===1?'第一次：找出能完整旋轉的桿長；第二次：找出只能有限擺動的桿長。':t===2?'從前腳延伸 0 cm 開始，保存兩種長度的結果。':t===3?'只改變地面摩擦，其他設定保持不變。':t===4?'調整相位差，觀察兩組腿的配合。':'保存原設計與改良後的結果。'):'自由練習，仍可做兩次測試。';
+  const one=slotRec(1),two=slotRec(2);
+  $('v49Progress').textContent=(+!!one + +!!two)+' / 2';
+  $('v49FirstDetail').innerHTML=recordCardText(one);$('v49SecondDetail').innerHTML=recordCardText(two);
+  ['1','2'].forEach((slot)=>{const r=slot==='1'?one:two;$('v49Load'+slot).disabled=!r;$('v49Del'+slot).disabled=!r});
+  $('v49CompareBody').innerHTML=taskComparisonHTML(t);
+  const saved=slotRec(editingSlot);
+  const dirty=saved&&JSON.stringify(saved.config)!==JSON.stringify(data.config);
+  $('v49Changed').textContent=dirty?`目前設定已修改，按「第${editingSlot===1?'一':'二'}次測試保存」才能更新結果。`:(one&&!two?'第一次已保存；調整本任務的設計，再按「第二次測試保存」。':two?'兩次測試已保存。可以載入修改或撰寫結論。':'先調整設定，再按「第一次測試保存」。');
+  const notes=data.taskNotes||{};$('v49Note').value=notes[t]||'';
+  $('v49NoteStatus').textContent='輸入後自動暫存';
+  $('v49Run1').disabled=busy;$('v49Run2').disabled=busy||!one;
+  // Single-task controls: only show relevant adjustment groups, with task 5 keeping full freedom.
+  $('linkGroup').style.display=(!task||t===1||t===5)?'':'none';if($('v415Task1Hint'))$('v415Task1Hint').style.display=task&&t===1?'':'none';
+  $('footGroup').style.display=(!task||t===2||t===3||t===5)?'':'none';
+  $('driveGroup').style.display=(!task||t===4||t===5)?'':'none';
+  $('gravityGroup').style.display='';$('gravityGroup').open=true;
+  $('designPanel').querySelector('.quickGravity').style.display=(!task||t!==1)?'':'none';
+  $('designPanel').querySelector('.studentExtra').style.display=(!task||t===5)?'':'none';
+  if(t===2||t===3)restrictSettings(t);
+  if(t===4){const ms=$('motorSpeed').closest('.setting');const sl=$('secondLeg').closest('.setting');if(ms)ms.style.display='none';if(sl)sl.style.display='none';}
+  // Preserve the user's choice when browsing another task's records.
+  const select=$('v49RecordTask');
+  const sel=$('v49SubmitTask');if(sel&&currentPage==='submit')sel.value=String(t);
+ }
+ function restrictSettings(t){
+  // Hide individual controls inside the shared foot section rather than deleting needed DOM hooks.
+  const foot=$('footGroup');
+  const allowed=t===2?['frontExt']:['groundType'];
+  for(const setting of foot.querySelectorAll('.setting')){
+   const inputs=[...setting.querySelectorAll('input,select')];
+   setting.style.display=inputs.some(i=>allowed.includes(i.id))?'':'none';
+  }
+  const editor=$('customFootEditor'),advanced=foot.querySelector('.footAdvanced');
+  if(editor)editor.style.display='none';
+  if(advanced){advanced.style.display=t===3?'':'none';if(t===3)advanced.open=true;}
+  const leg=$('legControls');if(leg)for(const el of leg.querySelectorAll('.setting'))el.style.display=(t===2&&!!el.querySelector('#frontExt'))?'':'none';
+  // Additional foot controls are restored when selecting another task.
+ }
+ function restoreSettings(){for(const id of ['motorSpeed','secondLeg']){const el=$(id).closest('.setting');if(el)el.style.display='';}const foot=$('footGroup');for(const item of foot.querySelectorAll('.setting'))item.style.display='';const adv=foot.querySelector('.footAdvanced');if(adv)adv.style.display='';const ed=$('customFootEditor');if(ed)ed.style.display='';for(const item of $('legControls').querySelectorAll('.setting'))item.style.display='';}
+ const originalUpdateTaskUI=updateTaskUI;
+ updateTaskUI=function(){originalUpdateTaskUI();if(!entryOpen){restoreSettings();syncTaskDock()}};
+ const origChanged=changed;
+ changed=function(patch){origChanged(patch);if(!entryOpen){syncTaskDock()}};
+ const origRenderRecords=renderRecords;
+ renderRecords=function(){
+   if(!$('recordTable'))return;
+   const task=Number($('v49RecordTask').value)||data.task;const recs=taskRec(task);
+   $('recordCount').textContent=data.records.length;
+   $('recordTable').innerHTML=recs.length?`<div class="v49Slots">${[1,2].map(slot=>{const r=recs.find(z=>z.slot===slot);return `<article class="v49Slot"><h3>第${slot===1?'一':'二'}次測試</h3><div class="v49Saved">${recordCardText(r)}</div><div class="v49SlotTools"><button data-taskload="${slot}" ${!r?'disabled':''}>載入修改</button><button data-taskdel="${slot}" ${!r?'disabled':''}>清除這次</button></div></article>`}).join('')}</div><div class="v49Compare"><h3>這個任務的比較</h3>${taskComparisonHTML(task)}</div>`:'<p class="hint">這個任務還沒有測試紀錄。</p>';
+   $('recordTable').querySelectorAll('[data-taskload]').forEach(b=>b.onclick=()=>loadSlot(Number(b.dataset.taskload),task));
+   $('recordTable').querySelectorAll('[data-taskdel]').forEach(b=>b.onclick=()=>deleteSlot(Number(b.dataset.taskdel),task));
+   // Compatibility with legacy hidden submit selector.
+   $('selectedReport').innerHTML='<option value="">整個任務</option>'+data.records.map(r=>`<option value="${r.id}">${escapeHTML(r.id)}</option>`).join('');
+   $('compareA').innerHTML='';$('compareB').innerHTML='';
+   if(!entryOpen)syncTaskDock();
+ };
+ function loadSlot(slot,t=data.task){
+  const r=slotRec(slot,t);if(!r)return;
+  data.task=t;data.mode='task';editingSlot=slot;
+  restoreSettings();changed(clone(r.config));$('v49Prediction').value=TASK_STEPS[t].options.includes(r.prediction)?r.prediction:'';$('prediction').value=$('v49Prediction').value;
+  setViewForTask(t);goto('lab');syncTaskDock();showToast('已載入第'+(slot===1?'一':'二')+'次設定，修改後再按測試保存');
+ }
+ function deleteSlot(slot,t=data.task){
+  const r=slotRec(slot,t);if(!r)return;
+  if(!confirm(`確定清除任務 ${t} 的第${slot===1?'一':'二'}次測試嗎？`))return;
+  data.records=data.records.filter(x=>x.id!==r.id);data.comparedTasks=data.comparedTasks.filter(x=>x!==t);save();renderTasks();renderRecords();syncTaskDock();showToast('已清除這次紀錄');
+ }
+ function setViewForTask(t){
+  stop();view=t===1?'mechanism':'walk';
+  if(t===1){data.config.gravityEnabled=false;data.config.secondLeg=false;}
+  else{data.config.gravityEnabled=true;if(t===4)data.config.secondLeg=true;}
+  $('showMechanism').classList.toggle('on',view==='mechanism');$('showWalk').classList.toggle('on',view==='walk');$('visualMode').textContent=view==='walk'?'行走模擬':'機構示意';
+  sim=makeSim();syncControls();paint();updateMetrics();
+ }
+ function selectTask(t,reset=false){
+  if(!TASKS.some(x=>x.id===t))return;
+  restoreSettings();data.mode='task';data.task=t;editingSlot=slotRec(2,t)?2:1;
+  if(reset || !slotRec(1,t)){data.config=clone(DEFAULT);if(t===1){Object.assign(data.config,{ab:0,bc:0,cd:0,da:0,frontExt:0,rearExt:0,gravityEnabled:false,secondLeg:false,showTrace:false,traceMode:'off'});}if(t===2){Object.assign(data.config,{frontExt:0,rearExt:2,showTrace:true,traceMode:'cycle'});}if(t===3){Object.assign(data.config,{friction:.65,showTrace:true,traceMode:'cycle'});}if(t===4){Object.assign(data.config,{secondLeg:true,phase:0,showTrace:true,traceMode:'cycle'});}if(t===5){Object.assign(data.config,{showTrace:true,traceMode:'cycle'});}}
+  else{data.config=clone(slotRec(editingSlot,t)?.config||slotRec(1,t).config)}
+  setViewForTask(t);save();taskChoice(t);$('v49RecordTask').value=String(t);$('v49SubmitTask').value=String(t);renderTasks();renderRecords();updateTaskUI();goto('lab');
+  if(t===1)$('linkGroup').open=true;else if(t===2||t===3)$('footGroup').open=true;else if(t===4)$('driveGroup').open=true;
+ }
+ // Task buttons directly start task without a confirm() for suggested settings.
+ const oldRenderTasks=renderTasks;
+ renderTasks=function(){oldRenderTasks();document.querySelectorAll('[data-choose]').forEach(b=>b.onclick=()=>selectTask(Number(b.dataset.choose)));};
+ async function runSlot(slot){
+  if(activeRun||busy)return;if(slot===2&&!slotRec(1)){showToast('請先完成第一次測試');return;}
+  const prior=slotRec(slot);if(prior&&!confirm('這次已經有紀錄。要重新測試並覆蓋原本的結果嗎？'))return;
+  // Keep prediction optional, but make the actual chosen prediction explicit in the record.
+  const choice=$('v49Prediction').value||'不確定'; if(![...$('prediction').options].some(x=>x.value===choice))$('prediction').add(new Option('不確定','不確定'));$('prediction').value=choice;
+  if(data.task===1&&[data.config.ab,data.config.bc,data.config.cd,data.config.da].some(x=>x<=0)){showToast('四根桿長都要大於 0 cm，才能保存四連桿測試。');return;}if(data.task!==1 && (!getGeometry(data.config).full||!makeSim())){showToast('四連桿無法完整旋轉，請調整桿長');return;}
+  editingSlot=slot;activeRun=true;const button=$('v49Run'+slot);button.textContent='測試中…';button.disabled=true;
+  const beforeIds=new Set(data.records.map(r=>r.id));
+  try{
+   await formalTest();
+   const newest=data.records.find(r=>!beforeIds.has(r.id));
+   if(newest){
+    // Old slot is replaced ONLY when the newly simulated record was actually produced.
+    data.records=data.records.filter(r=>r.id!==prior?.id);
+    newest.slot=slot;newest.task=data.task;newest.conclusion=(data.taskNotes||{})[data.task]||'';
+    if(slot===1&&!slotRec(2)){
+      // Current configuration already equals the first test; ready to modify just one variable.
+      editingSlot=2;
+    }
+    save();renderRecords();renderTasks();updateTaskUI();
+    showToast('第'+(slot===1?'一':'二')+'次測試已保存');
+   }else showToast('測試沒有完成，原本的紀錄仍然保留');
+  }catch(err){showToast('測試未完成：'+(err?.message||err))}
+  finally{activeRun=false;button.textContent=slot===1?'第一次測試保存':'第二次測試保存';syncTaskDock();}
+ }
+ // Put observation controls in the former quick-action location.
+ const obs=document.createElement('details');obs.id='v49Observation';obs.open=false;obs.innerHTML='<summary>機構觀測</summary>';
+ const status=$('statusPanel').querySelector('.statusMore');
+ if(status){const h=status.querySelector('.group');if(h)obs.append(...Array.from(h.children));const notices=['geometryStatus','grashofStatus','driveStatus','modelHealth','settleInfo','contactLegend'];for(const id of notices){const node=$(id);if(node)obs.append(node)}}
+ const canvasLegend=$('simStage').querySelector('.canvasLegend');canvasLegend.after(obs);
+ // Remove obsolete action strip and duplicated navigation. Keep hidden hooks for old listeners.
+ $('openTasksBtn').parentElement.style.display='none';$('formalBtn').parentElement.classList.add('v49Obsolete');
+ $('quickDesign').closest('.classroomFlow').classList.add('v49Obsolete');
+ $('simStage').querySelector('.manualMore').open=false;
+ // Hide old records/compare controls, keep JS nodes in DOM.
+ const recordPage=$('recordsPage');const recordTable=$('recordTable');
+ recordPage.querySelector('#compareA').closest('.panel').classList.add('v49Obsolete');
+ recordPage.querySelector('#exportJSON').closest('.row').classList.add('v49Obsolete');
+ const reportSelect=$('selectedReport').closest('.setting');reportSelect.classList.add('v49LegacySelector');
+ $('submitPage').querySelector('#submissionChecklist').classList.add('v49Obsolete');
+ const submitButtons=['downloadReportJSON','printPdf'];
+ // Export single task, regardless of outcome/completion checks.
+ function scopeTask(){return Number($('v49SubmitTask').value)||data.task}
+ function studentInfo(){return {className:$('className').value.trim(),studentId:$('studentId').value.trim(),overall:$('overallConclusion').value.trim()}}
+ function captureStudent(){data.student={...data.student,...studentInfo()};save()}
+ function taskPackage(t){return {schema:'bionic-task-report/2.0',appVersion:VERSION,model:'Uncalibrated planar rigid-body simulation',task:t,taskName:taskTitle(t),exportedAt:new Date().toISOString(),student:clone(data.student),conclusion:(data.taskNotes||{})[t]||'',records:[1,2].map(slot=>{const r=slotRec(slot,t);return r?clone(r):null})}}
+ function exportTask(t){captureStudent();const st=data.student;const name=`仿生獸_任務${t}_${(st.className||'班級').replace(/[^\w\u4e00-\u9fff-]/g,'')}_${(st.studentId||'座號').replace(/[^\w\u4e00-\u9fff-]/g,'')}.json`;download(name,JSON.stringify(taskPackage(t),null,2),'application/json;charset=utf-8');showToast('已下載任務 '+t+' 的紀錄（未代表已繳交）')}
+ function scopedReport(t){captureStudent();const p=taskPackage(t),st=p.student,rr=p.records;
+  let rows=[];for(const [k,n] of (KEYS[t]||KEYS[5]))rows.push([n,...rr.map(r=>r?fmt(k,r.config[k]):'未測試')]);for(const [k,n] of relevantColumns(t))rows.push([n,...rr.map(r=>rowValue(r,k))]);rows.push(['測試狀態',...rr.map(r=>r?taskStatus(r):'未測試')]);
+  return `<h2>仿生獸｜任務 ${t}：${escapeHTML(taskTitle(t))}</h2><p>班級：${escapeHTML(st.className||'未填')}　座號／組別：${escapeHTML(st.studentId||'未填')}</p><p>匯出日期：${new Date().toLocaleString('zh-TW')}</p>${tableHTML(rows)}<h3>比較與觀察</h3><p>${escapeHTML((data.taskNotes||{})[t]||'尚未填寫')}</p><h3>我學到什麼？</h3><p>${escapeHTML(st.overall||'尚未填寫')}</p><p style="font-size:11px">本報告可保存未完成或異常的測試。模擬未經實物校正，向左為正。</p>`;
+ }
+ function printTask(t){captureStudent();$('printContent').innerHTML=scopedReport(t);window.print();}
+ const oldReportHtml=reportHtml;reportHtml=function(){return scopedReport(scopeTask())};
+ $('downloadReportJSON').onclick=()=>exportTask(scopeTask());$('printPdf').onclick=()=>printTask(scopeTask());
+ $('v49ExportTask').onclick=()=>exportTask(data.task);$('v49PrintTask').onclick=()=>printTask(data.task);
+ $('v49Run1').onclick=()=>runSlot(1);$('v49Run2').onclick=()=>runSlot(2);
+ $('v49Load1').onclick=()=>loadSlot(1);$('v49Load2').onclick=()=>loadSlot(2);
+ $('v49Del1').onclick=()=>deleteSlot(1);$('v49Del2').onclick=()=>deleteSlot(2);
+ $('v49Prediction').onchange=()=>{$('prediction').value=$('v49Prediction').value};
+ $('v49Note').addEventListener('input',e=>{const t=data.task;if(!data.taskNotes)data.taskNotes={};data.taskNotes[t]=e.target.value;for(const r of taskRec(t))r.conclusion=e.target.value;clearTimeout(noteTimer);noteTimer=setTimeout(()=>{save();$('v49NoteStatus').textContent='已暫存於這台裝置'},250);});
+ $('v49RecordTask').onchange=()=>renderRecords();
+ $('v49ClearAll').onclick=()=>{if(!confirm('確定清除本次實驗的所有任務紀錄？此操作無法復原。'))return;data.records=[];data.comparedTasks=[];save();renderRecords();renderTasks();updateTaskUI();showToast('已清除所有測試紀錄');};
+ $('v49SubmitTask').onchange=()=>{captureStudent();$('reportPreview').innerHTML=scopedReport(scopeTask());};
+ // Save student ID on input without a separate save action.
+ for(const id of ['className','studentId','overallConclusion'])$(id).addEventListener('input',()=>{clearTimeout(noteTimer);noteTimer=setTimeout(captureStudent,200)});
+ // Remove mandatory checks for downloaded output; only direct export handlers are active.
+ // New entry always erases prior local student details; no restore/continue option.
+ $('v49Start').onclick=()=>{
+  try{localStorage.removeItem(STORAGE);localStorage.removeItem('bionic-student-v1')}catch(e){}
+  stop();data={config:clone(DEFAULT),records:[],designs:[],comparedTasks:[],taskNotes:{},mode:'free',task:1,student:{className:'',studentName:'',studentId:'',overall:'',selectedReportId:''}};
+  undoStack=[];redoStack=[];editingSlot=1;entryOpen=false;
+  $('className').value='';$('studentId').value='';$('overallConclusion').value='';$('v49Note').value='';
+  $('v49Entry').hidden=true;
+  // New experiment starts on free exploration with the original workable defaults.
+  view='walk';sim=makeSim();syncControls();updateSelects();renderRecords();renderTasks();updateTaskUI();goto('lab');paint();updateMetrics();save();
+ };
+ // sync additional workflow state after users switch pages or make changes.
+ const oldGoto=goto;goto=function(page){oldGoto(page);if(!entryOpen){if(page==='records')renderRecords();if(page==='submit'){$('v49SubmitTask').value=String(data.task);$('reportPreview').innerHTML=scopedReport(data.task)}syncTaskDock()}};
+ // During tests, quick legacy buttons and nonessential controls are disabled by original engine.
+ $('v49Run1').addEventListener('click',()=>{editingSlot=1});$('v49Run2').addEventListener('click',()=>{editingSlot=2});
+ // Track slider preview changes to notify about unsaved settings, without calculating physics again.
+ $('designPanel').addEventListener('input',e=>{if(entryOpen)return;if(e.target.matches('input[type=range]')){$('v49Changed').textContent='設定已調整，測試結果不會自動更新；請按測試保存。'}});
+ $('designPanel').addEventListener('change',()=>{if(!entryOpen)syncTaskDock()});
+ // Fill task select controls; simulation will not show previous-user records until new experiment begins.
+ updateSelects();
+ // Important: all old local storage records are intentionally ignored on startup.
+})();
+</script><script>
+(function(){
+ 'use strict';
+ const by=id=>document.getElementById(id);
+ const esc=x=>String(x??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+ const studentPairs=[['v413Class','className'],['v413Seat','studentId'],['v413Name','studentName']];
+ const getRecord=(t,slot)=>data.records.find(r=>Number(r.task)===t&&Number(r.slot)===slot)||null;
+ const labels={1:[['ab','AB 驅動桿'],['bc','BC 連接桿'],['cd','CD 後連桿'],['da','AD 固定桿']],2:[['frontExt','前腳延伸長度']],3:[['friction','地面摩擦係數']],4:[['phase','相位差']],5:[['ab','AB 驅動桿'],['bc','BC 連接桿'],['cd','CD 後連桿'],['da','AD 固定桿'],['frontExt','前腳延伸'],['rearExt','後腳延伸'],['frontFootType','前腳腳掌'],['rearFootType','後腳腳掌'],['phase','相位差'],['friction','地面摩擦']]};
+ function syncFromData(){
+  const st=data.student||{};
+  for(const [id,key] of studentPairs){if(by(id))by(id).value=st[key]||''}
+  if(by('className'))by('className').value=st.className||'';
+  if(by('studentId'))by('studentId').value=st.studentId||'';
+  if(by('studentName'))by('studentName').value=st.studentName||'';
+ }
+ function saveStudent(id){
+  if(!data.student)data.student={};
+  const value=(by(id)?.value||'').trim();
+  if(id==='className'||id==='v413Class')data.student.className=value;
+  else if(id==='studentId'||id==='v413Seat')data.student.studentId=value;
+  else data.student.studentName=value;
+  try{save()}catch(e){}
+  for(const [other,key] of studentPairs){if(other!==id&&by(other))by(other).value=data.student[key]||''}
+  if(by('className')&&id!=='className')by('className').value=data.student.className||'';
+  if(by('studentId')&&id!=='studentId')by('studentId').value=data.student.studentId||'';
+  if(by('studentName')&&id!=='studentName')by('studentName').value=data.student.studentName||'';
+ }
+ for(const id of ['className','studentName','studentId',...studentPairs.map(x=>x[0])]){
+  if(by(id))by(id).addEventListener('input',()=>saveStudent(id));
+ }
+ // Preserve a fresh identity when a different student begins using the same device.
+ by('v49Start')?.addEventListener('click',()=>{data.student.studentName='';syncFromData();save()});
+ // Relocate the only trace visibility control next to trajectory type.
+ const label=by('showTrace')?.closest('label');
+ const gravitySection=by('gravityGroup');
+ if(label&&gravitySection){label.id='v413TraceLabel';gravitySection.insertBefore(label,by('traceMode')?.closest('.setting')||gravitySection.lastChild);}
+ // Use trajectory selection as the authoritative visibility setting.
+ if(by('traceMode'))by('traceMode').addEventListener('change',()=>{if(by('showTrace'))by('showTrace').checked=data.config.traceMode!=='off'});
+ const canWalk=()=>data.mode!=='task'||[2,3,4,5].includes(Number(data.task));
+ // Do not allow walking mode in task 1. Let any other task and free exploration switch normally.
+ const oldScene=switchGravityScene;
+ switchGravityScene=function(on){
+  if(on&&!canWalk()){
+    showToast('任務 1 請觀察四連桿；自由探索或任務 2～5 可以開啟重力。');
+    if(by('gravityEnabled'))by('gravityEnabled').checked=false;
+    return;
+  }
+  return oldScene(on);
+ };
+ function limitGravity(){
+  const allowed=canWalk();
+  const walk=by('showWalk');if(walk){walk.disabled=!allowed;walk.style.display=allowed?'':'none';walk.title=allowed?'':'任務 1 使用機構示意';}
+  const quickGravity=document.querySelector('#designPanel .quickGravity');if(quickGravity&&!allowed)quickGravity.style.display='none';
+  const grav=by('gravityEnabled');if(grav)grav.disabled=!allowed;
+  if(!allowed&&(view==='walk'||data.config.gravityEnabled))oldScene(false);
+ }
+ const baseUpdate=updateTaskUI;
+ updateTaskUI=function(){baseUpdate();limitGravity();};
+ const baseGoto=goto;
+ goto=function(page){baseGoto(page);syncFromData();limitGravity();};
+ // Avoid PDF report overrides from older versions; one report = one task, two saved snapshots.
+ const fmt=(v,k)=>v===null||v===undefined?'—':typeof v==='number'?`${Number(v).toFixed(2).replace(/\.?0+$/,'')}${['ab','bc','cd','da','frontExt','rearExt'].includes(k)?' cm':k==='phase'?'°':''}`:String(v);
+ function reportRows(task,r1,r2){
+  const items=[];
+  for(const [key,title] of labels[task]||[]){const display=(r)=>{if(!r)return '—';const v=r.config?.[key];if(key==='frontFootType'||key==='rearFootType')return ({flat:'平底腳',arc:'弧形腳',toe:'前翹腳',wide:'寬底腳',custom:'自由設計'})[v]||String(v??'—');if(key==='friction')return ({'0.25':'光滑','0.65':'一般','1.1':'粗糙'})[String(v)]||String(v??'—');return fmt(v,key)};items.push([key==='friction'?'地面摩擦':title,display(r1),display(r2)]);}
+  if(task===1){items.push(['能否完整旋轉',r1?(r1.result?.canAssemble===false?'無法組合':r1.result?.fullRotation?'可以':'有限擺動'):'—',r2?(r2.result?.canAssemble===false?'無法組合':r2.result?.fullRotation?'可以':'有限擺動'):'—']);}
+  else{
+   items.push(['前進距離（向左為正）',fmt(r1?.result?.distance)+' cm',fmt(r2?.result?.distance)+' cm']);
+   if(task===3||task===5||task===2)items.push(['滑動量',fmt(r1?.result?.slip)+' cm',fmt(r2?.result?.slip)+' cm']);
+   if(task===4)items.push(['機身上下晃動',fmt(r1?.result?.verticalRangeCm)+' cm',fmt(r2?.result?.verticalRangeCm)+' cm']);
+  }
+  items.push(['結果',r1?(r1.result?.valid===false?'未完成':'已保存'):'未測試',r2?(r2.result?.valid===false?'未完成':'已保存'):'未測試']);
+  return '<table class="records"><thead><tr><th>項目</th><th>第一次</th><th>第二次</th></tr></thead><tbody>'+items.map(c=>'<tr>'+c.map(x=>'<td>'+esc(x)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+ }
+ // Render an image directly from the saved design's geometry at a fixed crank angle.
+ // No simulated walking frames are reused; the two snapshots share the same viewpoint and scale.
+ function fixedPose(rec){
+   if(!rec?.config)return null;
+   const c=rec.config,ang=rad(70);
+   const poses=[];
+   for(let j=0;j<(c.secondLeg?2:1);j++){
+     const p=fourbar(c,ang+(j?rad(c.phase):0));
+     if(!p)return null;
+     poses.push(p);
+   }
+   const samples=[];
+   for(const p of poses){
+     const state={A:p.A,D:p.D,c};const set={B:p.B,C:p.C};
+     samples.push({pose:p,front:footSamples(state,set,'front'),rear:footSamples(state,set,'rear')});
+   }
+   return {c,samples};
+ }
+ function sharedFrame(r1,r2){
+   const all=[];
+   for(const rec of [r1,r2]){
+     const pose=fixedPose(rec);if(!pose)continue;
+     for(const s of pose.samples){all.push(s.pose.A,s.pose.B,s.pose.C,s.pose.D,...s.front.map(x=>x.pos),...s.rear.map(x=>x.pos));}
+   }
+   if(!all.length)return {x0:-4,y0:-8,x1:24,y1:16};
+   let x0=Math.min(...all.map(x=>x.x))-3, x1=Math.max(...all.map(x=>x.x))+3;
+   let y0=Math.min(...all.map(x=>x.y))-3, y1=Math.max(...all.map(x=>x.y))+3;
+   return {x0,y0,x1,y1};
+ }
+ function captureAt70(rec,frame){
+   const w=900,h=480,cv=document.createElement('canvas');cv.width=w;cv.height=h;
+   const ctx=cv.getContext('2d');
+   ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);
+   const pose=fixedPose(rec);
+   if(!pose){
+     ctx.fillStyle='#4b6174';ctx.font='23px sans-serif';ctx.textAlign='center';
+     ctx.fillText(rec?'驅動角度 70° 無法組合':'尚未保存這次測試',w/2,h/2);
+     return cv.toDataURL('image/png');
+   }
+   const {x0,y0,x1,y1}=frame;
+   const scale=Math.min((w-80)/(x1-x0||1),(h-90)/(y1-y0||1));
+   const cx=(x0+x1)/2,cy=(y0+y1)/2;
+   const X=x=>w/2+(x-cx)*scale, Y=y=>h/2-(y-cy)*scale;
+   ctx.strokeStyle='#e6edf2';ctx.lineWidth=1;
+   for(let x=Math.floor(x0/2)*2;x<=x1;x+=2){ctx.beginPath();ctx.moveTo(X(x),0);ctx.lineTo(X(x),h);ctx.stroke();}
+   for(let y=Math.floor(y0/2)*2;y<=y1;y+=2){ctx.beginPath();ctx.moveTo(0,Y(y));ctx.lineTo(w,Y(y));ctx.stroke();}
+   function line(a,b,color,width=5){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(X(a.x),Y(a.y));ctx.lineTo(X(b.x),Y(b.y));ctx.stroke();}
+   function dot(a,color){ctx.fillStyle=color;ctx.beginPath();ctx.arc(X(a.x),Y(a.y),5,0,Math.PI*2);ctx.fill();}
+   ctx.fillStyle='#354e62';ctx.font='17px sans-serif';ctx.fillText('驅動角度 70°｜機構示意',20,30);
+   pose.samples.forEach((s,j)=>{
+     const p=s.pose;ctx.save();ctx.globalAlpha=j?.68:1;
+     line(p.A,p.D,'#9e8055',9);line(p.A,p.B,'#d34a41',5.5);line(p.B,p.C,'#326fa8',5.5);line(p.C,p.D,'#29916c',5.5);
+     for(const [type,color] of [['front','#326fa8'],['rear','#29916c']]){
+       const points=s[type].map(x=>x.pos);
+       if(points.length){ctx.strokeStyle=color;ctx.lineWidth=6;ctx.lineJoin='round';ctx.lineCap='round';ctx.beginPath();points.forEach((q,i)=>i?ctx.lineTo(X(q.x),Y(q.y)):ctx.moveTo(X(q.x),Y(q.y)));ctx.stroke();}
+     }
+     dot(p.A,'#425568');dot(p.B,'#d34a41');dot(p.C,'#326fa8');dot(p.D,'#425568');ctx.restore();
+   });
+   return cv.toDataURL('image/png');
+ }
+ function pdfContent(t){
+  const r1=getRecord(t,1),r2=getRecord(t,2),st=data.student||{};
+  const name=(TASKS.find(x=>x.id===t)||{}).title||'';
+  const note=(data.taskNotes||{})[t]||'';
+  const frame=sharedFrame(r1,r2);const shots=[r1,r2].map(r=>captureAt70(r,frame));
+  const fig=shots.map((shot,i)=>`<div class="v413Fig"><h3>第${i===0?'一':'二'}次測試｜驅動角度 70°</h3><img src="${shot}" alt="第${i+1}次 70 度機構圖"/></div>`).join('');
+  return `<h2>仿生獸步態實驗報告｜任務 ${t}</h2><p><strong>${esc(name)}</strong></p>`
+    + `<p>班級：${esc(st.className||'未填')}　座號：${esc((st.seats||[]).join('、')||st.studentId||'未填')}</p>`
+    + `<p style="font-size:11px;color:#526477">報告日期：${new Intl.DateTimeFormat('zh-TW',{timeZone:'Asia/Taipei',year:'numeric',month:'numeric',day:'numeric'}).format(new Date())}｜圖片固定驅動角度 70°</p>`
+    + reportRows(t,r1,r2)
+    + `<div class="v413Illustrations">${fig}</div>`
+    + `<h3>我的發現</h3><p>${esc(note||'尚未填寫')}</p>`
+    + `<p style="font-size:10px;color:#647585">模擬結果僅供設計比較，不代表實際行走測量。尚未完成的實驗也可繳交。</p>`;
+ }
+ function fillPdfAndPrint(t){
+  syncStudentFromForm();
+  const content=pdfContent(t);
+  by('printContent').innerHTML=content;
+  // The browser handles PDF save/print; on iPad choose Share → Print → Save to Files.
+  window.print();
+ }
+ function syncStudentFromForm(){
+  if(!data.student)data.student={};
+  for(const [id,key] of studentPairs){const el=by(id);if(el&&el.value.trim())data.student[key]=el.value.trim()}
+  save();syncFromData();
+ }
+ // Main task button + output page: exactly one PDF action per task.
+ by('v49PrintTask').onclick=()=>fillPdfAndPrint(Number(data.task));
+ by('printPdf').onclick=()=>fillPdfAndPrint(Number(by('v49SubmitTask').value)||Number(data.task));
+ by('v49ExportTask').disabled=true;by('downloadReportJSON').disabled=true;
+ // Report preview is concise (no repeated full-size images or costly simulation).
+ function refreshPreview(){
+  const t=Number(by('v49SubmitTask')?.value)||Number(data.task);
+  const r1=getRecord(t,1),r2=getRecord(t,2);
+  by('reportPreview').innerHTML=`<b>任務 ${t}</b><p>第一次：${r1?'已保存':'尚未測試'}　第二次：${r2?'已保存':'尚未測試'}</p><p>按「儲存 PDF」後，將加入兩張 70° 機構圖片。</p>`;
+ }
+ window.v420PdfContent=pdfContent;by('v49SubmitTask')?.addEventListener('change',refreshPreview);
+ document.querySelectorAll('[data-page="submit"]').forEach(el=>el.addEventListener('click',()=>{syncFromData();refreshPreview()}));
+ syncFromData();limitGravity();refreshPreview();
+})();
+</script>
+
+<script>
+(function(){
+ const box=document.getElementById('showTrace');
+ const type=document.getElementById('traceMode');
+ const group=document.getElementById('gravityGroup');
+ if(!box||!type||!group)return;
+ const label=box.closest('label');
+ if(label){label.style.display='flex';if(label.parentElement!==group)group.insertBefore(label,type.closest('.setting'));label.textContent='';label.append(box,document.createTextNode(' 顯示運動軌跡'));label.id='v413TraceLabel';}
+ group.open=true;
+ const refresh=()=>{if(data?.config){box.checked=!!data.config.showTrace&&data.config.traceMode!=='off';type.value=data.config.traceMode||'off';}};
+ box.addEventListener('change',()=>{
+   const value=box.checked?(data.config.traceMode==='off'?'cycle':data.config.traceMode):'off';
+   data.config.traceMode=value;data.config.showTrace=box.checked;
+   if(sim){sim.c.traceMode=value;sim.c.showTrace=box.checked;if(!box.checked)sim.tracePaths={};}
+   type.value=value;save();paint();
+ });
+ type.addEventListener('change',()=>{
+   data.config.showTrace=type.value!=='off';
+   if(sim)sim.c.showTrace=data.config.showTrace;
+   box.checked=data.config.showTrace;save();paint();
+ });
+ const originalSyncControls=syncControls;
+ syncControls=function(){originalSyncControls();refresh();};
+ const originalUpdateTaskUI=updateTaskUI;
+ updateTaskUI=function(){originalUpdateTaskUI();group.open=true;refresh();};
+ const originalGoto=goto;
+ goto=function(page){originalGoto(page);group.open=true;refresh();};
+ refresh();
+})();
+</script>
+
+<script>
+// V4.16: keep free exploration settings separate from task-specific starting settings.
+(function(){
+ 'use strict';
+ let freeDesign=Object.assign(clone(DEFAULT),{frontExt:0,rearExt:0,secondLeg:false,gravityEnabled:false,showTrace:false,traceMode:'off'});
+ const freeButton=document.getElementById('freeMode');
+ // Task mode needs an explicit task choice, not an implicit task 1 using free-mode lengths.
+ const taskButton=document.getElementById('taskMode');
+ taskButton.onclick=function(){goto('tasks')};
+ taskButton.title='開啟任務中心，選擇要做的任務';
+ const oldFree=freeButton.onclick;
+ freeButton.onclick=function(ev){
+   if(data.mode!=='free'){
+     stop();data.config=clone(freeDesign);view=data.config.gravityEnabled===false?'mechanism':'walk';
+     sim=makeSim();syncControls();paint();updateMetrics();
+   }
+   oldFree.call(this,ev);
+ };
+ // Capture the current free design when opening a task through the task center.
+ const oldRenderTasks=renderTasks;
+ renderTasks=function(){
+   oldRenderTasks();
+   document.querySelectorAll('[data-choose]').forEach(btn=>{
+     const existing=btn.onclick;
+     btn.onclick=function(ev){if(data.mode==='free')freeDesign=clone(data.config);existing.call(this,ev);};
+   });
+ };
+ // Starting a new experiment must always reset the remembered free design.
+ document.getElementById('v49Start').addEventListener('click',()=>{freeDesign=Object.assign(clone(DEFAULT),{frontExt:0,rearExt:0,secondLeg:false,gravityEnabled:false,showTrace:false,traceMode:'off'});});
+ renderTasks();
+})();
+</script>
+
+<script>
+// V4.17: free exploration initially shows one bare, unpowered four-bar mechanism.
+(function(){
+  'use strict';
+  const bareFourBar = () => Object.assign(clone(DEFAULT), {
+    ab:3,bc:8,cd:7,da:10,
+    frontExt:0,rearExt:0,
+    secondLeg:false,
+    gravityEnabled:false,
+    showTrace:false,traceMode:'off',
+    frontFootType:'flat',rearFootType:'flat'
+  });
+  // Replace only the new-session click handler; preserve cleanup and personal-data reset.
+  const btn=document.getElementById('v49Start');
+  if(btn){
+    btn.addEventListener('click',()=>{
+      if(data.mode!=='free')return;
+      stop();
+      data.config=bareFourBar();
+      view='mechanism';
+      sim=makeSim();
+      syncControls();paint();updateMetrics();
+      try{save()}catch(e){}
+      const b=document.getElementById('showMechanism');if(b)b.classList.add('on');
+      const w=document.getElementById('showWalk');if(w)w.classList.remove('on');
+      const label=document.getElementById('visualMode');if(label)label.textContent='機構示意';
+    });
+  }
+})();
+</script>
+
+
+<style>
+.v420Identity{border:1px solid #d4e0e8;border-radius:12px;background:#f8fbfd;padding:12px;margin:10px 0;color:#1b3549}
+.v420Identity strong{display:block;font-size:16px;margin-bottom:7px}
+.v420IdentityFields{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.v420IdentityFields label{display:grid;gap:5px;flex:1;min-width:130px;font-weight:700;font-size:14px}
+.v420IdentityFields select{min-height:43px;width:100%;border:1px solid #9bb1c3;border-radius:8px;background:white;color:#203a4f;padding:6px 9px}
+.v420AddSeat{min-height:43px;font-weight:800}
+.v420SeatChips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;min-height:28px}
+.v420SeatChips button{padding:5px 9px;border-radius:20px;border:1px solid #99bbd2;background:#e9f5ff;font-size:13px;color:#134768;font-weight:700}
+.v420Status{font-size:12px;color:#42596b;margin-top:5px}
+@media print{.v420Identity{display:none!important}}
+</style>
+<script>
+(function classroomV420(){
+ 'use strict';
+ const by=id=>document.getElementById(id);
+ const classes=Array.from({length:8},(_,i)=>String(801+i));
+ const seatNumbers=Array.from({length:40},(_,i)=>String(i+1).padStart(2,'0'));
+ const classOptions='<option value="">請選擇班級</option>'+classes.map(x=>`<option value="${x}">${x}</option>`).join('');
+ const seatOptions='<option value="">選擇座號</option>'+seatNumbers.map(x=>`<option value="${x}">${x}</option>`).join('');
+ // Preserve older input elements for compatibility with existing reports and listeners.
+ const main=by('v413Identity');
+ if(main){const legacy=main.querySelector('.v413IdentityRow');if(legacy)legacy.style.display='none';const h=main.querySelector('.v413IdentityTitle');if(h)h.textContent='學生資料（儲存 PDF 前選擇）';}
+ const output=by('submitPage');
+ if(output){const row=by('className')?.closest('.row');if(row)row.style.display='none';}
+ function addPicker(container,which){
+  const div=document.createElement('div');div.className='v420Identity';div.id='v420Identity'+which;
+  div.innerHTML=`<strong>班級與座號</strong><div class="v420IdentityFields"><label>班級<select class="v420Class">${classOptions}</select></label><label>座號<select class="v420Seat">${seatOptions}</select></label><button type="button" class="v420AddSeat">＋ 加入座號</button></div><div class="v420SeatChips"></div><div class="v420Status">可加入多位同組同學，點座號可移除。</div>`;
+  container.appendChild(div);
+  div.querySelector('.v420Class').addEventListener('change',e=>{ensureStudent();data.student.className=e.target.value;sync();save()});
+  div.querySelector('.v420AddSeat').onclick=()=>{
+    const seat=div.querySelector('.v420Seat').value;
+    if(!seat){showToast('請先選擇座號');return;}
+    ensureStudent();if(!data.student.seats.includes(seat))data.student.seats.push(seat);
+    data.student.seats.sort((a,b)=>Number(a)-Number(b));sync();save();
+  };
+ }
+ if(main)addPicker(main,'Main');
+ const firstPanel=output?.querySelector('.two > .panel');if(firstPanel)firstPanel.insertAdjacentHTML('afterbegin','<div id="v420Output"></div>');
+ if(by('v420Output'))addPicker(by('v420Output'),'Output');
+ function ensureStudent(){if(!data.student)data.student={};if(!Array.isArray(data.student.seats))data.student.seats=[];}
+ function sync(){
+  ensureStudent();
+  const cls=data.student.className||'';
+  const seats=data.student.seats;
+  const id=seats.join('、');
+  ['className','v413Class'].forEach(k=>{if(by(k))by(k).value=cls});
+  ['studentId','v413Seat'].forEach(k=>{if(by(k))by(k).value=id});
+  ['studentName','v413Name'].forEach(k=>{if(by(k))by(k).value=''});
+  data.student.studentName='';data.student.studentId=id;
+  document.querySelectorAll('.v420Identity').forEach(node=>{
+    const clsInput=node.querySelector('.v420Class');if(clsInput)clsInput.value=classes.includes(cls)?cls:'';
+    const chips=node.querySelector('.v420SeatChips');if(!chips)return;
+    chips.textContent='';
+    seats.forEach(seat=>{const b=document.createElement('button');b.type='button';b.textContent=seat+' ×';b.title='移除座號 '+seat;b.onclick=()=>{data.student.seats=data.student.seats.filter(x=>x!==seat);sync();save()};chips.appendChild(b)});
+    if(!seats.length){const note=document.createElement('span');note.textContent='尚未加入座號';note.style.color='#516879';chips.appendChild(note)}
+  });
+ }
+ const start=by('v49Start');if(start)start.addEventListener('click',()=>{ensureStudent();data.student.className='';data.student.studentId='';data.student.studentName='';data.student.seats=[];sync();save()});
+ // The existing syncFromData() also runs at page switch; refresh our selectors afterward.
+ const oldGoto=goto;goto=function(page){oldGoto(page);sync()};
+ // No link labels in the simulation; allow C point separately.
+ const oldSyncControls=syncControls;
+ syncControls=function(){data.config.showLabels=false;oldSyncControls();const c=by('showCTrail');if(c)c.checked=!!data.config.showCTrail};
+ const cbox=by('showCTrail');
+ if(cbox)cbox.onchange=()=>{
+   data.config.showCTrail=cbox.checked;
+   if(sim){sim.c.showCTrail=cbox.checked;for(const k of Object.keys(sim.tracePaths||{}))if(k.endsWith('-C'))delete sim.tracePaths[k];}
+   save();paint();
+ };
+ // Avoid accidental restoration of names from a saved design.
+ const oldChanged=changed;
+ changed=function(p){oldChanged({...p,showLabels:false})};
+ // Browser Save as PDF proposes the document title as the filename.
+ const defaultTitle=document.title;
+ const nameForTask=t=>`任務${t}_${data.student?.className||'班級'}_${(data.student?.seats||[]).join('-')||'座號'}`;
+ function validateIdentity(){
+  ensureStudent();
+  if(!classes.includes(data.student.className||'')){showToast('請先選擇 801～808 班級');return false}
+  if(!data.student.seats.length){showToast('請至少加入一個座號');return false}
+  sync();save();return true;
+ }
+ function printTaskWithFilename(t){
+  if(!validateIdentity())return;
+  document.title=nameForTask(t);
+  // pdfContent(t) reads stored records; snapshots remain at angle 70 degrees.
+  try{by('printContent').innerHTML=window.v420PdfContent(t);window.print()}
+  catch(e){document.title=defaultTitle;showToast('無法產生 PDF：'+e.message)}
+ }
+ const mainPrint=by('v49PrintTask'),submitPrint=by('printPdf');
+ if(mainPrint)mainPrint.onclick=()=>printTaskWithFilename(Number(data.task));
+ if(submitPrint)submitPrint.onclick=()=>printTaskWithFilename(Number(by('v49SubmitTask').value)||Number(data.task));
+ window.addEventListener('afterprint',()=>{document.title=defaultTitle});
+ // Keep title until the browser finishes preparing its PDF dialog.
+ sync();
+})();
+</script>
+
+<script>
+(function(){
+ 'use strict';
+ // ---- V4.22 patch: task 3 wording, task gravity flow, and richer PDF snapshots ----
+ try{ document.title='仿生獸步態實驗室｜V4.22'; }catch(e){}
+ try{
+   document.querySelectorAll('*').forEach(el=>{ if(el.childNodes&&el.childNodes.length===1&&el.childNodes[0].nodeType===3){ const t=el.textContent.trim(); if(t==='V4.20') el.textContent='V4.22'; }});
+ }catch(e){}
+ if(typeof VERSION!=='undefined'){ try{}catch(e){} }
+ if(Array.isArray(TASKS)){
+   const t3=TASKS.find(t=>t.id===3);
+   if(t3){
+     t3.title='抓地力怎麼影響前進？';
+     t3.goal='固定四連桿與腳長，比較地面摩擦與腳掌抓地設定對前進距離與滑動量的影響。';
+     t3.tip='請保存兩次測試。可以改地面摩擦，也可以同時調整前腳／後腳抓地力，但要在結論中說明你改了哪些條件。';
+     t3.metric='比較兩次的地面與腳掌抓地設定，觀察哪一組較容易前進、哪一組較容易打滑。';
+     t3.think='兩次各改了哪些抓地條件？哪一次走得比較遠？哪一次滑動量比較大？';
+   }
+ }
+ // Ensure task cards reflect latest wording.
+ setTimeout(()=>{ try{renderTasks(); updateTaskUI();}catch(e){} }, 0);
+ 
+ // Keep tasks 2~5 in gravity mode when entering task mode.
+ if(typeof selectTask==='function'){
+   const oldSelectTask=selectTask;
+   selectTask=function(t,reset=false){
+     oldSelectTask(t,reset);
+     try{
+       if(Number(t)>=2 && data.mode==='task'){
+         if(!data.config.gravityEnabled || view!=='walk') switchGravityScene(true);
+       }else if(Number(t)===1 && data.mode==='task'){
+         if(data.config.gravityEnabled || view!=='mechanism') switchGravityScene(false);
+       }
+     }catch(e){}
+   };
+ }
+ 
+ function esc(x){return String(x??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');}
+ function fmtNum(v,p=2){ if(v===null||v===undefined||Number.isNaN(Number(v))) return '—'; return Number(v).toFixed(p).replace(/\.00$/,'').replace(/(\.\d)0$/,'$1'); }
+ function frictionLabel(v){ const n=Number(v); if(Math.abs(n-0.25)<1e-6) return '低'; if(Math.abs(n-0.65)<1e-6) return '中'; if(Math.abs(n-1.1)<1e-6) return '高'; return fmtNum(v); }
+ function footLabel(v){ return ({flat:'平底腳',arc:'弧形腳',toe:'前翹腳',wide:'寬底腳',custom:'自由設計'})[v]||String(v??'—'); }
+ function getRecord(task,slot){ return (data.records||[]).find(r=>Number(r.task)===Number(task)&&Number(r.slot)===Number(slot)) || null; }
+ 
+ function cycleTrails(rec){
+   if(!rec||!rec.config) return [];
+   const c=rec.config;
+   const full=getGeometry(c).full;
+   const trails=[];
+   if(!full) return trails;
+   const legCount=c.secondLeg?2:1;
+   const colors=['#247eaa','#9064b4','#2b9271','#e18a33'];
+   for(let j=0;j<legCount;j++){
+     const phaseOffset=j?rad(c.phase||0):0;
+     let front=[], rear=[];
+     const steps=90;
+     for(let i=0;i<=steps;i++){
+       const ang=i/steps*Math.PI*2 + phaseOffset;
+       const pose=fourbar(c, ang);
+       if(!pose) continue;
+       const s={A:pose.A,D:pose.D,c};
+       const set={B:pose.B,C:pose.C};
+       if(c.frontExt>0.001) front.push(endpointFoot(s,set,'front').pos);
+       else front.push(set.B);
+       if(c.rearExt>0.001) rear.push(endpointFoot(s,set,'rear').pos);
+     }
+     if(front.length>1) trails.push({points:front,color:colors[(j*2)%colors.length]});
+     if(rear.length>1) trails.push({points:rear,color:colors[(j*2+1)%colors.length]});
+   }
+   return trails;
+ }
+ 
+ function fixedPosePlus(rec){
+   if(!rec?.config) return null;
+   const c=rec.config, ang=rad(70);
+   const poses=[];
+   for(let j=0;j<(c.secondLeg?2:1);j++){
+     const p=fourbar(c,ang+(j?rad(c.phase):0));
+     if(!p) return null;
+     poses.push(p);
+   }
+   const samples=[];
+   for(const p of poses){
+     const state={A:p.A,D:p.D,c}, set={B:p.B,C:p.C};
+     const front=footSamples(state,set,'front');
+     const rear=footSamples(state,set,'rear');
+     samples.push({pose:p,front,rear,frontBase:c.frontExt>0.001?endpointFoot(state,set,'front').pos:null,rearBase:c.rearExt>0.001?endpointFoot(state,set,'rear').pos:null});
+   }
+   return {c,samples,trails:cycleTrails(rec)};
+ }
+ 
+ function sharedFrameFor(recA,recB){
+   const all=[];
+   for(const rec of [recA,recB]){
+     const pose=fixedPosePlus(rec); if(!pose) continue;
+     for(const s of pose.samples){
+       all.push(s.pose.A,s.pose.B,s.pose.C,s.pose.D);
+       if(s.frontBase) all.push(s.frontBase);
+       if(s.rearBase) all.push(s.rearBase);
+       all.push(...s.front.map(x=>x.pos), ...s.rear.map(x=>x.pos));
+     }
+     for(const trail of pose.trails) all.push(...trail.points);
+   }
+   if(!all.length) return {x0:-4,y0:-8,x1:24,y1:16};
+   let x0=Math.min(...all.map(p=>p.x))-3, x1=Math.max(...all.map(p=>p.x))+3;
+   let y0=Math.min(...all.map(p=>p.y))-3, y1=Math.max(...all.map(p=>p.y))+3;
+   return {x0,y0,x1,y1};
+ }
+ 
+ function drawPdfFigure(rec,frame){
+   const w=920,h=500,cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+   const ctx=cv.getContext('2d');
+   ctx.fillStyle='#fff'; ctx.fillRect(0,0,w,h);
+   const pose=fixedPosePlus(rec);
+   if(!pose){
+     ctx.fillStyle='#4b6174'; ctx.font='23px sans-serif'; ctx.textAlign='center';
+     ctx.fillText(rec?'驅動角度 70° 無法組合':'尚未保存這次測試',w/2,h/2);
+     return cv.toDataURL('image/png');
+   }
+   const {x0,y0,x1,y1}=frame;
+   const scale=Math.min((w-80)/(x1-x0||1),(h-90)/(y1-y0||1));
+   const cx=(x0+x1)/2, cy=(y0+y1)/2;
+   const X=x=>w/2+(x-cx)*scale, Y=y=>h/2-(y-cy)*scale;
+   ctx.strokeStyle='#e6edf2'; ctx.lineWidth=1;
+   for(let x=Math.floor(x0/2)*2;x<=x1;x+=2){ctx.beginPath();ctx.moveTo(X(x),0);ctx.lineTo(X(x),h);ctx.stroke();}
+   for(let y=Math.floor(y0/2)*2;y<=y1;y+=2){ctx.beginPath();ctx.moveTo(0,Y(y));ctx.lineTo(w,Y(y));ctx.stroke();}
+   // one-cycle trajectories
+   for(const trail of pose.trails){
+     ctx.save(); ctx.globalAlpha=0.55; ctx.strokeStyle=trail.color; ctx.lineWidth=2.2; ctx.beginPath();
+     trail.points.forEach((q,i)=>i?ctx.lineTo(X(q.x),Y(q.y)):ctx.moveTo(X(q.x),Y(q.y))); ctx.stroke(); ctx.restore();
+   }
+   const line=(a,b,color,width=5)=>{ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(X(a.x),Y(a.y));ctx.lineTo(X(b.x),Y(b.y));ctx.stroke();};
+   const dot=(a,color,r=5)=>{ctx.fillStyle=color;ctx.beginPath();ctx.arc(X(a.x),Y(a.y),r,0,Math.PI*2);ctx.fill();};
+   ctx.fillStyle='#354e62'; ctx.font='17px sans-serif'; ctx.fillText('驅動角度 70°｜一圈腳步軌跡',20,30);
+   pose.samples.forEach((s,j)=>{
+     const p=s.pose; ctx.save(); ctx.globalAlpha=j?0.68:1;
+     line(p.A,p.D,'#9e8055',9); line(p.A,p.B,'#d34a41',5.5); line(p.B,p.C,'#326fa8',5.5); line(p.C,p.D,'#29916c',5.5);
+     if(s.frontBase) line(p.B,s.frontBase,'#6b9ed0',4.5);
+     if(s.rearBase) line(p.C,s.rearBase,'#73b59f',4.5);
+     for(const [type,color] of [['front','#326fa8'],['rear','#29916c']]){
+       const points=s[type].map(x=>x.pos);
+       if(points.length){ ctx.strokeStyle=color; ctx.lineWidth=6; ctx.lineJoin='round'; ctx.lineCap='round'; ctx.beginPath(); points.forEach((q,i)=>i?ctx.lineTo(X(q.x),Y(q.y)):ctx.moveTo(X(q.x),Y(q.y))); ctx.stroke(); }
+     }
+     dot(p.A,'#425568'); dot(p.B,'#d34a41'); dot(p.C,'#326fa8'); dot(p.D,'#425568');
+     ctx.restore();
+   });
+   return cv.toDataURL('image/png');
+ }
+ 
+ function reportRowsV421(task,r1,r2){
+   const rows=[];
+   const push=(label,a,b)=>rows.push(`<tr><td>${esc(label)}</td><td>${esc(a)}</td><td>${esc(b)}</td></tr>`);
+   const cfg=(r,k)=>r?.config?.[k];
+   if(task===1){
+     for(const k of ['ab','bc','cd','da']) push(({ab:'AB 驅動桿',bc:'BC 連接桿',cd:'CD 後連桿',da:'AD 固定桿'})[k], `${fmtNum(cfg(r1,k),1)} cm`, `${fmtNum(cfg(r2,k),1)} cm`);
+     const rot=r=>!r?'—':(r.result?.canAssemble===false?'無法組合':r.result?.fullRotation?'可以完整旋轉':'只能有限擺動');
+     push('能否完整旋轉', rot(r1), rot(r2));
+   } else if(task===2){
+     push('前腳延伸長度', `${fmtNum(cfg(r1,'frontExt'),1)} cm`, `${fmtNum(cfg(r2,'frontExt'),1)} cm`);
+   } else if(task===3){
+     push('地面摩擦', frictionLabel(cfg(r1,'friction')), frictionLabel(cfg(r2,'friction')));
+     push('前腳抓地', frictionLabel(cfg(r1,'frontFriction')), frictionLabel(cfg(r2,'frontFriction')));
+     push('後腳抓地', frictionLabel(cfg(r1,'rearFriction')), frictionLabel(cfg(r2,'rearFriction')));
+     push('前腳腳掌', footLabel(cfg(r1,'frontFootType')), footLabel(cfg(r2,'frontFootType')));
+     push('後腳腳掌', footLabel(cfg(r1,'rearFootType')), footLabel(cfg(r2,'rearFootType')));
+   } else if(task===4){
+     push('相位差', `${fmtNum(cfg(r1,'phase'),0)}°`, `${fmtNum(cfg(r2,'phase'),0)}°`);
+   } else if(task===5){
+     for(const k of ['ab','bc','cd','da']) push(({ab:'AB 驅動桿',bc:'BC 連接桿',cd:'CD 後連桿',da:'AD 固定桿'})[k], `${fmtNum(cfg(r1,k),1)} cm`, `${fmtNum(cfg(r2,k),1)} cm`);
+     push('前腳延伸', `${fmtNum(cfg(r1,'frontExt'),1)} cm`, `${fmtNum(cfg(r2,'frontExt'),1)} cm`);
+     push('後腳延伸', `${fmtNum(cfg(r1,'rearExt'),1)} cm`, `${fmtNum(cfg(r2,'rearExt'),1)} cm`);
+     push('前腳腳掌', footLabel(cfg(r1,'frontFootType')), footLabel(cfg(r2,'frontFootType')));
+     push('後腳腳掌', footLabel(cfg(r1,'rearFootType')), footLabel(cfg(r2,'rearFootType')));
+     push('相位差', `${fmtNum(cfg(r1,'phase'),0)}°`, `${fmtNum(cfg(r2,'phase'),0)}°`);
+     push('地面摩擦', frictionLabel(cfg(r1,'friction')), frictionLabel(cfg(r2,'friction')));
+   }
+   if(task!==1){
+     push('前進距離（向左為正）', `${fmtNum(r1?.result?.distance)} cm`, `${fmtNum(r2?.result?.distance)} cm`);
+     push('滑動量', `${fmtNum(r1?.result?.slip)} cm`, `${fmtNum(r2?.result?.slip)} cm`);
+     if(task===4) push('機身上下晃動', `${fmtNum(r1?.result?.verticalRangeCm)} cm`, `${fmtNum(r2?.result?.verticalRangeCm)} cm`);
+   }
+   push('結果', r1?(r1.result?.valid===false?'未完成':'已保存'):'未測試', r2?(r2.result?.valid===false?'未完成':'已保存'):'未測試');
+   return '<table class="records"><thead><tr><th>項目</th><th>第一次</th><th>第二次</th></tr></thead><tbody>'+rows.join('')+'</tbody></table>';
+ }
+ 
+ function pdfContentV421(task){
+   const r1=getRecord(task,1), r2=getRecord(task,2), st=data.student||{};
+   const taskObj=(TASKS||[]).find(x=>x.id===task)||{};
+   const note=(data.taskNotes||{})[task]||'';
+   const frame=sharedFrameFor(r1,r2), shots=[r1,r2].map(r=>drawPdfFigure(r,frame));
+   const figs=shots.map((shot,i)=>`<div class="v413Fig"><h3>第${i===0?'一':'二'}次測試｜驅動角度 70°</h3><img src="${shot}" alt="第${i+1}次 70 度機構圖與一圈軌跡"/></div>`).join('');
+   return `<h2>仿生獸步態實驗報告｜任務 ${task}</h2>`
+     + `<p><strong>${esc(taskObj.title||'')}</strong></p>`
+     + `<p>班級：${esc(st.className||'未填')}　座號：${esc((st.seats||[]).join('、')||st.studentId||'未填')}</p>`
+     + `<p style="font-size:11px;color:#526477">報告日期：${new Intl.DateTimeFormat('zh-TW',{timeZone:'Asia/Taipei',year:'numeric',month:'numeric',day:'numeric'}).format(new Date())}｜圖片固定驅動角度 70°｜圖中含一圈腳步軌跡</p>`
+     + reportRowsV421(task,r1,r2)
+     + `<div class="v413Illustrations">${figs}</div>`
+     + `<h3>我的發現</h3><p>${esc(note||'尚未填寫')}</p>`
+     + `<p style="font-size:10px;color:#647585">模擬結果主要用來比較兩種設計的差異，不代表實際製作後的精確量測。</p>`;
+ }
+ 
+ window.v421PdfContent=pdfContentV421;
+ function syncStudent(){
+   if(!data.student) data.student={};
+   const cls=document.getElementById('className');
+   const sid=document.getElementById('studentId');
+   const overall=document.getElementById('overallConclusion');
+   if(cls) data.student.className=(cls.value||'').trim();
+   if(sid) data.student.studentId=(sid.value||'').trim();
+   if(overall) data.student.overall=(overall.value||'').trim();
+   try{save();}catch(e){}
+ }
+ function printTaskV421(task){
+   syncStudent();
+   const pc=document.getElementById('printContent');
+   if(pc) pc.innerHTML=pdfContentV421(task);
+   const cls=(data.student?.className||'').trim()||'班級';
+   const seats=((data.student?.seats||[]).join('-')||data.student?.studentId||'座號').replace(/[\s、]+/g,'-');
+   const oldTitle=document.title;
+   document.title=`任務${task}_${cls}_${seats}`;
+   setTimeout(()=>{ window.print(); setTimeout(()=>{document.title=oldTitle;},200); },50);
+ }
+ const mainBtn=document.getElementById('v49PrintTask');
+ if(mainBtn) mainBtn.onclick=()=>printTaskV421(Number(data.task));
+ const submitBtn=document.getElementById('printPdf');
+ if(submitBtn) submitBtn.onclick=()=>printTaskV421(Number(document.getElementById('v49SubmitTask')?.value)||Number(data.task));
+})();
+</script>
+
+
+<style>
+#v422Confirm[hidden]{display:none!important}
+#v422Confirm{position:fixed;inset:0;z-index:100000;background:rgba(24,43,58,.66);display:flex;align-items:center;justify-content:center;padding:18px}
+#v422Confirm .v422Dialog{background:#fff;border-radius:15px;padding:23px;width:min(470px,100%);max-height:88vh;overflow:auto;box-shadow:0 20px 65px rgba(0,0,0,.22);color:#233a4a}
+#v422Confirm h2{font-size:22px;margin:0 0 8px;font-weight:800}
+#v422Confirm p{font-size:15px;line-height:1.55}
+#v422Confirm .v422Line{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #e0e7ed;padding:11px 0;font-size:16px}
+#v422Confirm .v422Line strong{font-weight:800;text-align:right}
+#v422Confirm .v422Warn{background:#f6f8fa;border-radius:8px;padding:10px;margin:12px 0;font-size:14px;line-height:1.5}
+#v422Confirm .v422Actions{display:flex;gap:10px;margin-top:15px}
+#v422Confirm button{font-size:16px;min-height:44px;flex:1}
+@media print{#v422Confirm{display:none!important}}
+</style>
+<div id="v422Confirm" hidden role="dialog" aria-modal="true" aria-labelledby="v422Title">
+ <div class="v422Dialog">
+  <h2 id="v422Title">儲存 PDF 前確認</h2>
+  <p>請確認班級、座號及本次任務。未完成測試也可以儲存。</p>
+  <div class="v422Line"><span>任務</span><strong id="v422Task"></strong></div>
+  <div class="v422Line"><span>班級</span><strong id="v422Class"></strong></div>
+  <div class="v422Line"><span>座號</span><strong id="v422Seats"></strong></div>
+  <div class="v422Line"><span>第一次測試</span><strong id="v422First"></strong></div>
+  <div class="v422Line"><span>第二次測試</span><strong id="v422Second"></strong></div>
+  <p class="v422Warn" id="v422Hint">確認後會開啟列印畫面，請選擇「儲存為 PDF」。</p>
+  <div class="v422Actions"><button type="button" id="v422Cancel">返回修改</button><button class="success" type="button" id="v422Print">確認並儲存 PDF</button></div>
+ </div>
+</div>
+<script>
+(function(){
+'use strict';
+const $v=id=>document.getElementById(id);
+let requestedTask=null;
+let previousFocus=null;
+function saved(t,slot){return (data.records||[]).find(r=>Number(r.task)===Number(t)&&Number(r.slot)===slot)||null;}
+function identity(){
+ const student=data.student||{};
+ let cls=String(student.className||'').trim();
+ const classSel=$v('v413Class');
+ if(classSel && classSel.value && /^[0-9]{3}$/.test(classSel.value))cls=classSel.value;
+ let seats=Array.isArray(student.seats)?student.seats.map(x=>String(x).padStart(2,'0')):[];
+ if(!seats.length&&student.studentId)seats=String(student.studentId).split(/[、,;\-\s]+/).map(x=>x.trim()).filter(Boolean).map(x=>x.padStart(2,'0'));
+ return {cls,seats:[...new Set(seats)].sort()};
+}
+function showConfirmation(task){
+ const modal=$v('v422Confirm');
+ if(!modal)return;
+ requestedTask=task;
+ previousFocus=document.activeElement;
+ const info=identity();
+ $v('v422Task').textContent='任務 '+task;
+ $v('v422Class').textContent=info.cls||'尚未選擇';
+ $v('v422Seats').textContent=info.seats.join('、')||'尚未加入';
+ $v('v422First').textContent=saved(task,1)?'已保存':'尚未測試';
+ $v('v422Second').textContent=saved(task,2)?'已保存':'尚未測試';
+ const reminders=[];
+ if(!info.cls)reminders.push('班級尚未選擇');
+ if(!info.seats.length)reminders.push('座號尚未加入');
+ if(!saved(task,1)||!saved(task,2))reminders.push('部分測試尚未完成');
+ $v('v422Hint').textContent=reminders.length?reminders.join('；')+'。仍可儲存 PDF，但建議先檢查。':'資料已確認。接著會開啟列印畫面，請選擇「儲存為 PDF」。';
+ modal.hidden=false;
+ document.body.style.overflow='hidden';
+ $v('v422Cancel').focus();
+}
+function closeConfirmation(){
+ $v('v422Confirm').hidden=true;
+ document.body.style.overflow='';
+ requestedTask=null;
+ if(previousFocus&&previousFocus.isConnected)previousFocus.focus();
+}
+function printAfterConfirmation(){
+ if(requestedTask==null)return;
+ const task=requestedTask;
+ closeConfirmation();
+ const oldTitle=document.title;
+ const id=identity();
+ const seats=id.seats.join('-')||'座號';
+ const cls=id.cls||'班級';
+ const report=$v('printContent');
+ if(report && typeof window.v421PdfContent==='function'){
+  report.innerHTML=window.v421PdfContent(task);
+ }
+ document.title=`任務${task}_${cls}_${seats}`;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+   window.print();
+   window.addEventListener('afterprint',()=>{document.title=oldTitle},{once:true});
+   setTimeout(()=>{if(document.title!==oldTitle)document.title=oldTitle;},4500);
+ }));
+}
+$v('v422Cancel').onclick=closeConfirmation;
+$v('v422Print').onclick=printAfterConfirmation;
+$v('v422Confirm').addEventListener('click',e=>{if(e.target===$v('v422Confirm'))closeConfirmation();});
+document.addEventListener('keydown',e=>{if(!$v('v422Confirm').hidden && e.key==='Escape'){e.preventDefault();closeConfirmation();}});
+const taskBtn=$v('v49PrintTask');if(taskBtn)taskBtn.onclick=()=>showConfirmation(Number(data.task));
+const submitBtn=$v('printPdf');if(submitBtn)submitBtn.onclick=()=>showConfirmation(Number($v('v49SubmitTask')?.value)||Number(data.task));
+})();
+</script>
+
+</body></html>
